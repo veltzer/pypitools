@@ -1,7 +1,8 @@
 import subprocess
 import os.path
 
-config_file = os.path.expanduser('~/.pypirc')
+def get_config_file():
+    return os.path.expanduser('~/.pypirc')
 
 
 def check_call_no_output(args):
