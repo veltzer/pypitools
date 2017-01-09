@@ -21,7 +21,7 @@ References:
 
 import os
 import os.path
-import common
+from pypitools import common
 
     
 def upload_by_setup():

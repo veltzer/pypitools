@@ -23,15 +23,12 @@ TODO:
 - check if I'm already registered and don't register if that is the case.
 """
 
-import common
+import pypitools.common
 import os
 
-do_use_setup = False
-do_use_twine = True
-    
 
 def register_by_setup():
-    common.check_call_no_output([
+    pypitools.common.check_call_no_output([
         'python',
         'setup.py',
         'register',
@@ -41,7 +38,7 @@ def register_by_setup():
 
 
 def register_by_twine():
-    common.check_call_no_output([
+    pypitools.common.check_call_no_output([
         'python3',
         'setup.py',
         'bdist_wheel',
@@ -52,17 +49,22 @@ def register_by_twine():
     assert len(file_list) == 1
     filename = file_list[0]
     full_filename = os.path.join('dist', filename)
-    common.check_call_no_output([
+    pypitools.common.check_call_no_output([
         'twine',
         'register',
         full_filename,
     ])
 
-common.git_clean_full()
-try:
-    if do_use_setup:
-        register_by_setup()
-    if do_use_twine:
-        register_by_twine()
-finally:
-    common.git_clean_full()
+
+def main():
+    do_use_setup = False
+    do_use_twine = True
+
+    pypitools.common.git_clean_full()
+    try:
+        if do_use_setup:
+            register_by_setup()
+        if do_use_twine:
+            register_by_twine()
+    finally:
+        pypitools.common.git_clean_full()

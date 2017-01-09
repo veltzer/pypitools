@@ -1,6 +1,7 @@
 import subprocess
 import os.path
 
+
 def get_config_file():
     return os.path.expanduser('~/.pypirc')
 

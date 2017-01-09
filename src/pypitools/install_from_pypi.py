@@ -1,25 +1,25 @@
 import os
 import subprocess
-import common
+import pypitools.common
 
 
 def main():
     # PIP="pip"
     PIP = "pip3"
     module = os.path.basename(os.getcwd())
-    common.check_call_no_output([
+    pypitools.common.check_call_no_output([
         "sudo",
         "-H",
-        "{PIP}".format(**vars()),
+        "{PIP}".format(PIP=PIP),
         "install",
         "--quiet",
         "--upgrade",
-        "{module}".format(**vars()),
+        "{module}".format(module=module),
     ])
     output = subprocess.check_output([
-        "{PIP}".format(**vars()),
+        "{PIP}".format(PIP=PIP),
         "show",
-        "{module}".format(**vars()),
+        "{module}".format(module=module),
     ]).decode()
     for line in output.split("\n"):
         if line.startswith("Version"):
