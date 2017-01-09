@@ -23,6 +23,8 @@ import os
 import os.path
 from pypitools import common
 
+do_clean = True
+
     
 def upload_by_setup():
     common.check_call_no_output([
@@ -33,7 +35,8 @@ def upload_by_setup():
         '-r',
         'pypi',
     ])
-    common.git_clean_full()
+    if do_clean:
+        common.git_clean_full()
 
 
 def upload_by_twine():
@@ -59,11 +62,13 @@ def upload_by_twine():
 def main():
     do_use_setup = False
     do_use_twine = True
-    common.git_clean_full()
+    if do_clean:
+        common.git_clean_full()
     try:
         if do_use_setup:
             upload_by_setup()
         if do_use_twine:
             upload_by_twine()
     finally:
-        common.git_clean_full()
+        if do_clean:
+            common.git_clean_full()
