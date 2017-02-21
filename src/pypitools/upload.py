@@ -22,15 +22,20 @@ References:
 - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
 - http://peterdowns.com/posts/first-time-with-pypi.html
 """
-
+import configparser
 import os
 import os.path
+
+import click
+from pyfakeuse.pyfakeuse import fake_use
+
 from pypitools import common
 
-do_clean = True
+SECTION = "pypitools"
 
     
-def upload_by_setup():
+def upload_by_setup(config: configparser.ConfigParser) -> None:
+    fake_use(config)
     common.check_call_no_output([
         'python',
         'setup.py',
@@ -39,11 +44,10 @@ def upload_by_setup():
         '-r',
         'pypi',
     ])
-    if do_clean:
-        common.git_clean_full()
 
 
-def upload_by_twine():
+def upload_by_twine(config: configparser.ConfigParser) -> None:
+    fake_use(config)
     common.check_call_no_output([
         'python3',
         'setup.py',
@@ -63,16 +67,44 @@ def upload_by_twine():
     ])
 
 
+def upload_by_gemfury(config: configparser.ConfigParser) -> None:
+    p_gemfury_user = config.get(SECTION, "gemfury_user")
+    common.check_call_no_output([
+        'python3',
+        'setup.py',
+        'sdist',
+    ])
+    # at this point there should be only one file in the 'dist' folder
+    file_list = list(os.listdir('dist'))
+    assert len(file_list) == 1
+    filename = file_list[0]
+    full_filename = os.path.join('dist', filename)
+    common.check_call_no_output([
+        'fury',
+        'push',
+        '--as={}'.format(p_gemfury_user),
+        full_filename,
+    ])
+
+
+@click.command()
 def main():
-    do_use_setup = False
-    do_use_twine = True
-    if do_clean:
+    # read setup.cfg config file
+    config = configparser.ConfigParser()
+    config.read("setup.cfg")
+    p_method = config.get(SECTION, "method")
+    assert p_method in ["setup", "twine", "gemfury"]
+    p_clean_before = config.getboolean(SECTION, "clean_before")
+    p_clean_after = config.getboolean(SECTION, "clean_after")
+    if p_clean_before:
         common.git_clean_full()
     try:
-        if do_use_setup:
-            upload_by_setup()
-        if do_use_twine:
-            upload_by_twine()
+        if p_method == "setup":
+            upload_by_setup(config)
+        if p_method == "twine":
+            upload_by_twine(config)
+        if p_method == "gemfury":
+            upload_by_gemfury(config)
     finally:
-        if do_clean:
+        if p_clean_after:
             common.git_clean_full()

@@ -6,7 +6,7 @@ if not sys.version_info[0] == 3:
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.1',
+    version='0.0.2',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://veltzer.github.io/pypitools',
@@ -22,6 +22,8 @@ setuptools.setup(
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
     install_requires=[
+        'click',  # for command line parsing
+        'pyfakeuse'  # for fake use of variables
     ],
     entry_points={
         'console_scripts': [
