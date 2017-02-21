@@ -1,5 +1,8 @@
 """
-this script uploads your module to pypi
+This script uploads your module to where ever you configure it.
+It's default is to upload to pypi but you can override by putting
+a pypi.cnf file in the root of your source tree.
+
 
 It does the following:
 - clean
@@ -7,10 +10,11 @@ It does the following:
 - twine upload
 - clean again
 
-This script could be done via setuptools using the following:
-- python3 setup.py sdist upload -r pypi --identity="Mark Veltzer" --sign
+Notes:
+- This script could be done via setuptools using the following:
+$ python3 setup.py sdist upload -r pypi --identity="Mark Veltzer" --sign
 but this has bad security implications as it sends user and password plain text.
-This is the reason we use twine(1) to upload the package.
+- we use twine(1) to upload the package.
 On ubuntu twine(1) is from the 'twine' official ubuntu package.
 
 References:
