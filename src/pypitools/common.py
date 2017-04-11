@@ -1,6 +1,9 @@
 import subprocess
 import os.path
 
+import sys
+from pyfakeuse.pyfakeuse import fake_use
+
 
 def get_config_file():
     return os.path.expanduser('~/.pypirc')
@@ -27,3 +30,17 @@ def git_clean_full():
         'clean',
         '-qffxd',
     ])
+
+
+def excepthook(exception_type, value, traceback):
+    fake_use(exception_type)
+    fake_use(traceback)
+    # this loop will drill to the core of the problem
+    # use only if this is what you want to show...
+    while value.__cause__:
+        value = value.__cause__
+    print(value)
+
+
+def setup_main():
+    sys.excepthook = excepthook

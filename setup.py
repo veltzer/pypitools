@@ -6,7 +6,7 @@ if not sys.version_info[0] == 3:
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.3',
+    version='0.0.4',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://veltzer.github.io/pypitools',
@@ -27,10 +27,10 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'pypi_install_from_local=pypitools.install_from_local:main',
-            'pypi_install_from_pypi=pypitools.install_from_pypi:main',
-            'pypi_register=pypitools.register:main',
-            'pypi_upload=pypitools.upload:main',
+            'pypi_install_from_local=pypitools.scripts.install_from_local:main',
+            'pypi_install_from_pypi=pypitools.scripts.install_from_pypi:main',
+            'pypi_register=pypitools.scripts.register:main',
+            'pypi_upload=pypitools.scripts.upload:main',
         ],
     },
 )

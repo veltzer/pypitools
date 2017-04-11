@@ -1,4 +1,4 @@
 add the ability to upload to gemfury using git push:
 	#!/bin/sh
 	git push fury master
-after adding the futy url as remote in git.
+after adding the fury url as remote in git.

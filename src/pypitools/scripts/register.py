@@ -26,6 +26,8 @@ TODO:
 import pypitools.common
 import os
 
+from pypitools import common
+
 
 def register_by_setup():
     pypitools.common.check_call_no_output([
@@ -57,6 +59,7 @@ def register_by_twine():
 
 
 def main():
+    common.setup_main()
     do_use_setup = False
     do_use_twine = True
 

@@ -89,6 +89,7 @@ def upload_by_gemfury(config: configparser.ConfigParser) -> None:
 
 @click.command()
 def main():
+    common.setup_main()
     # read setup.cfg config file
     config = configparser.ConfigParser()
     config.read("setup.cfg")
