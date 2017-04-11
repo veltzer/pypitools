@@ -21,7 +21,7 @@ def check_call_no_output(args):
         res_stderr = res_stderr.decode()
         print(res_stdout, end='')
         print(res_stderr, end='')
-        raise ValueError(p.returncode)
+        raise ValueError('exit code from {} was {}'.format(" ".join(args), p.returncode))
 
 
 def git_clean_full():
