@@ -27,11 +27,12 @@ import pypitools.common
 import os
 
 from pypitools import common
+from pypitools.common import ConfigData
 
 
-def register_by_setup():
+def register_by_setup(config: ConfigData) -> None:
     pypitools.common.check_call_no_output([
-        'python',
+        '{}'.format(config.python),
         'setup.py',
         'register',
         '-r',
@@ -39,9 +40,9 @@ def register_by_setup():
     ])
 
 
-def register_by_twine():
+def register_by_twine(config: ConfigData) -> None:
     pypitools.common.check_call_no_output([
-        'python3',
+        '{}'.format(config.python),
         'setup.py',
         'bdist_wheel',
     ])
@@ -60,14 +61,12 @@ def register_by_twine():
 
 def main():
     common.setup_main()
-    do_use_setup = False
-    do_use_twine = True
-
+    config = common.read_config()
     pypitools.common.git_clean_full()
     try:
-        if do_use_setup:
-            register_by_setup()
-        if do_use_twine:
-            register_by_twine()
+        if config.register_method == "twine":
+            register_by_twine(config)
+        if config.register_method == "setup":
+            register_by_setup(config)
     finally:
         pypitools.common.git_clean_full()

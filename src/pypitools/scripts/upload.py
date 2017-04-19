@@ -22,22 +22,18 @@ References:
 - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
 - http://peterdowns.com/posts/first-time-with-pypi.html
 """
-import configparser
 import os
 import os.path
 
 import click
-from pyfakeuse.pyfakeuse import fake_use
 
 from pypitools import common
+from pypitools.common import ConfigData
 
-SECTION = "pypitools"
 
-    
-def upload_by_setup(config: configparser.ConfigParser) -> None:
-    fake_use(config)
+def upload_by_setup(config: ConfigData) -> None:
     common.check_call_no_output([
-        'python',
+        '{}'.format(config.python),
         'setup.py',
         'sdist',
         'upload',
@@ -46,10 +42,9 @@ def upload_by_setup(config: configparser.ConfigParser) -> None:
     ])
 
 
-def upload_by_twine(config: configparser.ConfigParser) -> None:
-    fake_use(config)
+def upload_by_twine(config: ConfigData) -> None:
     common.check_call_no_output([
-        'python3',
+        '{}'.format(config.python),
         'setup.py',
         'sdist',
     ])
@@ -67,10 +62,9 @@ def upload_by_twine(config: configparser.ConfigParser) -> None:
     ])
 
 
-def upload_by_gemfury(config: configparser.ConfigParser) -> None:
-    p_gemfury_user = config.get(SECTION, "gemfury_user")
+def upload_by_gemfury(config: ConfigData) -> None:
     common.check_call_no_output([
-        'python3',
+        '{}'.format(config.python),
         'setup.py',
         'sdist',
     ])
@@ -82,7 +76,7 @@ def upload_by_gemfury(config: configparser.ConfigParser) -> None:
     common.check_call_no_output([
         'fury',
         'push',
-        '--as={}'.format(p_gemfury_user),
+        '--as={}'.format(config.gemfury_user),
         full_filename,
     ])
 
@@ -90,22 +84,16 @@ def upload_by_gemfury(config: configparser.ConfigParser) -> None:
 @click.command()
 def main():
     common.setup_main()
-    # read setup.cfg config file
-    config = configparser.ConfigParser()
-    config.read("setup.cfg")
-    p_method = config.get(SECTION, "method")
-    assert p_method in ["setup", "twine", "gemfury"]
-    p_clean_before = config.getboolean(SECTION, "clean_before")
-    p_clean_after = config.getboolean(SECTION, "clean_after")
-    if p_clean_before:
+    config = common.read_config()
+    if config.clean_before:
         common.git_clean_full()
     try:
-        if p_method == "setup":
+        if config.method == "setup":
             upload_by_setup(config)
-        if p_method == "twine":
+        if config.method == "twine":
             upload_by_twine(config)
-        if p_method == "gemfury":
+        if config.method == "gemfury":
             upload_by_gemfury(config)
     finally:
-        if p_clean_after:
+        if config.clean_after:
             common.git_clean_full()

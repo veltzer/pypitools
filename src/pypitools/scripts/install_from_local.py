@@ -1,5 +1,4 @@
 import shutil
-import subprocess
 import os
 
 from pypitools import common
@@ -7,28 +6,44 @@ from pypitools import common
 
 def main():
     common.setup_main()
+    config = common.read_config()
     dist_folder = 'dist'
 
     if os.path.isdir(dist_folder):
         shutil.rmtree(dist_folder)
-    # TODO: check that there is no output
-    subprocess.check_call([
-        'python3',
+    args = [
+        '{}'.format(config.python),
         'setup.py',
-        '--quiet',
         'sdist',
-    ])
+    ]
+    if config.setup_quiet:
+        args.extend([
+            '--quiet',
+        ])
+    common.check_call_no_output(args)
     files = list(os.listdir(dist_folder))
-    # TODO: give out a good assertion message
-    assert len(files) == 1
+    assert len(files) == 1, "too many files in {}".format(dist_folder)
     new_file = os.path.join(dist_folder, files[0])
-    # TODO: check that there is no output
-    subprocess.check_call([
-        'sudo',
-        '-H',
-        'pip3',
+    args = []
+    if config.use_sudo:
+        args.extend([
+            'sudo',
+            '-H',
+        ])
+    args.extend([
+        '{}'.format(config.pip),
         'install',
         '--quiet',
         '--upgrade',
         new_file,
     ])
+    if config.pip_quiet:
+        args.extend([
+            '--quiet',
+        ])
+    if config.install_in_user_folder:
+        args.extend([
+            '--user',
+        ])
+
+    common.check_call_no_output(args)

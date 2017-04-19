@@ -6,22 +6,29 @@ from pypitools import common
 
 def main():
     common.setup_main()
-    # PIP="pip"
-    pip = "pip3"
+    config = common.read_config()
     module_name = os.path.basename(os.getcwd())
-    pypitools.common.check_call_no_output([
-        "sudo",
-        "-H",
-        "{pip}".format(pip=pip),
-        "install",
-        "--quiet",
-        "--upgrade",
-        "{module_name}".format(module_name=module_name),
+    args = []
+    if config.use_sudo:
+        args.extend([
+            'sudo',
+            '-H',
+        ])
+    args.extend([
+        '{}'.format(config.pip),
+        'install',
+        '--upgrade',
+        '{module_name}'.format(module_name=module_name),
     ])
+    if config.pip_quiet:
+        args.extend([
+            '--quiet',
+        ])
+    pypitools.common.check_call_no_output(args)
     output = subprocess.check_output([
-        "{pip}".format(pip=pip),
-        "show",
-        "{module_name}".format(module_name=module_name),
+        '{}'.format(config.pip),
+        'show',
+        '{module_name}'.format(module_name=module_name),
     ]).decode()
     for line in output.split("\n"):
         if line.startswith("Version"):
