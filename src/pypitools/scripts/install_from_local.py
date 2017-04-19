@@ -6,7 +6,7 @@ import click
 from pypitools import common
 
 
-@click.command
+@click.command()
 def main():
     common.setup_main()
     config = common.read_config()

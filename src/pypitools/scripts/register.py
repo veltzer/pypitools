@@ -60,7 +60,7 @@ def register_by_twine(config: ConfigData) -> None:
     ])
 
 
-@click.command
+@click.command()
 def main():
     common.setup_main()
     config = common.read_config()
