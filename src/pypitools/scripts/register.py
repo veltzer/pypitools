@@ -22,6 +22,7 @@ References:
 TODO:
 - check if I'm already registered and don't register if that is the case.
 """
+import click
 
 import pypitools.common
 import os
@@ -59,6 +60,7 @@ def register_by_twine(config: ConfigData) -> None:
     ])
 
 
+@click.command
 def main():
     common.setup_main()
     config = common.read_config()

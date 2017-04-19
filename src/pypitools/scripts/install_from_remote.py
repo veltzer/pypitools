@@ -1,9 +1,13 @@
 import os
 import subprocess
+
+import click
+
 import pypitools.common
 from pypitools import common
 
 
+@click.command
 def main():
     common.setup_main()
     config = common.read_config()

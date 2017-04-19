@@ -31,6 +31,7 @@ setuptools.setup(
             'pypi_install_from_remote=pypitools.scripts.install_from_remote:main',
             'pypi_register=pypitools.scripts.register:main',
             'pypi_upload=pypitools.scripts.upload:main',
+            'pypi_check_config=pypitools.scripts.check_config:main',
         ],
     },
 )
