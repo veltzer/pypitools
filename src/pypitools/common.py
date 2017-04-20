@@ -1,9 +1,13 @@
 import configparser
 import subprocess
 import os.path
+import logging
 
 import sys
 from pyfakeuse.pyfakeuse import fake_use
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_config_file() -> str:
@@ -11,6 +15,7 @@ def get_config_file() -> str:
 
 
 def check_call_no_output(args) -> None:
+    logger.debug("running %s", args)
     p = subprocess.Popen(
         args,
         stdout=subprocess.PIPE,
@@ -75,7 +80,7 @@ def read_config() -> ConfigData:
     return cfg
 
 
-def excepthook(exception_type, value, traceback):
+def excepthook(exception_type, value, traceback) -> None:
     fake_use(exception_type)
     fake_use(traceback)
     # this loop will drill to the core of the problem
@@ -85,5 +90,5 @@ def excepthook(exception_type, value, traceback):
     print(value)
 
 
-def setup_main():
+def setup_main() -> None:
     sys.excepthook = excepthook
