@@ -35,7 +35,7 @@ def git_clean_full() -> None:
 
 class ConfigData:
     def __init__(self):
-        self.method = None
+        self.upload_method = None
         self.clean_before = None
         self.clean_after = None
         self.install_in_user_folder = None
@@ -59,8 +59,8 @@ def read_config() -> ConfigData:
     if os.path.isfile(local_filename):
         config.read(local_filename)
     cfg = ConfigData()
-    cfg.method = config.get(SECTION, "method")
-    assert cfg.method in ["setup", "twine", "gemfury"]
+    cfg.upload_method = config.get(SECTION, "upload_method")
+    assert cfg.upload_method in ["setup", "twine", "gemfury"]
     cfg.clean_before = config.getboolean(SECTION, "clean_before")
     cfg.clean_after = config.getboolean(SECTION, "clean_after")
     cfg.install_in_user_folder = config.getboolean(SECTION, "install_in_user_folder")

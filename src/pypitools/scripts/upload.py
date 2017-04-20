@@ -88,11 +88,11 @@ def main():
     if config.clean_before:
         common.git_clean_full()
     try:
-        if config.method == "setup":
+        if config.upload_method == "setup":
             upload_by_setup(config)
-        if config.method == "twine":
+        if config.upload_method == "twine":
             upload_by_twine(config)
-        if config.method == "gemfury":
+        if config.upload_method == "gemfury":
             upload_by_gemfury(config)
     finally:
         if config.clean_after:
