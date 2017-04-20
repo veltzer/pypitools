@@ -52,7 +52,12 @@ def read_config() -> ConfigData:
     SECTION = "pypitools"
     # read setup.cfg config file
     config = configparser.ConfigParser()
-    config.read("setup.cfg")
+    homedir_filename = os.path.expanduser("~/.setup.cfg")
+    if os.path.isfile(homedir_filename):
+        config.read(homedir_filename)
+    local_filename = "setup.cfg"
+    if os.path.isfile(local_filename):
+        config.read(local_filename)
     cfg = ConfigData()
     cfg.method = config.get(SECTION, "method")
     assert cfg.method in ["setup", "twine", "gemfury"]
