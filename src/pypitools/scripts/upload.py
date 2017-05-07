@@ -70,6 +70,7 @@ def upload_by_gemfury(config: ConfigData) -> None:
     ])
     # at this point there should be only one file in the 'dist' folder
     file_list = list(os.listdir('dist'))
+    # TODO - the next line is really bad.
     assert len(file_list) == 1
     filename = file_list[0]
     full_filename = os.path.join('dist', filename)
