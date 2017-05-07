@@ -25,7 +25,6 @@ TODO:
 import click
 
 import pypitools.common
-import os
 
 from pypitools import common
 from pypitools.common import ConfigData
@@ -49,14 +48,11 @@ def register_by_twine(config: ConfigData) -> None:
     ])
 
     # at this point there should be only one file in the 'dist' folder
-    file_list = list(os.listdir('dist'))
-    assert len(file_list) == 1
-    filename = file_list[0]
-    full_filename = os.path.join('dist', filename)
+    filename = pypitools.common.get_package_filename(config)
     pypitools.common.check_call_no_output([
         'twine',
         'register',
-        full_filename,
+        filename,
     ])
 
 

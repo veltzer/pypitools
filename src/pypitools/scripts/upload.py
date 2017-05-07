@@ -22,13 +22,11 @@ References:
 - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
 - http://peterdowns.com/posts/first-time-with-pypi.html
 """
-import os
-import os.path
 
 import click
 
 from pypitools import common
-from pypitools.common import ConfigData
+from pypitools.common import ConfigData, get_package_filename
 
 
 def upload_by_setup(config: ConfigData) -> None:
@@ -48,15 +46,11 @@ def upload_by_twine(config: ConfigData) -> None:
         'setup.py',
         'sdist',
     ])
-    # at this point there should be only one file in the 'dist' folder
-    file_list = list(os.listdir('dist'))
-    assert len(file_list) == 1
-    filename = file_list[0]
-    full_filename = os.path.join('dist', filename)
+    filename = get_package_filename(config)
     common.check_call_no_output([
         'twine',
         'upload',
-        full_filename,
+        filename,
         # '--config-file',
         # common.config_file,
     ])
@@ -68,17 +62,12 @@ def upload_by_gemfury(config: ConfigData) -> None:
         'setup.py',
         'sdist',
     ])
-    # at this point there should be only one file in the 'dist' folder
-    file_list = list(os.listdir('dist'))
-    # TODO - the next line is really bad.
-    assert len(file_list) == 1
-    filename = file_list[0]
-    full_filename = os.path.join('dist', filename)
+    filename = get_package_filename(config)
     common.check_call_no_output([
         'fury',
         'push',
         '--as={}'.format(config.gemfury_user),
-        full_filename,
+        filename,
     ])
 
 

@@ -92,3 +92,25 @@ def excepthook(exception_type, value, traceback) -> None:
 
 def setup_main() -> None:
     sys.excepthook = excepthook
+
+
+def get_package_version(config: ConfigData) -> str:
+    output = subprocess.check_output([
+        '{}'.format(config.python),
+        'setup.py',
+        '--version',
+    ]).decode()
+    return output.rstrip()
+
+
+def get_package_fullname(config: ConfigData) -> str:
+    output = subprocess.check_output([
+        '{}'.format(config.python),
+        'setup.py',
+        '--fullname',
+    ]).decode()
+    return output.rstrip()
+
+
+def get_package_filename(config: ConfigData) -> str:
+    return os.path.join("dist", get_package_fullname(config)+".tar.gz")
