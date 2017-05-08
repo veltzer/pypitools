@@ -90,8 +90,9 @@ def excepthook(exception_type, value, traceback) -> None:
     print(value)
 
 
-def setup_main() -> None:
-    sys.excepthook = excepthook
+def setup_main(debug: bool) -> None:
+    if not debug:
+        sys.excepthook = excepthook
 
 
 def get_package_version(config: ConfigData) -> str:

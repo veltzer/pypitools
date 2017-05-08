@@ -55,8 +55,9 @@ def register_by_twine(config: ConfigData) -> None:
 
 
 @click.command()
-def main():
-    common.setup_main()
+@click.option('--debug', required=False, default=True, type=bool, help="debug the app")
+def main(debug: bool):
+    common.setup_main(debug)
     config = common.read_config()
     if config.clean_before:
         common.git_clean_full()
