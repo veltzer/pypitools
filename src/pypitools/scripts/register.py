@@ -24,14 +24,12 @@ TODO:
 """
 import click
 
-import pypitools.common
-
 from pypitools import common
 from pypitools.common import ConfigData
 
 
 def register_by_setup(config: ConfigData) -> None:
-    pypitools.common.check_call_no_output([
+    common.check_call_no_output([
         '{}'.format(config.python),
         'setup.py',
         'register',
@@ -41,15 +39,15 @@ def register_by_setup(config: ConfigData) -> None:
 
 
 def register_by_twine(config: ConfigData) -> None:
-    pypitools.common.check_call_no_output([
+    common.check_call_no_output([
         '{}'.format(config.python),
         'setup.py',
         'bdist_wheel',
     ])
 
     # at this point there should be only one file in the 'dist' folder
-    filename = pypitools.common.get_package_filename(config)
-    pypitools.common.check_call_no_output([
+    filename = common.get_package_filename(config)
+    common.check_call_no_output([
         'twine',
         'register',
         filename,
@@ -60,11 +58,15 @@ def register_by_twine(config: ConfigData) -> None:
 def main():
     common.setup_main()
     config = common.read_config()
-    pypitools.common.git_clean_full()
+    if config.clean_before:
+        common.git_clean_full()
     try:
         if config.register_method == "twine":
             register_by_twine(config)
         if config.register_method == "setup":
             register_by_setup(config)
+        if config.register_method == "upload":
+            common.upload(config)
     finally:
-        pypitools.common.git_clean_full()
+        if config.clean_after:
+            common.git_clean_full()

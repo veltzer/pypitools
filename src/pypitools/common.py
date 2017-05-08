@@ -76,7 +76,7 @@ def read_config() -> ConfigData:
     cfg.gemfury_user = config.get(SECTION, "gemfury_user")
     cfg.python = config.get(SECTION, "python")
     cfg.register_method = config.get(SECTION, "register_method")
-    assert cfg.register_method in ["setup", "twine"]
+    assert cfg.register_method in ["setup", "twine", "upload"]
     return cfg
 
 
@@ -114,3 +114,54 @@ def get_package_fullname(config: ConfigData) -> str:
 
 def get_package_filename(config: ConfigData) -> str:
     return os.path.join("dist", get_package_fullname(config)+".tar.gz")
+
+
+def upload_by_setup(config: ConfigData) -> None:
+    check_call_no_output([
+        '{}'.format(config.python),
+        'setup.py',
+        'sdist',
+        'upload',
+        '-r',
+        'pypi',
+    ])
+
+
+def upload_by_twine(config: ConfigData) -> None:
+    check_call_no_output([
+        '{}'.format(config.python),
+        'setup.py',
+        'sdist',
+    ])
+    filename = get_package_filename(config)
+    check_call_no_output([
+        'twine',
+        'upload',
+        filename,
+        # '--config-file',
+        # common.config_file,
+    ])
+
+
+def upload_by_gemfury(config: ConfigData) -> None:
+    check_call_no_output([
+        '{}'.format(config.python),
+        'setup.py',
+        'sdist',
+    ])
+    filename = get_package_filename(config)
+    check_call_no_output([
+        'fury',
+        'push',
+        '--as={}'.format(config.gemfury_user),
+        filename,
+    ])
+
+
+def upload(config: ConfigData) -> None:
+    if config.upload_method == "setup":
+        upload_by_setup(config)
+    if config.upload_method == "twine":
+        upload_by_twine(config)
+    if config.upload_method == "gemfury":
+        upload_by_gemfury(config)
