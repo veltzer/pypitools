@@ -7,14 +7,12 @@ import sys
 from pyfakeuse.pyfakeuse import fake_use
 
 
-logger = logging.getLogger(__name__)
-
-
 def get_config_file() -> str:
     return os.path.expanduser('~/.pypirc')
 
 
 def check_call_no_output(args) -> None:
+    logger = logging.getLogger(__name__)
     logger.debug("running %s", args)
     p = subprocess.Popen(
         args,
