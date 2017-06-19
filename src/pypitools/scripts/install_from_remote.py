@@ -29,6 +29,10 @@ def main(debug: bool):
         args.extend([
             '--quiet',
         ])
+    if config.install_in_user_folder:
+        args.extend([
+            '--user',
+        ])
     pypitools.common.check_call_no_output(args)
     output = subprocess.check_output([
         '{}'.format(config.pip),
