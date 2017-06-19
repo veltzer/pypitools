@@ -1,13 +1,20 @@
-"""
-This script checks you config file
-"""
 import click
 
 from pypitools import common
 
 
 @click.command()
-@click.option('--debug', required=False, default=False, type=bool, help="debug the app")
+@click.option(
+    '--debug',
+    required=False,
+    default=False,
+    type=bool,
+    help="debug the app",
+    show_defaults=True,
+)
 def main(debug: bool):
+    """
+    This script checks your config file
+    """
     common.setup_main(debug)
     common.read_config()

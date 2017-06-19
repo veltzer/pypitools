@@ -55,7 +55,14 @@ def register_by_twine(config: ConfigData) -> None:
 
 
 @click.command()
-@click.option('--debug', required=False, default=False, type=bool, help="debug the app")
+@click.option(
+    '--debug',
+    required=False,
+    default=False,
+    type=bool,
+    help="debug the app",
+    show_defaults=True,
+)
 def main(debug: bool):
     common.setup_main(debug)
     config = common.read_config()
