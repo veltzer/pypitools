@@ -61,7 +61,7 @@ def register_by_twine(config: ConfigData) -> None:
     default=False,
     type=bool,
     help="debug the app",
-    show_defaults=True,
+    show_default=True,
 )
 def main(debug: bool):
     common.setup_main(debug)
