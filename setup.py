@@ -6,7 +6,7 @@ if not sys.version_info[0] == 3:
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.20',
+    version='0.0.21',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://veltzer.github.io/pypitools',
@@ -19,11 +19,11 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
     ],
     keywords='pypi register upload erase delete',
-    package_dir={'': 'src'},
-    packages=setuptools.find_packages('src'),
+    packages=setuptools.find_packages(),
     install_requires=[
         'click',  # for command line parsing
-        'pyfakeuse'  # for fake use of variables
+        'pyfakeuse',  # for fake use of variables
+        'pypitools',  # for uploading to pypi
     ],
     entry_points={
         'console_scripts': [
