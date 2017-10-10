@@ -1,18 +1,18 @@
 import setuptools
 
-import sys
-if not sys.version_info[0] == 3:
-    sys.exit("Sorry, only python version 3 is supported")
-
 setuptools.setup(
     name='pypitools',
     version='0.0.21',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
-    url='https://veltzer.github.io/pypitools',
+    url='https://github.com/veltzer/pypitools',
+    download_url='https://github.com/veltzer/pypitools',
     author='Mark Veltzer',
     author_email='mark.veltzer@gmail.com',
+    maintainer='Mark Veltzer',
+    maintainer_email='mark.veltzer@gmail.com',
     license='MIT',
+    platforms=['python3'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
