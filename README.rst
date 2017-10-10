@@ -1,1 +1,2 @@
-This is to make 'python setup.py sdist' happy...
+# pypitools
+tools to help with pypi publishing
