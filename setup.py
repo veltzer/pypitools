@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.22',
+    version='0.0.23',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://github.com/veltzer/pypitools',
@@ -19,7 +19,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
     ],
     keywords='pypi register upload erase delete',
-    packages=[ 'pypitools' ],
+    packages=setuptools.find_packages(),
     install_requires=[
         'click',  # for command line parsing
         'pyfakeuse',  # for fake use of variables
