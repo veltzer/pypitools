@@ -2,11 +2,11 @@
 PACKAGE=pypitools
 # either remove the files that sphinx-apidoc generated
 # or pass a -f flag to it
-#rm -f doc/$PACKAGE.rst doc/$PACKAGE.scripts.rst doc/modules.rst
-sphinx-apidoc -f -o doc $PACKAGE > /dev/null
+#rm -f sphinx/$PACKAGE.rst sphinx/$PACKAGE.scripts.rst sphinx/modules.rst
+sphinx-apidoc -f -o sphinx $PACKAGE > /dev/null
 
 
-\rm -rf out
+\rm -rf docs
 # there is no need to pass '-b html' to sphinx-build since
 # this is it's default
-sphinx-build doc out
+sphinx-build sphinx docs
