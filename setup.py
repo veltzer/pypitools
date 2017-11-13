@@ -7,7 +7,7 @@ setuptools.setup(
     long_description='pypitools helps you with various pypi tasks',
     url='https://github.com/veltzer/pypitools',
     download_url='https://github.com/veltzer/pypitools',
-    docs_url='https://veltzer.github.io/pypitools'
+    docs_url='https://veltzer.github.io/pypitools',
     author='Mark Veltzer',
     author_email='mark.veltzer@gmail.com',
     maintainer='Mark Veltzer',
