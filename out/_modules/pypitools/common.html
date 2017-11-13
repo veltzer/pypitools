@@ -1,0 +1,250 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pypitools.common &#8212; pypitools 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for pypitools.common</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">configparser</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pyfakeuse.pyfakeuse</span> <span class="k">import</span> <span class="n">fake_use</span>
+
+
+<div class="viewcode-block" id="get_config_file"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_config_file">[docs]</a><span class="k">def</span> <span class="nf">get_config_file</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.pypirc&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_call_no_output"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_call_no_output">[docs]</a><span class="k">def</span> <span class="nf">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;running </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">,</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">res_stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">:</span>
+        <span class="n">res_stdout</span> <span class="o">=</span> <span class="n">res_stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="n">res_stderr</span> <span class="o">=</span> <span class="n">res_stderr</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res_stderr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;exit code from [</span><span class="si">{}</span><span class="s1">] was [</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="git_clean_full"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.git_clean_full">[docs]</a><span class="k">def</span> <span class="nf">git_clean_full</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;git&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;clean&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-qffxd&#39;</span><span class="p">,</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="ConfigData"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.ConfigData">[docs]</a><span class="k">class</span> <span class="nc">ConfigData</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_before</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_after</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_in_user_folder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_sudo</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pip_quiet</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_quiet</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pip</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gemfury_user</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">python</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_method</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="read_config"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.read_config">[docs]</a><span class="k">def</span> <span class="nf">read_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ConfigData</span><span class="p">:</span>
+    <span class="n">SECTION</span> <span class="o">=</span> <span class="s2">&quot;pypitools&quot;</span>
+    <span class="c1"># read setup.cfg config file</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">homedir_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/.setup.cfg&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">homedir_filename</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">homedir_filename</span><span class="p">)</span>
+    <span class="n">local_filename</span> <span class="o">=</span> <span class="s2">&quot;setup.cfg&quot;</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_filename</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">local_filename</span><span class="p">)</span>
+    <span class="n">cfg</span> <span class="o">=</span> <span class="n">ConfigData</span><span class="p">()</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;upload_method&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">cfg</span><span class="o">.</span><span class="n">upload_method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;setup&quot;</span><span class="p">,</span> <span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;gemfury&quot;</span><span class="p">]</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">clean_before</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;clean_before&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">clean_after</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;clean_after&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">install_in_user_folder</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;install_in_user_folder&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">use_sudo</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;use_sudo&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">pip_quiet</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;pip_quiet&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">setup_quiet</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;setup_quiet&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">pip</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">gemfury_user</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;gemfury_user&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">python</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">register_method</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SECTION</span><span class="p">,</span> <span class="s2">&quot;register_method&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">cfg</span><span class="o">.</span><span class="n">register_method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;setup&quot;</span><span class="p">,</span> <span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;upload&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">cfg</span></div>
+
+
+<div class="viewcode-block" id="excepthook"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.excepthook">[docs]</a><span class="k">def</span> <span class="nf">excepthook</span><span class="p">(</span><span class="n">exception_type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">fake_use</span><span class="p">(</span><span class="n">exception_type</span><span class="p">)</span>
+    <span class="n">fake_use</span><span class="p">(</span><span class="n">traceback</span><span class="p">)</span>
+    <span class="c1"># this loop will drill to the core of the problem</span>
+    <span class="c1"># use only if this is what you want to show...</span>
+    <span class="k">while</span> <span class="n">value</span><span class="o">.</span><span class="n">__cause__</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">__cause__</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="setup_main"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.setup_main">[docs]</a><span class="k">def</span> <span class="nf">setup_main</span><span class="p">(</span><span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">excepthook</span> <span class="o">=</span> <span class="n">excepthook</span></div>
+
+
+<div class="viewcode-block" id="get_package_version"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_version">[docs]</a><span class="k">def</span> <span class="nf">get_package_version</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--version&#39;</span><span class="p">,</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--fullname&#39;</span><span class="p">,</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="upload_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_setup">[docs]</a><span class="k">def</span> <span class="nf">upload_by_setup</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;-r&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pypi&#39;</span><span class="p">,</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="upload_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_twine">[docs]</a><span class="k">def</span> <span class="nf">upload_by_twine</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_package_filename</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;twine&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">,</span>
+        <span class="c1"># &#39;--config-file&#39;,</span>
+        <span class="c1"># common.config_file,</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_package_filename</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">check_call_no_output</span><span class="p">([</span>
+        <span class="s1">&#39;fury&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;push&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--as=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">),</span>
+        <span class="n">filename</span><span class="p">,</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="upload"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload">[docs]</a><span class="k">def</span> <span class="nf">upload</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">==</span> <span class="s2">&quot;setup&quot;</span><span class="p">:</span>
+        <span class="n">upload_by_setup</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">==</span> <span class="s2">&quot;twine&quot;</span><span class="p">:</span>
+        <span class="n">upload_by_twine</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">==</span> <span class="s2">&quot;gemfury&quot;</span><span class="p">:</span>
+        <span class="n">upload_by_gemfury</span><span class="p">(</span><span class="n">config</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Mark Veltzer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

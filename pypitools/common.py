@@ -4,7 +4,6 @@ import os.path
 import logging
 
 import sys
-from pyfakeuse.pyfakeuse import fake_use
 
 
 def get_config_file() -> str:
@@ -79,8 +78,6 @@ def read_config() -> ConfigData:
 
 
 def excepthook(exception_type, value, traceback) -> None:
-    fake_use(exception_type)
-    fake_use(traceback)
     # this loop will drill to the core of the problem
     # use only if this is what you want to show...
     while value.__cause__:
