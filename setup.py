@@ -22,8 +22,6 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'click',  # for command line parsing
-        'pyfakeuse',  # for fake use of variables
-        'pypitools',  # for uploading to pypi
     ],
     entry_points={
         'console_scripts': [

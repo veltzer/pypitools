@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pypitools.scripts package &#8212; pypitools 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pypitools package" href="pypitools.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pypitools-scripts-package">
+<h1>pypitools.scripts package<a class="headerlink" href="#pypitools-scripts-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pypitools.scripts.check_config">
+<span id="pypitools-scripts-check-config-module"></span><h2>pypitools.scripts.check_config module<a class="headerlink" href="#module-pypitools.scripts.check_config" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pypitools.scripts.install_from_local">
+<span id="pypitools-scripts-install-from-local-module"></span><h2>pypitools.scripts.install_from_local module<a class="headerlink" href="#module-pypitools.scripts.install_from_local" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pypitools.scripts.install_from_remote">
+<span id="pypitools-scripts-install-from-remote-module"></span><h2>pypitools.scripts.install_from_remote module<a class="headerlink" href="#module-pypitools.scripts.install_from_remote" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pypitools.scripts.register">
+<span id="pypitools-scripts-register-module"></span><h2>pypitools.scripts.register module<a class="headerlink" href="#module-pypitools.scripts.register" title="Permalink to this headline">¶</a></h2>
+<p>This script registers your project in pypi.</p>
+<p>when registering via twine(1) you need to:
+- full clean
+- build wheel using setup.py
+- twine register
+- full clean
+This method works, if you register twice it is ok.
+You just need to do it once…:)</p>
+<p>when registering via setup.py you need to:
+- full clean
+- python setup.py register -r pypi
+- full clean
+registering the same package many times works.
+You just need to do it once…:)</p>
+<p>References:
+- <a class="reference external" href="https://packaging.python.org/distributing/">https://packaging.python.org/distributing/</a></p>
+<p>TODO:
+- check if I’m already registered and don’t register if that is the case.</p>
+<dl class="function">
+<dt id="pypitools.scripts.register.register_by_setup">
+<code class="descclassname">pypitools.scripts.register.</code><code class="descname">register_by_setup</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/scripts/register.html#register_by_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.scripts.register.register_by_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pypitools.scripts.register.register_by_twine">
+<code class="descclassname">pypitools.scripts.register.</code><code class="descname">register_by_twine</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/scripts/register.html#register_by_twine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.scripts.register.register_by_twine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pypitools.scripts.upload">
+<span id="pypitools-scripts-upload-module"></span><h2>pypitools.scripts.upload module<a class="headerlink" href="#module-pypitools.scripts.upload" title="Permalink to this headline">¶</a></h2>
+<p>This script uploads your module to where ever you configure it.
+It’s default is to upload to pypi but you can override by putting
+a pypi.cnf file in the root of your source tree.</p>
+<p>It does the following:
+- clean
+- setup.py sdist
+- twine upload
+- clean again</p>
+<p>Notes:
+- This script could be done via setuptools using the following:
+$ python3 setup.py sdist upload -r pypi –identity=”Mark Veltzer” –sign
+but this has bad security implications as it sends user and password plain text.
+- we use twine(1) to upload the package.
+On ubuntu twine(1) is from the ‘twine’ official ubuntu package.</p>
+<p>References:
+- <a class="reference external" href="https://pypi.python.org/pypi/twine">https://pypi.python.org/pypi/twine</a>
+- <a class="reference external" href="https://python-packaging-user-guide.readthedocs.org/en/latest/index.html">https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</a>
+- <a class="reference external" href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
+</div>
+<div class="section" id="module-pypitools.scripts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pypitools.scripts" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pypitools</a><ul>
+  <li><a href="pypitools.html">pypitools package</a><ul>
+      <li>Previous: <a href="pypitools.html" title="previous chapter">pypitools package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Mark Veltzer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/pypitools.scripts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
