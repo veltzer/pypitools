@@ -2,11 +2,12 @@ import setuptools
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.23',
+    version='0.0.24',
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://github.com/veltzer/pypitools',
     download_url='https://github.com/veltzer/pypitools',
+    docs_url='https://veltzer.github.io/pypitools'
     author='Mark Veltzer',
     author_email='mark.veltzer@gmail.com',
     maintainer='Mark Veltzer',
@@ -20,6 +21,7 @@ setuptools.setup(
     ],
     keywords='pypi register upload erase delete',
     packages=setuptools.find_packages(),
+    python_requires=">=3",
     install_requires=[
         'click',  # for command line parsing
     ],
