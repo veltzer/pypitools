@@ -19,6 +19,14 @@ pypitools\.common module
     :undoc-members:
     :show-inheritance:
 
+pypitools\.version module
+-------------------------
+
+.. automodule:: pypitools.version
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
