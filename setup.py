@@ -1,8 +1,10 @@
 import setuptools
 
+import pypitools.version
+
 setuptools.setup(
     name='pypitools',
-    version='0.0.25',
+    version=pypitools.version.version_str,
     description='pypitools is a collection of utilities to help interact with the pypi repository',
     long_description='pypitools helps you with various pypi tasks',
     url='https://veltzer.github.io/pypitools',
