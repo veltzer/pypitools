@@ -2,3 +2,4 @@ add the ability to upload to gemfury using git push:
 	#!/bin/sh
 	git push fury master
 after adding the fury url as remote in git.
+get ideas from 'bumpr' https://bumpr.readthedocs.io/en/latest/.
