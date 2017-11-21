@@ -1,2 +1,3 @@
-# pypitools
-tools to help with pypi publishing
+=======================
+*pypitools* project by Mark Veltzer
+=======================

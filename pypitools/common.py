@@ -51,7 +51,7 @@ class ConfigData:
 
 
 def read_config() -> ConfigData:
-    SECTION = "pypitools"
+    section = "pypitools"
     # read setup.cfg config file
     config = configparser.ConfigParser()
     homedir_filename = os.path.expanduser("~/.setup.cfg")
@@ -61,23 +61,23 @@ def read_config() -> ConfigData:
     if os.path.isfile(local_filename):
         config.read(local_filename)
     cfg = ConfigData()
-    cfg.upload_method = config.get(SECTION, "upload_method")
+    cfg.upload_method = config.get(section, "upload_method")
     assert cfg.upload_method in ["setup", "twine", "gemfury"]
-    cfg.clean_before = config.getboolean(SECTION, "clean_before")
-    cfg.clean_after = config.getboolean(SECTION, "clean_after")
-    cfg.install_in_user_folder = config.getboolean(SECTION, "install_in_user_folder")
-    cfg.use_sudo = config.getboolean(SECTION, "use_sudo")
-    cfg.pip_quiet = config.getboolean(SECTION, "pip_quiet")
-    cfg.setup_quiet = config.getboolean(SECTION, "setup_quiet")
-    cfg.pip = config.get(SECTION, "pip")
-    cfg.gemfury_user = config.get(SECTION, "gemfury_user")
-    cfg.python = config.get(SECTION, "python")
-    cfg.register_method = config.get(SECTION, "register_method")
+    cfg.clean_before = config.getboolean(section, "clean_before")
+    cfg.clean_after = config.getboolean(section, "clean_after")
+    cfg.install_in_user_folder = config.getboolean(section, "install_in_user_folder")
+    cfg.use_sudo = config.getboolean(section, "use_sudo")
+    cfg.pip_quiet = config.getboolean(section, "pip_quiet")
+    cfg.setup_quiet = config.getboolean(section, "setup_quiet")
+    cfg.pip = config.get(section, "pip")
+    cfg.gemfury_user = config.get(section, "gemfury_user")
+    cfg.python = config.get(section, "python")
+    cfg.register_method = config.get(section, "register_method")
     assert cfg.register_method in ["setup", "twine", "upload"]
     return cfg
 
 
-def excepthook(exception_type, value, traceback) -> None:
+def excepthook(_exception_type, value, _traceback) -> None:
     # this loop will drill to the core of the problem
     # use only if this is what you want to show...
     while value.__cause__:
