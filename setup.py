@@ -19,7 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=['Development Status :: 4 - Beta', 'Environment :: Console', 'Operating System :: OS Independent', 'Programming Language :: Python', 'Programming Language :: Python :: 3', 'Topic :: Utilities'],
     data_files=[],
-    python_requies=">=3",
+    python_requires=">=3",
     install_requires=['click', 'pylogconf', 'pypitools', 'pydmt', 'Sphinx'],
     entry_points={'console_scripts': ['pypitools_install_from_local=pypitools.scripts.install_from_local:main', 'pypitools_install_from_remote=pypitools.scripts.install_from_remote:main', 'pypitools_register=pypitools.scripts.register:main', 'pypitools_upload=pypitools.scripts.upload:main', 'pypitools_check_config=pypitools.scripts.check_config:main']},
 )
