@@ -91,3 +91,4 @@ celerybeat-schedule
 /.idea/workspace.xml
 
 /.pydmt
+/.venv
