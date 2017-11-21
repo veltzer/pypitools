@@ -5,3 +5,4 @@
 - get_config_file method is not used?!?
 - move to my own config file, ~/.pypitools.ini or something.
 - add bumpr type functionality.
+get ideas from 'bumpr' https://bumpr.readthedocs.io/en/latest/.
