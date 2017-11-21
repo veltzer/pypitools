@@ -6,9 +6,9 @@ from pydmt.features.templating import Templating
 import pylogconf
 
 pylogconf.setup()
-pydmt = PyDMT()
+p = PyDMT()
 f = Templating()
-f.setup(pydmt)
+f.setup(p)
 b = Sphinx(package_name="pypitools")
-pydmt.add_builder(b)
-pydmt.build_all()
+p.add_builder(b)
+p.build_all()
