@@ -1,6 +1,8 @@
-# production
+
+# production requirements
 click
 pylogconf
-# development
+# dev requirements
 pypitools
 pydmt
+Sphinx
