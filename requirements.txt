@@ -1,2 +1,6 @@
+# production
 click
 pylogconf
+# development
+pypitools
+pydmt

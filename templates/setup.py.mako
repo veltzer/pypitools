@@ -24,7 +24,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=${config.project.project_classifiers},
     data_files=${config.project.project_data_files},
-    python_requies="${config.python.python_requires}",
+    python_requires="${config.python.python_requires}",
     install_requires=${config.python.install_requires},
     entry_points=${config.python.entry_points},
 )
