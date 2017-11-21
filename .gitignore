@@ -92,3 +92,6 @@ celerybeat-schedule
 
 /.pydmt
 /.venv
+
+# Sphinx documentation
+/docs/.doctrees

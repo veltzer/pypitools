@@ -8,13 +8,12 @@ entry_points = {
     ],
 }
 install_requires = [
-    # runtime
     'click',  # for command line parsing
     'pylogconf',  # for configuring logging
-    # development
+]
+dev_requires = [
     'pypitools',  # for upload etc
     'pydmt',  # for building
     'Sphinx',  # for the sphinx builder
 ]
-requirements3 = install_requires
 python_requires = ">=3"
