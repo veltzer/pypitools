@@ -4,7 +4,7 @@ import setuptools
 # noinspection PyPep8
 setuptools.setup(
     name='pypitools',
-    version='0.0.33',
+    version='0.0.36',
     description='pypitools helps you with various pypi tasks',
     long_description='pypitools is a collection of utilities to help interact with the pypi repository',
     author='Mark Veltzer',
@@ -20,6 +20,6 @@ setuptools.setup(
     classifiers=['Development Status :: 4 - Beta', 'Environment :: Console', 'Operating System :: OS Independent', 'Programming Language :: Python', 'Programming Language :: Python :: 3', 'Topic :: Utilities'],
     data_files=[],
     python_requires=">=3",
-    install_requires=['click', 'pylogconf', 'pypitools', 'pydmt', 'Sphinx'],
+    install_requires=['click', 'pylogconf'],
     entry_points={'console_scripts': ['pypitools_install_from_local=pypitools.scripts.install_from_local:main', 'pypitools_install_from_remote=pypitools.scripts.install_from_remote:main', 'pypitools_register=pypitools.scripts.register:main', 'pypitools_upload=pypitools.scripts.upload:main', 'pypitools_check_config=pypitools.scripts.check_config:main']},
 )
