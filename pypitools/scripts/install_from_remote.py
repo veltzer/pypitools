@@ -49,3 +49,7 @@ def main(debug: bool):
     for line in output.split("\n"):
         if line.startswith("Version"):
             print(line)
+
+
+if __name__ == '__main__':
+    main()

@@ -56,5 +56,8 @@ def main(debug: bool):
         args.extend([
             '--user',
         ])
-
     common.check_call_no_output(args)
+
+
+if __name__ == '__main__':
+    main()
