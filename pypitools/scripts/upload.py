@@ -47,3 +47,6 @@ def main(debug: bool):
     finally:
         if config.clean_after:
             common.git_clean_full()
+
+if __name__ == '__main__':
+    main()
