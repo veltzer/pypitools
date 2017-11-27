@@ -20,8 +20,8 @@ def check_call_no_output(args) -> None:
     )
     (res_stdout, res_stderr) = p.communicate()
     if p.returncode:
-        res_stdout = res_stdout.decode()
-        res_stderr = res_stderr.decode()
+        res_stdout = res_stdout
+        res_stderr = res_stderr
         print(res_stdout, end='')
         print(res_stderr, end='')
         raise ValueError('exit code from [{}] was [{}]'.format(" ".join(args), p.returncode))
@@ -95,7 +95,7 @@ def get_package_version(config: ConfigData) -> str:
         '{}'.format(config.python),
         'setup.py',
         '--version',
-    ]).decode()
+    ])
     return output.rstrip()
 
 
@@ -104,7 +104,7 @@ def get_package_fullname(config: ConfigData) -> str:
         '{}'.format(config.python),
         'setup.py',
         '--fullname',
-    ]).decode()
+    ])
     return output.rstrip()
 
 
