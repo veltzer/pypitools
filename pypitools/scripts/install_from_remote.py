@@ -45,7 +45,7 @@ def main(debug: bool):
         '{}'.format(config.pip),
         'show',
         '{module_name}'.format(module_name=module_name),
-    ]).decode()
+    ])
     for line in output.split("\n"):
         if line.startswith("Version"):
             print(line)
