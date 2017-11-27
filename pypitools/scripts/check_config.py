@@ -18,3 +18,7 @@ def main(debug: bool):
     """
     common.setup_main(debug)
     common.read_config()
+
+
+if __name__ == '__main__':
+    main()
