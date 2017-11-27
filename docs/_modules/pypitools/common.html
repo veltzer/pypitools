@@ -136,7 +136,7 @@
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
         <span class="s1">&#39;--version&#39;</span><span class="p">,</span>
-    <span class="p">])</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
@@ -145,7 +145,7 @@
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
         <span class="s1">&#39;--fullname&#39;</span><span class="p">,</span>
-    <span class="p">])</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
