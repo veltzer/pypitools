@@ -95,7 +95,7 @@ def get_package_version(config: ConfigData) -> str:
         '{}'.format(config.python),
         'setup.py',
         '--version',
-    ])
+    ]).decode()
     return output.rstrip()
 
 
@@ -104,7 +104,7 @@ def get_package_fullname(config: ConfigData) -> str:
         '{}'.format(config.python),
         'setup.py',
         '--fullname',
-    ])
+    ]).decode()
     return output.rstrip()
 
 
