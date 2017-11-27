@@ -2,14 +2,14 @@
     import config.python
     import config.personal
     import config.project
-    import pydmt.version
+    import pypitools.version
 %>import setuptools
 
 # until we make printing pretty
 # noinspection PyPep8
 setuptools.setup(
     name='${config.project.project_name}',
-    version='${pydmt.version.version_str}',
+    version='${pypitools.version.version_str}',
     description='${config.project.project_description}',
     long_description='${config.project.project_long_description}',
     author='${config.personal.personal_fullname}',
