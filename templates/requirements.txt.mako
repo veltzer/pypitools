@@ -1,7 +1,6 @@
 <%!
     import config.python
-%>
-# production requirements
+%># production requirements
 % for a in config.python.install_requires:
 ${a}
 % endfor
