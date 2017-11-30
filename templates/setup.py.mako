@@ -24,5 +24,5 @@ setuptools.setup(
     install_requires=${config.helpers.array_indented(1, config.python.install_requires)},
     classifiers=${config.helpers.array_indented(1, config.project.project_classifiers)},
     data_files=${config.helpers.array_indented(1, config.project.project_data_files)},
-    entry_points=${config.helpers.array_indented(1, config.python.entry_points)},
+    entry_points={'console_scripts': ${config.helpers.array_indented(1, config.python.console_scripts)}},
 )
