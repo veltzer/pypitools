@@ -1,33 +1,51 @@
+"""
+This is common pypitools functionality
+"""
+
 import configparser
 import subprocess
 import os.path
 import logging
 
-import sys
+import pylogconf
 
 
 def get_config_file() -> str:
+    """
+    Return the pypitools configuration file
+    :return:
+    """
     return os.path.expanduser('~/.pypirc')
 
 
 def check_call_no_output(args) -> None:
+    """
+    Run a process and check that it returns an OK return code
+    and has no output
+    :param args:
+    :return:
+    """
     logger = logging.getLogger(__name__)
     logger.debug("running %s", args)
-    p = subprocess.Popen(
+    process = subprocess.Popen(
         args,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    (res_stdout, res_stderr) = p.communicate()
-    if p.returncode:
+    (res_stdout, res_stderr) = process.communicate()
+    if process.returncode:
         res_stdout = res_stdout
         res_stderr = res_stderr
         print(res_stdout, end='')
         print(res_stderr, end='')
-        raise ValueError('exit code from [{}] was [{}]'.format(" ".join(args), p.returncode))
+        raise ValueError('exit code from [{}] was [{}]'.format(" ".join(args), process.returncode))
 
 
 def git_clean_full() -> None:
+    """
+    Clean the current git repo in a strict way
+    :return:
+    """
     check_call_no_output([
         'git',
         'clean',
@@ -36,7 +54,13 @@ def git_clean_full() -> None:
 
 
 class ConfigData:
-    def __init__(self):
+    """
+    All the configuration data of pypitools
+    """
+    def __init__(self, clean=False):
+        """
+        Construct a ConfigData object
+        """
         self.upload_method = None
         self.clean_before = None
         self.clean_after = None
@@ -48,116 +72,199 @@ class ConfigData:
         self.gemfury_user = None
         self.python = None
         self.register_method = None
+        # now read the config
+        self.read_config()
+        if clean:
+            if self.clean_before:
+                git_clean_full()
+
+    def read_config(self):
+        """
+        Read all configuration data
+        :return:
+        """
+        section = "pypitools"
+        # read setup.cfg config file
+        config = configparser.ConfigParser()
+        homedir_filename = os.path.expanduser("~/.setup.cfg")
+        if os.path.isfile(homedir_filename):
+            config.read(homedir_filename)
+        local_filename = "setup.cfg"
+        if os.path.isfile(local_filename):
+            config.read(local_filename)
+        self.upload_method = config.get(section, "upload_method")
+        assert self.upload_method in ["setup", "twine", "gemfury"]
+        self.clean_before = config.getboolean(section, "clean_before")
+        self.clean_after = config.getboolean(section, "clean_after")
+        self.install_in_user_folder = config.getboolean(section, "install_in_user_folder")
+        self.use_sudo = config.getboolean(section, "use_sudo")
+        self.pip_quiet = config.getboolean(section, "pip_quiet")
+        self.setup_quiet = config.getboolean(section, "setup_quiet")
+        self.pip = config.get(section, "pip")
+        self.gemfury_user = config.get(section, "gemfury_user")
+        self.python = config.get(section, "python")
+        self.register_method = config.get(section, "register_method")
+        assert self.register_method in ["setup", "twine", "upload"]
+        return self
+
+    def get_package_version(self) -> str:
+        """
+        Get the version of the package
+        :return:
+        """
+        output = subprocess.check_output([
+            '{}'.format(self.python),
+            'setup.py',
+            '--version',
+        ]).decode()
+        return output.rstrip()
+
+    def get_package_fullname(self) -> str:
+        """
+        Get the full name of the package
+        :return:
+        """
+        output = subprocess.check_output([
+            '{}'.format(self.python),
+            'setup.py',
+            '--fullname',
+        ]).decode()
+        return output.rstrip()
+
+    def get_package_filename(self) -> str:
+        """
+        Get the package filename
+        :return:
+        """
+        return os.path.join("dist", self.get_package_fullname() + ".tar.gz")
+
+    def upload_by_setup(self) -> None:
+        """
+        upload by setup.py sdist upload
+        :return:
+        """
+        check_call_no_output([
+            '{}'.format(self.python),
+            'setup.py',
+            'sdist',
+            'upload',
+            '-r',
+            'pypi',
+        ])
+
+    def upload_by_twine(self) -> None:
+        """
+        upload by twine
+        :return:
+        """
+        check_call_no_output([
+            '{}'.format(self.python),
+            'setup.py',
+            'sdist',
+        ])
+        filename = self.get_package_filename()
+        check_call_no_output([
+            'twine',
+            'upload',
+            filename,
+            # '--config-file',
+            # common.config_file,
+        ])
+
+    def upload_by_gemfury(self) -> None:
+        """
+        upload to gemfury
+        :return:
+        """
+        check_call_no_output([
+            '{}'.format(self.python),
+            'setup.py',
+            'sdist',
+        ])
+        filename = self.get_package_filename()
+        check_call_no_output([
+            'fury',
+            'push',
+            '--as={}'.format(self.gemfury_user),
+            filename,
+        ])
+
+    def upload(self) -> None:
+        """
+        upload via the method configured
+        :return:
+        """
+        if self.upload_method == "setup":
+            self.upload_by_setup()
+        if self.upload_method == "twine":
+            self.upload_by_twine()
+        if self.upload_method == "gemfury":
+            self.upload_by_gemfury()
+
+    def register(self) -> None:
+        """
+        Register via the method configured
+        :return:
+        """
+        if self.register_method == "twine":
+            self.register_by_twine()
+        if self.register_method == "setup":
+            self.register_by_setup()
+        if self.register_method == "upload":
+            self.upload()
+
+    def register_by_setup(self) -> None:
+        """
+        register via setup.py register
+        :return:
+        """
+        check_call_no_output([
+            '{}'.format(self.python),
+            'setup.py',
+            'register',
+            '-r',
+            'pypi',
+        ])
+
+    def register_by_twine(self) -> None:
+        """
+        register via the twine method
+        :return:
+        """
+        check_call_no_output([
+            '{}'.format(self.python),
+            'setup.py',
+            'bdist_wheel',
+        ])
+
+        # at this point there should be only one file in the 'dist' folder
+        filename = self.get_package_filename()
+        check_call_no_output([
+            'twine',
+            'register',
+            filename,
+        ])
+
+    def clean_before_if_needed(self) -> None:
+        """
+        Clean the git repo if needed
+        :return:
+        """
+        if self.clean_before:
+            git_clean_full()
+
+    def clean_after_if_needed(self) -> None:
+        """
+        Clean the git repo if needed
+        :return:
+        """
+        if self.clean_after:
+            git_clean_full()
 
 
-def read_config() -> ConfigData:
-    section = "pypitools"
-    # read setup.cfg config file
-    config = configparser.ConfigParser()
-    homedir_filename = os.path.expanduser("~/.setup.cfg")
-    if os.path.isfile(homedir_filename):
-        config.read(homedir_filename)
-    local_filename = "setup.cfg"
-    if os.path.isfile(local_filename):
-        config.read(local_filename)
-    cfg = ConfigData()
-    cfg.upload_method = config.get(section, "upload_method")
-    assert cfg.upload_method in ["setup", "twine", "gemfury"]
-    cfg.clean_before = config.getboolean(section, "clean_before")
-    cfg.clean_after = config.getboolean(section, "clean_after")
-    cfg.install_in_user_folder = config.getboolean(section, "install_in_user_folder")
-    cfg.use_sudo = config.getboolean(section, "use_sudo")
-    cfg.pip_quiet = config.getboolean(section, "pip_quiet")
-    cfg.setup_quiet = config.getboolean(section, "setup_quiet")
-    cfg.pip = config.get(section, "pip")
-    cfg.gemfury_user = config.get(section, "gemfury_user")
-    cfg.python = config.get(section, "python")
-    cfg.register_method = config.get(section, "register_method")
-    assert cfg.register_method in ["setup", "twine", "upload"]
-    return cfg
-
-
-def excepthook(_exception_type, value, _traceback) -> None:
-    # this loop will drill to the core of the problem
-    # use only if this is what you want to show...
-    while value.__cause__:
-        value = value.__cause__
-    print(value)
-
-
-def setup_main(debug: bool) -> None:
-    if not debug:
-        sys.excepthook = excepthook
-
-
-def get_package_version(config: ConfigData) -> str:
-    output = subprocess.check_output([
-        '{}'.format(config.python),
-        'setup.py',
-        '--version',
-    ]).decode()
-    return output.rstrip()
-
-
-def get_package_fullname(config: ConfigData) -> str:
-    output = subprocess.check_output([
-        '{}'.format(config.python),
-        'setup.py',
-        '--fullname',
-    ]).decode()
-    return output.rstrip()
-
-
-def get_package_filename(config: ConfigData) -> str:
-    return os.path.join("dist", get_package_fullname(config)+".tar.gz")
-
-
-def upload_by_setup(config: ConfigData) -> None:
-    check_call_no_output([
-        '{}'.format(config.python),
-        'setup.py',
-        'sdist',
-        'upload',
-        '-r',
-        'pypi',
-    ])
-
-
-def upload_by_twine(config: ConfigData) -> None:
-    check_call_no_output([
-        '{}'.format(config.python),
-        'setup.py',
-        'sdist',
-    ])
-    filename = get_package_filename(config)
-    check_call_no_output([
-        'twine',
-        'upload',
-        filename,
-        # '--config-file',
-        # common.config_file,
-    ])
-
-
-def upload_by_gemfury(config: ConfigData) -> None:
-    check_call_no_output([
-        '{}'.format(config.python),
-        'setup.py',
-        'sdist',
-    ])
-    filename = get_package_filename(config)
-    check_call_no_output([
-        'fury',
-        'push',
-        '--as={}'.format(config.gemfury_user),
-        filename,
-    ])
-
-
-def upload(config: ConfigData) -> None:
-    if config.upload_method == "setup":
-        upload_by_setup(config)
-    if config.upload_method == "twine":
-        upload_by_twine(config)
-    if config.upload_method == "gemfury":
-        upload_by_gemfury(config)
+def setup_main() -> None:
+    """
+    Method to be called at beginning of every entry point
+    :return:
+    """
+    pylogconf.setup()
