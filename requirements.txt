@@ -1,7 +1,9 @@
+# setup requirements
 # production requirements
 click
 pylogconf
 # dev requirements
+pyclassifiers
 pypitools
 pydmt
 Sphinx

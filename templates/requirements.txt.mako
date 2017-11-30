@@ -1,6 +1,10 @@
 <%!
     import config.python
-%># production requirements
+%># setup requirements
+% for a in config.python.setup_requires:
+${a}
+% endfor
+# production requirements
 % for a in config.python.install_requires:
 ${a}
 % endfor

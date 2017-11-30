@@ -7,13 +7,18 @@ entry_points = {
         'pypitools_check_config=pypitools.scripts.check_config:main',
     ],
 }
-install_requires = [
+setup_requires = [
+]
+run_requires = [
     'click',  # for command line parsing
     'pylogconf',  # for configuring logging
 ]
 dev_requires = [
+    'pyclassifiers',  # for software classification
     'pypitools',  # for upload etc
     'pydmt',  # for building
     'Sphinx',  # for the sphinx builder
 ]
+install_requires = list(setup_requires)
+install_requires.extend(run_requires)
 python_requires = ">=3"
