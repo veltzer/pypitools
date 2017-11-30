@@ -1,24 +1,23 @@
+"""
+Install a package from pypi or gemfury
+"""
+
 import os
 import subprocess
 
 import click
 
 import pypitools.common
-from pypitools import common
 
 
 @click.command()
-@click.option(
-    '--debug',
-    required=False,
-    default=False,
-    type=bool,
-    help="debug the app",
-    show_default=True,
-)
-def main(debug: bool):
-    common.setup_main(debug)
-    config = common.read_config()
+def main():
+    """
+    Install a package from pypi or gemfury
+    :return:
+    """
+    pypitools.common.setup_main()
+    config = pypitools.common.ConfigData()
     module_name = os.path.basename(os.getcwd())
     args = []
     if config.use_sudo:

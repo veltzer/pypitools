@@ -25,28 +25,21 @@ References:
 
 import click
 
-from pypitools import common
+from pypitools.common import ConfigData, setup_main
 
 
 @click.command()
-@click.option(
-    '--debug',
-    required=False,
-    default=False,
-    type=bool,
-    help="debug the app",
-    show_default=True,
-)
-def main(debug: bool):
-    common.setup_main(debug)
-    config = common.read_config()
-    if config.clean_before:
-        common.git_clean_full()
+def main():
+    """
+    upload a package to pypi or gemfury
+    :return:
+    """
+    setup_main()
+    config = ConfigData(clean=True)
     try:
-        common.upload(config)
+        config.upload()
     finally:
-        if config.clean_after:
-            common.git_clean_full()
+        config.clean_after_if_needed()
 
 
 if __name__ == '__main__':

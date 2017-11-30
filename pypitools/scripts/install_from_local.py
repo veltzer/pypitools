@@ -1,3 +1,7 @@
+"""
+Install a package from the local folder
+"""
+
 import shutil
 import os
 
@@ -7,17 +11,13 @@ from pypitools import common
 
 
 @click.command()
-@click.option(
-    '--debug',
-    required=False,
-    default=False,
-    type=bool,
-    help="debug the app",
-    show_default=True,
-)
-def main(debug: bool):
-    common.setup_main(debug)
-    config = common.read_config()
+def main():
+    """
+    Install a package from the local folder
+    :return:
+    """
+    common.setup_main()
+    config = common.ConfigData()
     dist_folder = 'dist'
 
     if os.path.isdir(dist_folder):
