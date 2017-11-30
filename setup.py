@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='pypitools',
-    version='0.0.38',
+    version='0.0.39',
     description='pypitools helps you with various pypi tasks',
     long_description='pypitools is a collection of utilities to help interact with the pypi repository',
     author='Mark Veltzer',
