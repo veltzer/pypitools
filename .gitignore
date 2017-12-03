@@ -88,4 +88,4 @@ celerybeat-schedule
 /.venv/
 
 # Sphinx documentation
-/docs/.doctrees
+/docs/.doctrees/
