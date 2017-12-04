@@ -7,7 +7,7 @@ import subprocess
 import os.path
 import logging
 
-import pylogconf
+import pylogconf.core
 
 
 def get_config_file() -> str:
@@ -267,4 +267,4 @@ def setup_main() -> None:
     Method to be called at beginning of every entry point
     :return:
     """
-    pylogconf.setup()
+    pylogconf.core.setup()

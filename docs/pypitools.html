@@ -64,76 +64,134 @@
 </div>
 <div class="section" id="module-pypitools.common">
 <span id="pypitools-common-module"></span><h2>pypitools.common module<a class="headerlink" href="#module-pypitools.common" title="Permalink to this headline">¶</a></h2>
+<p>This is common pypitools functionality</p>
 <dl class="class">
 <dt id="pypitools.common.ConfigData">
-<em class="property">class </em><code class="descclassname">pypitools.common.</code><code class="descname">ConfigData</code><a class="reference internal" href="_modules/pypitools/common.html#ConfigData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pypitools.common.</code><code class="descname">ConfigData</code><span class="sig-paren">(</span><em>clean=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/common.html#ConfigData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>All the configuration data of pypitools</p>
+<dl class="method">
+<dt id="pypitools.common.ConfigData.clean_after_if_needed">
+<code class="descname">clean_after_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.clean_after_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.clean_after_if_needed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean the git repo if needed
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.clean_before_if_needed">
+<code class="descname">clean_before_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.clean_before_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.clean_before_if_needed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean the git repo if needed
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.get_package_filename">
+<code class="descname">get_package_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.get_package_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.get_package_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the package filename
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.get_package_fullname">
+<code class="descname">get_package_fullname</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.get_package_fullname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.get_package_fullname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the full name of the package
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.get_package_version">
+<code class="descname">get_package_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.get_package_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.get_package_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the version of the package
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.read_config">
+<code class="descname">read_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/common.html#ConfigData.read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all configuration data
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.register">
+<code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register via the method configured
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.register_by_setup">
+<code class="descname">register_by_setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.register_by_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.register_by_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>register via setup.py register
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.register_by_twine">
+<code class="descname">register_by_twine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.register_by_twine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.register_by_twine" title="Permalink to this definition">¶</a></dt>
+<dd><p>register via the twine method
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.upload">
+<code class="descname">upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>upload via the method configured
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.upload_by_gemfury">
+<code class="descname">upload_by_gemfury</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.upload_by_gemfury"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.upload_by_gemfury" title="Permalink to this definition">¶</a></dt>
+<dd><p>upload to gemfury
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.upload_by_setup">
+<code class="descname">upload_by_setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.upload_by_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.upload_by_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>upload by setup.py sdist upload
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pypitools.common.ConfigData.upload_by_twine">
+<code class="descname">upload_by_twine</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#ConfigData.upload_by_twine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.ConfigData.upload_by_twine" title="Permalink to this definition">¶</a></dt>
+<dd><p>upload by twine
+:return:</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="function">
 <dt id="pypitools.common.check_call_no_output">
 <code class="descclassname">pypitools.common.</code><code class="descname">check_call_no_output</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#check_call_no_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.check_call_no_output" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.excepthook">
-<code class="descclassname">pypitools.common.</code><code class="descname">excepthook</code><span class="sig-paren">(</span><em>_exception_type</em>, <em>value</em>, <em>_traceback</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#excepthook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.excepthook" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run a process and check that it returns an OK return code
+and has no output
+:param args:
+:return:</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pypitools.common.get_config_file">
 <code class="descclassname">pypitools.common.</code><code class="descname">get_config_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_config_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_config_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.get_package_filename">
-<code class="descclassname">pypitools.common.</code><code class="descname">get_package_filename</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_filename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.get_package_fullname">
-<code class="descclassname">pypitools.common.</code><code class="descname">get_package_fullname</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_fullname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_fullname" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.get_package_version">
-<code class="descclassname">pypitools.common.</code><code class="descname">get_package_version</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_version" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return the pypitools configuration file
+:return:</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pypitools.common.git_clean_full">
 <code class="descclassname">pypitools.common.</code><code class="descname">git_clean_full</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#git_clean_full"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.git_clean_full" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.read_config">
-<code class="descclassname">pypitools.common.</code><code class="descname">read_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pypitools.common.ConfigData<a class="reference internal" href="_modules/pypitools/common.html#read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.read_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Clean the current git repo in a strict way
+:return:</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="pypitools.common.setup_main">
-<code class="descclassname">pypitools.common.</code><code class="descname">setup_main</code><span class="sig-paren">(</span><em>debug: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#setup_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.setup_main" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.upload">
-<code class="descclassname">pypitools.common.</code><code class="descname">upload</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.upload" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.upload_by_gemfury">
-<code class="descclassname">pypitools.common.</code><code class="descname">upload_by_gemfury</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#upload_by_gemfury"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.upload_by_gemfury" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.upload_by_setup">
-<code class="descclassname">pypitools.common.</code><code class="descname">upload_by_setup</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#upload_by_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.upload_by_setup" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="pypitools.common.upload_by_twine">
-<code class="descclassname">pypitools.common.</code><code class="descname">upload_by_twine</code><span class="sig-paren">(</span><em>config: pypitools.common.ConfigData</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#upload_by_twine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.upload_by_twine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descclassname">pypitools.common.</code><code class="descname">setup_main</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#setup_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.setup_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be called at beginning of every entry point
+:return:</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-pypitools">
