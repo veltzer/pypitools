@@ -5,4 +5,6 @@
 - get_config_file method is not used?!?
 - move to my own config file, ~/.pypitools.ini or something.
 - add bumpr type functionality.
-get ideas from 'bumpr' https://bumpr.readthedocs.io/en/latest/.
+	get ideas from 'bumpr' https://bumpr.readthedocs.io/en/latest/.
+- add a functions that shows what packages in pypi depend on your package.
+	take ideas from here: https://github.com/ogirardot/meta-deps
