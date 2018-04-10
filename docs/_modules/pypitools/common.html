@@ -45,7 +45,7 @@
 
 <span class="kn">import</span> <span class="nn">configparser</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">import</span> <span class="nn">pylogconf.core</span>
@@ -119,6 +119,19 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
                 <span class="n">git_clean_full</span><span class="p">()</span>
 
+<div class="viewcode-block" id="ConfigData.print_config"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.ConfigData.print_config">[docs]</a>    <span class="k">def</span> <span class="nf">print_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;upload_method = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">upload_method</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;clean_before = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean_before</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;clean_after = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean_after</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;install_in_user_folder = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;use_sudo = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_sudo</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pip_quiet = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pip_quiet</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;setup_quiet = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">setup_quiet</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pip = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pip</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gemfury_user = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;python = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">python</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;register_method = [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register_method</span><span class="p">))</span></div>
+
 <div class="viewcode-block" id="ConfigData.read_config"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.ConfigData.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Read all configuration data</span>
@@ -145,8 +158,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">gemfury_user</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;gemfury_user&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">python</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">register_method</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;register_method&quot;</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">register_method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;setup&quot;</span><span class="p">,</span> <span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;upload&quot;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">register_method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;setup&quot;</span><span class="p">,</span> <span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;upload&quot;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="ConfigData.get_package_version"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.ConfigData.get_package_version">[docs]</a>    <span class="k">def</span> <span class="nf">get_package_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

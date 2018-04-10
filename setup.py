@@ -7,7 +7,7 @@ http://setuptools.readthedocs.io/en/latest/setuptools.html
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name='pypitools',
-    version='0.0.42',
+    version='0.0.43',
     packages=[
         'pypitools',
         'pypitools.scripts',
