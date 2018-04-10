@@ -4,7 +4,7 @@ This is common pypitools functionality
 
 import configparser
 import subprocess
-import os.path
+import os
 import logging
 
 import pylogconf.core
@@ -78,6 +78,19 @@ class ConfigData:
             if self.clean_before:
                 git_clean_full()
 
+    def print_config(self):
+        print("upload_method = [{}]".format(self.upload_method))
+        print("clean_before = [{}]".format(self.clean_before))
+        print("clean_after = [{}]".format(self.clean_after))
+        print("install_in_user_folder = [{}]".format(self.install_in_user_folder))
+        print("use_sudo = [{}]".format(self.use_sudo))
+        print("pip_quiet = [{}]".format(self.pip_quiet))
+        print("setup_quiet = [{}]".format(self.setup_quiet))
+        print("pip = [{}]".format(self.pip))
+        print("gemfury_user = [{}]".format(self.gemfury_user))
+        print("python = [{}]".format(self.python))
+        print("register_method = [{}]".format(self.register_method))
+
     def read_config(self):
         """
         Read all configuration data
@@ -105,7 +118,6 @@ class ConfigData:
         self.python = config.get(section, "python")
         self.register_method = config.get(section, "register_method")
         assert self.register_method in ["setup", "twine", "upload"]
-        return self
 
     def get_package_version(self) -> str:
         """
