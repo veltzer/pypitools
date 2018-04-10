@@ -194,11 +194,13 @@ class ConfigData:
             'sdist',
         ])
         filename = self.get_package_filename()
+        # The command line is the one recommended by gemfury at
+        # https://manage.fury.io/dashboard/[username]/push
         check_call_no_output([
             'fury',
             'push',
-            '--as={}'.format(self.gemfury_user),
             filename,
+            '--as={}'.format(self.gemfury_user),
         ])
 
     def upload(self) -> None:
