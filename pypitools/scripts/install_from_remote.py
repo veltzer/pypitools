@@ -1,6 +1,7 @@
 """
 Install a package from pypi or gemfury
 """
+from __future__ import print_function
 
 import os
 import subprocess
