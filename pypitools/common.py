@@ -1,6 +1,7 @@
 """
 This is common pypitools functionality
 """
+from __future__ import print_function
 
 import configparser
 import subprocess
@@ -10,7 +11,7 @@ import logging
 import pylogconf.core
 
 
-def get_config_file() -> str:
+def get_config_file():
     """
     Return the pypitools configuration file
     :return:
@@ -18,7 +19,7 @@ def get_config_file() -> str:
     return os.path.expanduser('~/.pypirc')
 
 
-def check_call_no_output(args) -> None:
+def check_call_no_output(args):
     """
     Run a process and check that it returns an OK return code
     and has no output
@@ -41,7 +42,7 @@ def check_call_no_output(args) -> None:
         raise ValueError('exit code from [{}] was [{}]'.format(" ".join(args), process.returncode))
 
 
-def git_clean_full() -> None:
+def git_clean_full():
     """
     Clean the current git repo in a strict way
     :return:
@@ -119,7 +120,7 @@ class ConfigData:
         self.register_method = config.get(section, "register_method")
         assert self.register_method in ["setup", "twine", "upload"]
 
-    def get_package_version(self) -> str:
+    def get_package_version(self):
         """
         Get the version of the package
         :return:
@@ -131,7 +132,7 @@ class ConfigData:
         ]).decode()
         return output.rstrip()
 
-    def get_package_fullname(self) -> str:
+    def get_package_fullname(self):
         """
         Get the full name of the package
         :return:
@@ -143,14 +144,14 @@ class ConfigData:
         ]).decode()
         return output.rstrip()
 
-    def get_package_filename(self) -> str:
+    def get_package_filename(self):
         """
         Get the package filename
         :return:
         """
         return os.path.join("dist", self.get_package_fullname() + ".tar.gz")
 
-    def upload_by_setup(self) -> None:
+    def upload_by_setup(self):
         """
         upload by setup.py sdist upload
         :return:
@@ -164,7 +165,7 @@ class ConfigData:
             'pypi',
         ])
 
-    def upload_by_twine(self) -> None:
+    def upload_by_twine(self):
         """
         upload by twine
         :return:
@@ -183,7 +184,7 @@ class ConfigData:
             # common.config_file,
         ])
 
-    def upload_by_gemfury(self) -> None:
+    def upload_by_gemfury(self):
         """
         upload to gemfury
         :return:
@@ -203,7 +204,7 @@ class ConfigData:
             '--as={}'.format(self.gemfury_user),
         ])
 
-    def upload(self) -> None:
+    def upload(self):
         """
         upload via the method configured
         :return:
@@ -215,7 +216,7 @@ class ConfigData:
         if self.upload_method == "gemfury":
             self.upload_by_gemfury()
 
-    def register(self) -> None:
+    def register(self):
         """
         Register via the method configured
         :return:
@@ -227,7 +228,7 @@ class ConfigData:
         if self.register_method == "upload":
             self.upload()
 
-    def register_by_setup(self) -> None:
+    def register_by_setup(self):
         """
         register via setup.py register
         :return:
@@ -240,7 +241,7 @@ class ConfigData:
             'pypi',
         ])
 
-    def register_by_twine(self) -> None:
+    def register_by_twine(self):
         """
         register via the twine method
         :return:
@@ -259,7 +260,7 @@ class ConfigData:
             filename,
         ])
 
-    def clean_before_if_needed(self) -> None:
+    def clean_before_if_needed(self):
         """
         Clean the git repo if needed
         :return:
@@ -267,7 +268,7 @@ class ConfigData:
         if self.clean_before:
             git_clean_full()
 
-    def clean_after_if_needed(self) -> None:
+    def clean_after_if_needed(self):
         """
         Clean the git repo if needed
         :return:
@@ -276,7 +277,7 @@ class ConfigData:
             git_clean_full()
 
 
-def setup_main() -> None:
+def setup_main():
     """
     Method to be called at beginning of every entry point
     :return:
