@@ -16,6 +16,7 @@ setup_requires = [
 run_requires = [
     'click',  # for command line parsing
     'pylogconf',  # for configuring logging
+    'twine', # for doing some of the work
 ]
 
 dev_requires = [
