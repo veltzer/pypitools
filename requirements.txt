@@ -2,6 +2,7 @@
 # production requirements
 click
 pylogconf
+twine
 # dev requirements
 pyclassifiers
 pypitools

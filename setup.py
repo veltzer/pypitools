@@ -7,7 +7,7 @@ http://setuptools.readthedocs.io/en/latest/setuptools.html
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name='pypitools',
-    version='0.0.43',
+    version='0.0.44',
     packages=[
         'pypitools',
         'pypitools.scripts',
@@ -35,6 +35,7 @@ setuptools.setup(
     install_requires=[
         'click',
         'pylogconf',
+        'twine',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

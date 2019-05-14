@@ -11,8 +11,8 @@ Subpackages
 Submodules
 ----------
 
-pypitools\.common module
-------------------------
+pypitools.common module
+-----------------------
 
 .. automodule:: pypitools.common
     :members:
