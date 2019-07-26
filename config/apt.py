@@ -3,7 +3,7 @@ import os
 import subprocess
 
 import config.general
-from config.personal import personal_slug
+from user.personal import personal_slug
 
 apt_protocol = 'https'
 apt_codename = subprocess.check_output(['lsb_release', '--codename', '--short']).decode().rstrip()
