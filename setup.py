@@ -11,7 +11,6 @@ setuptools.setup(
     packages=[
         'pypitools',
         'pypitools.endpoints',
-        'pypitools.scripts',
     ],
     # from here all is optional
     description='pypitools helps you with various pypi tasks',
