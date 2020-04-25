@@ -8,10 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/docs" />
       <excludeFolder url="file://$MODULE_DIR$/pypitools.egg-info" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (pypitools)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (pypitools)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

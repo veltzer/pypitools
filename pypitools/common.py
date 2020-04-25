@@ -1,7 +1,6 @@
 """
 This is common pypitools functionality
 """
-from __future__ import print_function
 
 import configparser
 import subprocess
