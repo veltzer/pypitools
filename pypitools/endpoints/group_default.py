@@ -32,7 +32,7 @@ def register_group_default():
 )
 def version() -> None:
     """
-    Print version
+    print version
     """
     print(pypitools.__version__)
 
@@ -46,7 +46,7 @@ def version() -> None:
 )
 def install_from_local() -> None:
     """
-    Install a package from the local folder
+    install a package from the local folder
     """
     dist_folder = 'dist'
 
@@ -98,7 +98,7 @@ def install_from_local() -> None:
 )
 def install_from_remote() -> None:
     """
-    Install a package from pypi or gemfury
+    install a package from pypi or gemfury
     """
     args = []
     if ConfigData.use_sudo:
