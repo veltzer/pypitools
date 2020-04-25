@@ -3,18 +3,14 @@ import config.project
 package_name = config.project.project_name
 
 console_scripts = [
-    'pypitools_install_from_local=pypitools.scripts.install_from_local:main',
-    'pypitools_install_from_remote=pypitools.scripts.install_from_remote:main',
-    'pypitools_register=pypitools.scripts.register:main',
-    'pypitools_upload=pypitools.scripts.upload:main',
-    'pypitools_check_config=pypitools.scripts.check_config:main',
+    'pypitools=pypitools.endpoints.main:main',
 ]
 
 setup_requires = [
 ]
 
 run_requires = [
-    'click',  # for command line parsing
+    'pytconf',  # for command line parsing
     'pylogconf',  # for configuring logging
     'twine',  # for doing some of the work
 ]
