@@ -19,7 +19,7 @@ def register_all_groups():
 @register_main()
 def main():
     """
-    pymakehelper will help you write makefiles
+    pypitools will help you interact with pypi
     """
     pylogconf.core.setup()
     register_all_groups()
