@@ -19,6 +19,12 @@ run_requires = [
     'twine',  # for doing some of the work
 ]
 
+test_requires = [
+    'pylint',  # to check for lint errors
+    'pytest',  # for testing
+    'pyflakes',  # for testing
+]
+
 dev_requires = [
     'pyclassifiers',  # for software classification
     'pypitools',  # for upload etc

@@ -8,3 +8,7 @@ pyclassifiers
 pypitools
 pydmt
 Sphinx
+# test requirements
+pylint
+pytest
+pyflakes
