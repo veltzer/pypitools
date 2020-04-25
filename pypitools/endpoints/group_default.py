@@ -99,7 +99,6 @@ def install_from_local() -> None:
 def install_from_remote() -> None:
     """
     Install a package from pypi or gemfury
-    :return:
     """
     args = []
     if ConfigData.use_sudo:
@@ -167,7 +166,6 @@ References:
 def upload() -> None:
     """
     upload a package to pypi or gemfury
-    :return:
     """
     if ConfigData.clean_before:
         git_clean_full()
@@ -213,7 +211,6 @@ TODO:
 def register() -> None:
     """
     register a function on pypi or gemfury
-    :return:
     """
     if ConfigData.clean_before:
         git_clean_full()
