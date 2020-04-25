@@ -7,9 +7,10 @@ http://setuptools.readthedocs.io/en/latest/setuptools.html
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name='pypitools',
-    version='0.0.44',
+    version='0.0.45',
     packages=[
         'pypitools',
+        'pypitools.endpoints',
         'pypitools.scripts',
     ],
     # from here all is optional
@@ -33,7 +34,7 @@ setuptools.setup(
         'python3',
     ],
     install_requires=[
-        'click',
+        'pytconf',
         'pylogconf',
         'twine',
     ],
@@ -48,11 +49,7 @@ setuptools.setup(
     data_files=[
     ],
     entry_points={'console_scripts': [
-        'pypitools_install_from_local=pypitools.scripts.install_from_local:main',
-        'pypitools_install_from_remote=pypitools.scripts.install_from_remote:main',
-        'pypitools_register=pypitools.scripts.register:main',
-        'pypitools_upload=pypitools.scripts.upload:main',
-        'pypitools_check_config=pypitools.scripts.check_config:main',
+        'pypitools=pypitools.endpoints.main:main',
     ]},
     python_requires='>=3',
 )
