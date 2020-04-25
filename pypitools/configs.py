@@ -9,15 +9,17 @@ from pytconf.config import Config, ParamCreator
 
 
 class UploadMethod(Enum):
-    SETUP = 0,
-    TWINE = 1,
-    GEMFURY = 2,
+    """ Methods for uploading """
+    SETUP = 0
+    TWINE = 1
+    GEMFURY = 2
 
 
 class RegisterMethod(Enum):
-    SETUP = 0,
-    TWINE = 1,
-    UPLOAD = 2,
+    """ Methods for registering """
+    SETUP = 0
+    TWINE = 1
+    UPLOAD = 2
 
 
 class ConfigData(Config):

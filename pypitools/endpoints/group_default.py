@@ -131,6 +131,7 @@ def install_from_remote() -> None:
             print(line)
 
 
+# pylint: disable=W0105
 """
 This script uploads your module to where ever you configure it.
 It's default is to upload to pypi but you can override by putting

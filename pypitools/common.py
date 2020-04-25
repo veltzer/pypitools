@@ -25,8 +25,6 @@ def check_call_no_output(args):
     )
     (res_stdout, res_stderr) = process.communicate()
     if process.returncode:
-        res_stdout = res_stdout
-        res_stderr = res_stderr
         print(res_stdout, end='')
         print(res_stderr, end='')
         raise ValueError('exit code from [{}] was [{}]'.format(" ".join(args), process.returncode))
