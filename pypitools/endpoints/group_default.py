@@ -8,7 +8,8 @@ import subprocess
 from pytconf.config import register_endpoint, register_function_group
 
 import pypitools
-from pypitools.common import check_call_no_output, git_clean_full, upload_select, clean_after_if_needed
+import pypitools.version
+from pypitools.common import check_call_no_output, git_clean_full, upload_select, clean_after_if_needed, register_select
 from pypitools.configs import ConfigData
 
 GROUP_NAME_DEFAULT = "default"
@@ -34,7 +35,7 @@ def version() -> None:
     """
     print version
     """
-    print(pypitools.__version__)
+    print(pypitools.version.VERSION_STR)
 
 
 @register_endpoint(
@@ -216,6 +217,6 @@ def register() -> None:
     if ConfigData.clean_before:
         git_clean_full()
     try:
-        register()
+        register_select()
     finally:
         clean_after_if_needed()
