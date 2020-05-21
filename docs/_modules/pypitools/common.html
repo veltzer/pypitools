@@ -58,8 +58,6 @@
     <span class="p">)</span>
     <span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">res_stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">:</span>
-        <span class="n">res_stdout</span> <span class="o">=</span> <span class="n">res_stdout</span>
-        <span class="n">res_stderr</span> <span class="o">=</span> <span class="n">res_stderr</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">res_stderr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;exit code from [</span><span class="si">{}</span><span class="s1">] was [</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span></div>
@@ -264,7 +262,7 @@
       &copy;2017, Mark Veltzer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
