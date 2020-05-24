@@ -43,6 +43,10 @@ class ConfigData(Config):
         help_string="Should we install globally or in the users folder?",
         default=False,
     )
+    wheel = ParamCreator.create_bool(
+        help_string="Should we build and upload a wheel?",
+        default=True,
+    )
     use_sudo = ParamCreator.create_bool(
         help_string="should we use sudo?",
         default=False,

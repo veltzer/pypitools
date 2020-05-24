@@ -63,6 +63,14 @@ def get_package_filename():
     return os.path.join("dist", get_package_fullname() + ".tar.gz")
 
 
+def get_package_wheelname():
+    """
+    Get the package wheelname
+    :return:
+    """
+    return os.path.join("dist", get_package_fullname() + "-py3-none-any.whl")
+
+
 def upload_by_setup():
     """
     upload by setup.py sdist upload
@@ -83,20 +91,22 @@ def upload_by_twine():
     upload by twine
     :return:
     """
-    check_call_no_output([
+    args = [
         '{}'.format(ConfigData.python),
         'setup.py',
         'sdist',
-        'bdist_wheel',
-    ])
-    filename = get_package_filename()
-    check_call_no_output([
+    ]
+    if ConfigData.wheel:
+        args.push('bdist_wheel')
+    check_call_no_output(args)
+    args = [
         'twine',
         'upload',
-        filename,
-        # '--config-file',
-        # common.config_file,
-    ])
+        get_package_filename(),
+    ]
+    if ConfigData.wheel:
+        args.push(get_package_wheelname())
+    check_call_no_output(args)
 
 
 def upload_by_gemfury():
