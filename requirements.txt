@@ -3,6 +3,7 @@
 pytconf
 pylogconf
 twine
+wheel
 # dev requirements
 pyclassifiers
 pypitools

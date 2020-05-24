@@ -87,6 +87,7 @@ def upload_by_twine():
         '{}'.format(ConfigData.python),
         'setup.py',
         'sdist',
+        'bdist_wheel',
     ])
     filename = get_package_filename()
     check_call_no_output([
