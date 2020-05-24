@@ -13,6 +13,7 @@ run_requires = [
     'pytconf',  # for command line parsing
     'pylogconf',  # for configuring logging
     'twine',  # for doing some of the work
+    'wheel',  # for packaging as wheel
 ]
 
 test_requires = [
