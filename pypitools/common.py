@@ -97,7 +97,7 @@ def upload_by_twine():
         'sdist',
     ]
     if ConfigData.wheel:
-        args.push('bdist_wheel')
+        args.append('bdist_wheel')
     check_call_no_output(args)
     args = [
         'twine',
@@ -105,7 +105,7 @@ def upload_by_twine():
         get_package_filename(),
     ]
     if ConfigData.wheel:
-        args.push(get_package_wheelname())
+        args.append(get_package_wheelname())
     check_call_no_output(args)
 
 
