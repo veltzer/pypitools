@@ -220,3 +220,24 @@ def register() -> None:
         register_select()
     finally:
         clean_after_if_needed()
+
+
+@register_endpoint(
+    configs=[
+        ConfigData
+    ],
+    suggest_configs=[],
+    group=GROUP_NAME_DEFAULT,
+)
+def package() -> None:
+    """
+    package in source and/or wheel format
+    """
+    args = [
+        '{}'.format(ConfigData.python),
+        'setup.py',
+        'sdist',
+    ]
+    if ConfigData.wheel:
+        args.append('bdist_wheel')
+    check_call_no_output(args)
