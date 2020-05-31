@@ -74,16 +74,27 @@ def get_package_wheelname():
 def upload_by_setup():
     """
     upload by setup.py sdist upload
+
+    This method still works although it is legacy
+    
+    see: python setup.py upload --help
     :return:
     """
-    check_call_no_output([
+    args = [
         '{}'.format(ConfigData.python),
         'setup.py',
         'sdist',
+    ]
+    if ConfigData.wheel:
+        args.append('bdist_wheel')
+    args.extend([
         'upload',
-        '-r',
-        'pypi',
+        # this means which repository to upload too
+        # the default is https://upload.pypi.org/legacy/ and it works
+        # '-r',
+        # 'pypi',
     ])
+    check_call_no_output(args)
 
 
 def upload_by_twine():
