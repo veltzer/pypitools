@@ -107,16 +107,27 @@
 <div class="viewcode-block" id="upload_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_setup">[docs]</a><span class="k">def</span> <span class="nf">upload_by_setup</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload by setup.py sdist upload</span>
+
+<span class="sd">    This method still works although it is legacy</span>
+<span class="sd">    </span>
+<span class="sd">    see: python setup.py upload --help</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
         <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
         <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;-r&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;pypi&#39;</span><span class="p">,</span>
-    <span class="p">])</span></div>
+        <span class="c1"># this means which repository to upload too</span>
+        <span class="c1"># the default is https://upload.pypi.org/legacy/ and it works</span>
+        <span class="c1"># &#39;-r&#39;,</span>
+        <span class="c1"># &#39;pypi&#39;,</span>
+    <span class="p">])</span>
+    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="upload_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_twine">[docs]</a><span class="k">def</span> <span class="nf">upload_by_twine</span><span class="p">():</span>
