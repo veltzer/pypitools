@@ -7,7 +7,6 @@ import os
 import logging
 
 from pypitools.configs import ConfigData, UploadMethod, RegisterMethod
-from pypitools.endpoints.group_default import package
 
 
 def check_call_no_output(args):
@@ -92,7 +91,7 @@ def upload_by_twine():
     upload by twine
     :return:
     """
-    package()
+    package_it()
     args = [
         'twine',
         'upload',
@@ -108,14 +107,13 @@ def upload_by_gemfury():
     upload to gemfury
     :return:
     """
-    package()
-    filename = get_package_filename()
+    package_it()
     # The command line is the one recommended by gemfury at
     # https://manage.fury.io/dashboard/[username]/push
     check_call_no_output([
         'fury',
         'push',
-        filename,
+        get_package_filename(),
         '--as={}'.format(ConfigData.gemfury_user),
     ])
 
@@ -165,12 +163,11 @@ def register_by_twine():
     register via the twine method
     :return:
     """
-    package()
-    filename = get_package_filename()
+    package_it()
     check_call_no_output([
         'twine',
         'register',
-        filename,
+        get_package_filename(),
     ])
 
 
@@ -190,3 +187,14 @@ def clean_after_if_needed():
     """
     if ConfigData.clean_after:
         git_clean_full()
+
+
+def package_it():
+    args = [
+        '{}'.format(ConfigData.python),
+        'setup.py',
+        'sdist',
+    ]
+    if ConfigData.wheel:
+        args.append('bdist_wheel')
+    check_call_no_output(args)
