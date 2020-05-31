@@ -28,8 +28,6 @@ def register_group_default():
 
 
 @register_endpoint(
-    configs=[],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def version() -> None:
@@ -43,7 +41,6 @@ def version() -> None:
     configs=[
         ConfigData
     ],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def install_from_local() -> None:
@@ -95,7 +92,6 @@ def install_from_local() -> None:
     configs=[
         ConfigData
     ],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def install_from_remote() -> None:
@@ -163,7 +159,6 @@ References:
     configs=[
         ConfigData
     ],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def upload() -> None:
@@ -208,7 +203,6 @@ TODO:
     configs=[
         ConfigData
     ],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def register() -> None:
@@ -227,7 +221,6 @@ def register() -> None:
     configs=[
         ConfigData
     ],
-    suggest_configs=[],
     group=GROUP_NAME_DEFAULT,
 )
 def package() -> None:
