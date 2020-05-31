@@ -9,7 +9,8 @@ from pytconf.config import register_endpoint, register_function_group
 
 import pypitools
 import pypitools.version
-from pypitools.common import check_call_no_output, git_clean_full, upload_select, clean_after_if_needed, register_select
+from pypitools.common import check_call_no_output, git_clean_full, upload_select, clean_after_if_needed, \
+    register_select, package_it
 from pypitools.configs import ConfigData
 
 GROUP_NAME_DEFAULT = "default"
@@ -233,11 +234,4 @@ def package() -> None:
     """
     package in source and/or wheel format
     """
-    args = [
-        '{}'.format(ConfigData.python),
-        'setup.py',
-        'sdist',
-    ]
-    if ConfigData.wheel:
-        args.append('bdist_wheel')
-    check_call_no_output(args)
+    package_it()

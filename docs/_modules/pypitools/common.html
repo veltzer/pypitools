@@ -124,14 +124,7 @@
 <span class="sd">    upload by twine</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
-    <span class="p">]</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">package_it</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;twine&#39;</span><span class="p">,</span>
         <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
@@ -147,18 +140,13 @@
 <span class="sd">    upload to gemfury</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
-    <span class="p">])</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_package_filename</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
     <span class="c1"># The command line is the one recommended by gemfury at</span>
     <span class="c1"># https://manage.fury.io/dashboard/[username]/push</span>
     <span class="n">check_call_no_output</span><span class="p">([</span>
         <span class="s1">&#39;fury&#39;</span><span class="p">,</span>
         <span class="s1">&#39;push&#39;</span><span class="p">,</span>
-        <span class="n">filename</span><span class="p">,</span>
+        <span class="n">get_package_filename</span><span class="p">(),</span>
         <span class="s1">&#39;--as=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">),</span>
     <span class="p">])</span></div>
 
@@ -208,18 +196,11 @@
 <span class="sd">    register via the twine method</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;bdist_wheel&#39;</span><span class="p">,</span>
-    <span class="p">])</span>
-
-    <span class="c1"># at this point there should be only one file in the &#39;dist&#39; folder</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">get_package_filename</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
     <span class="n">check_call_no_output</span><span class="p">([</span>
         <span class="s1">&#39;twine&#39;</span><span class="p">,</span>
         <span class="s1">&#39;register&#39;</span><span class="p">,</span>
-        <span class="n">filename</span><span class="p">,</span>
+        <span class="n">get_package_filename</span><span class="p">(),</span>
     <span class="p">])</span></div>
 
 
@@ -239,6 +220,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_after</span><span class="p">:</span>
         <span class="n">git_clean_full</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="package_it"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.package_it">[docs]</a><span class="k">def</span> <span class="nf">package_it</span><span class="p">():</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
+    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
