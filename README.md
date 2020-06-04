@@ -9,3 +9,5 @@
 
 pypitools helps you with various pypi tasks
 
+project website: https://veltzer.github.io/pypitools
+
