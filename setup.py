@@ -3,7 +3,7 @@ import setuptools
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name="pypitools",
-    version="0.0.53",
+    version="0.0.54",
     packages=[
         'pypitools',
         'pypitools.endpoints',
