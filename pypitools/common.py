@@ -94,8 +94,24 @@ def upload_by_twine() -> None:
     args = [
         "twine",
         "upload",
-        get_package_filename(),
     ]
+    if ConfigData.upload_sdist:
+        args.append(get_package_filename())
+    if ConfigData.upload_wheel:
+        args.append(get_package_wheelname())
+    check_call_no_output(args)
+
+
+def check_by_twine() -> None:
+    """
+    check by twine
+    """
+    args = [
+        "twine",
+        "check",
+    ]
+    if ConfigData.upload_sdist:
+        args.append(get_package_filename())
     if ConfigData.upload_wheel:
         args.append(get_package_wheelname())
     check_call_no_output(args)
