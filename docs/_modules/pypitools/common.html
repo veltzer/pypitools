@@ -42,12 +42,11 @@
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span><span class="p">,</span> <span class="n">UploadMethod</span><span class="p">,</span> <span class="n">RegisterMethod</span>
 
 
-<div class="viewcode-block" id="check_call_no_output"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_call_no_output">[docs]</a><span class="k">def</span> <span class="nf">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="check_call_no_output"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_call_no_output">[docs]</a><span class="k">def</span> <span class="nf">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run a process and check that it returns an OK return code</span>
 <span class="sd">    and has no output</span>
 <span class="sd">    :param args:</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;running </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
@@ -63,10 +62,9 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;exit code from [</span><span class="si">{}</span><span class="s1">] was [</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="git_clean_full"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.git_clean_full">[docs]</a><span class="k">def</span> <span class="nf">git_clean_full</span><span class="p">():</span>
+<div class="viewcode-block" id="git_clean_full"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.git_clean_full">[docs]</a><span class="k">def</span> <span class="nf">git_clean_full</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clean the current git repo in a strict way</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">check_call_no_output</span><span class="p">([</span>
         <span class="s1">&#39;git&#39;</span><span class="p">,</span>
@@ -75,10 +73,9 @@
     <span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">():</span>
+<div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the full name of the package</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span>
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
@@ -88,37 +85,35 @@
     <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">():</span>
+<div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the package filename</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_package_wheelname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_wheelname">[docs]</a><span class="k">def</span> <span class="nf">get_package_wheelname</span><span class="p">():</span>
+<div class="viewcode-block" id="get_package_wheelname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_wheelname">[docs]</a><span class="k">def</span> <span class="nf">get_package_wheelname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the package wheelname</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;-py3-none-any.whl&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="upload_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_setup">[docs]</a><span class="k">def</span> <span class="nf">upload_by_setup</span><span class="p">():</span>
+<div class="viewcode-block" id="upload_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_setup">[docs]</a><span class="k">def</span> <span class="nf">upload_by_setup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload by setup.py sdist upload</span>
 
 <span class="sd">    This method still works although it is legacy</span>
 <span class="sd">    </span>
 <span class="sd">    see: python setup.py upload --help</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
     <span class="p">]</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;sdist&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
     <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
         <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
@@ -130,10 +125,9 @@
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="upload_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_twine">[docs]</a><span class="k">def</span> <span class="nf">upload_by_twine</span><span class="p">():</span>
+<div class="viewcode-block" id="upload_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_twine">[docs]</a><span class="k">def</span> <span class="nf">upload_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload by twine</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
@@ -141,15 +135,14 @@
         <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
         <span class="n">get_package_filename</span><span class="p">(),</span>
     <span class="p">]</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_wheelname</span><span class="p">())</span>
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">():</span>
+<div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload to gemfury</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
     <span class="c1"># The command line is the one recommended by gemfury at</span>
@@ -162,10 +155,9 @@
     <span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="upload_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_select">[docs]</a><span class="k">def</span> <span class="nf">upload_select</span><span class="p">():</span>
+<div class="viewcode-block" id="upload_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_select">[docs]</a><span class="k">def</span> <span class="nf">upload_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload via the method configured</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_method</span> <span class="o">==</span> <span class="n">UploadMethod</span><span class="o">.</span><span class="n">SETUP</span><span class="p">:</span>
         <span class="n">upload_by_setup</span><span class="p">()</span>
@@ -175,10 +167,9 @@
         <span class="n">upload_by_gemfury</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="register_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_select">[docs]</a><span class="k">def</span> <span class="nf">register_select</span><span class="p">():</span>
+<div class="viewcode-block" id="register_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_select">[docs]</a><span class="k">def</span> <span class="nf">register_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Register via the method configured</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">TWINE</span><span class="p">:</span>
         <span class="n">register_by_twine</span><span class="p">()</span>
@@ -188,10 +179,9 @@
         <span class="n">upload_select</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="register_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_setup">[docs]</a><span class="k">def</span> <span class="nf">register_by_setup</span><span class="p">():</span>
+<div class="viewcode-block" id="register_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_setup">[docs]</a><span class="k">def</span> <span class="nf">register_by_setup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via setup.py register</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">check_call_no_output</span><span class="p">([</span>
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
@@ -202,10 +192,9 @@
     <span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="register_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_twine">[docs]</a><span class="k">def</span> <span class="nf">register_by_twine</span><span class="p">():</span>
+<div class="viewcode-block" id="register_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_twine">[docs]</a><span class="k">def</span> <span class="nf">register_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via the twine method</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
     <span class="n">check_call_no_output</span><span class="p">([</span>
@@ -215,31 +204,33 @@
     <span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="clean_before_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_before_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_before_if_needed</span><span class="p">():</span>
+<div class="viewcode-block" id="clean_before_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_before_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_before_if_needed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clean the git repo if needed</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
         <span class="n">git_clean_full</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="clean_after_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_after_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_after_if_needed</span><span class="p">():</span>
+<div class="viewcode-block" id="clean_after_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_after_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_after_if_needed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clean the git repo if needed</span>
-<span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_after</span><span class="p">:</span>
         <span class="n">git_clean_full</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="package_it"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.package_it">[docs]</a><span class="k">def</span> <span class="nf">package_it</span><span class="p">():</span>
+<div class="viewcode-block" id="package_it"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.package_it">[docs]</a><span class="k">def</span> <span class="nf">package_it</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    package our module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;sdist&#39;</span><span class="p">,</span>
     <span class="p">]</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">wheel</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;sdist&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 </pre></div>

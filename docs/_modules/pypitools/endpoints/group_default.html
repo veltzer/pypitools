@@ -32,7 +32,7 @@
             
   <h1>Source code for pypitools.endpoints.group_default</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The default group of operations that pymakehelper has</span>
+<span class="sd">The default group of operations that pypitools has</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
@@ -47,7 +47,7 @@
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
 
 <span class="n">GROUP_NAME_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
-<span class="n">GROUP_DESCRIPTION_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;all pymakehelper commands&quot;</span>
+<span class="n">GROUP_DESCRIPTION_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;all pypitools commands&quot;</span>
 
 
 <div class="viewcode-block" id="register_group_default"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.register_group_default">[docs]</a><span class="k">def</span> <span class="nf">register_group_default</span><span class="p">():</span>
@@ -162,32 +162,6 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
 
-<span class="c1"># pylint: disable=W0105</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This script uploads your module to where ever you configure it.</span>
-<span class="sd">It&#39;s default is to upload to pypi but you can override by putting</span>
-<span class="sd">a pypi.cnf file in the root of your source tree.</span>
-
-<span class="sd">It does the following:</span>
-<span class="sd">- clean</span>
-<span class="sd">- setup.py sdist</span>
-<span class="sd">- twine upload</span>
-<span class="sd">- clean again</span>
-
-<span class="sd">Notes:</span>
-<span class="sd">- This script could be done via setuptools using the following:</span>
-<span class="sd">$ python3 setup.py sdist upload -r pypi --identity=&quot;Mark Veltzer&quot; --sign</span>
-<span class="sd">but this has bad security implications as it sends user and password plain text.</span>
-<span class="sd">- we use twine(1) to upload the package.</span>
-<span class="sd">On ubuntu twine(1) is from the &#39;twine&#39; official ubuntu package.</span>
-
-<span class="sd">References:</span>
-<span class="sd">- https://pypi.python.org/pypi/twine</span>
-<span class="sd">- https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</span>
-<span class="sd">- http://peterdowns.com/posts/first-time-with-pypi.html</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
 <div class="viewcode-block" id="upload"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.upload">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
     <span class="n">configs</span><span class="o">=</span><span class="p">[</span>
         <span class="n">ConfigData</span>
@@ -197,6 +171,28 @@
 <span class="k">def</span> <span class="nf">upload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload a package to pypi or gemfury</span>
+
+<span class="sd">    This script uploads your module to where ever you configure it.</span>
+<span class="sd">    It&#39;s default is to upload to pypi but you can override by putting</span>
+<span class="sd">    a pypi.cnf file in the root of your source tree.</span>
+
+<span class="sd">    It does the following:</span>
+<span class="sd">    - clean</span>
+<span class="sd">    - setup.py sdist</span>
+<span class="sd">    - twine upload</span>
+<span class="sd">    - clean again</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">    - This script could be done via setuptools using the following:</span>
+<span class="sd">    $ python3 setup.py sdist upload -r pypi --identity=&quot;Mark Veltzer&quot; --sign</span>
+<span class="sd">    but this has bad security implications as it sends user and password plain text.</span>
+<span class="sd">    - we use twine(1) to upload the package.</span>
+<span class="sd">    On ubuntu twine(1) is from the &#39;twine&#39; official ubuntu package.</span>
+
+<span class="sd">    References:</span>
+<span class="sd">    - https://pypi.python.org/pypi/twine</span>
+<span class="sd">    - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</span>
+<span class="sd">    - http://peterdowns.com/posts/first-time-with-pypi.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
         <span class="n">git_clean_full</span><span class="p">()</span>
@@ -204,32 +200,6 @@
         <span class="n">upload_select</span><span class="p">()</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">clean_after_if_needed</span><span class="p">()</span></div>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This script registers your project in pypi.</span>
-
-<span class="sd">when registering via twine(1) you need to:</span>
-<span class="sd">- full clean</span>
-<span class="sd">- build wheel using setup.py</span>
-<span class="sd">- twine register</span>
-<span class="sd">- full clean</span>
-<span class="sd">This method works, if you register twice it is ok.</span>
-<span class="sd">You just need to do it once...:)</span>
-
-<span class="sd">when registering via setup.py you need to:</span>
-<span class="sd">- full clean</span>
-<span class="sd">- python setup.py register -r pypi</span>
-<span class="sd">- full clean</span>
-<span class="sd">registering the same package many times works.</span>
-<span class="sd">You just need to do it once...:)</span>
-
-<span class="sd">References:</span>
-<span class="sd">- https://packaging.python.org/distributing/</span>
-
-<span class="sd">TODO:</span>
-<span class="sd">- check if I&#39;m already registered and don&#39;t register if that is the case.</span>
-<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="register"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.register">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
@@ -241,6 +211,29 @@
 <span class="k">def</span> <span class="nf">register</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register a function on pypi or gemfury</span>
+
+<span class="sd">    This function registers your project in pypi.</span>
+
+<span class="sd">    when registering via twine(1) you need to:</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    - build wheel using setup.py</span>
+<span class="sd">    - twine register</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    This method works, if you register twice it is ok.</span>
+<span class="sd">    You just need to do it once...:)</span>
+
+<span class="sd">    when registering via setup.py you need to:</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    - python setup.py register -r pypi</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    registering the same package many times works.</span>
+<span class="sd">    You just need to do it once...:)</span>
+
+<span class="sd">    References:</span>
+<span class="sd">    - https://packaging.python.org/distributing/</span>
+
+<span class="sd">    TODO:</span>
+<span class="sd">    - check if I&#39;m already registered and don&#39;t register if that is the case.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
         <span class="n">git_clean_full</span><span class="p">()</span>
@@ -261,6 +254,21 @@
 <span class="sd">    package in source and/or wheel format</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="check"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.check">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">ConfigData</span>
+    <span class="p">],</span>
+    <span class="n">group</span><span class="o">=</span><span class="n">GROUP_NAME_DEFAULT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">check</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    package in source and/or wheel format</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">package_it</span><span class="p">()</span></div>
+
+
 </pre></div>
 
           </div>
