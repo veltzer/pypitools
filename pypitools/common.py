@@ -92,13 +92,16 @@ def check_by_twine() -> None:
         "twine",
         "check",
     ]
+    to_check = 0
     if ConfigData.upload_sdist:
         args.append(get_package_filename())
+        to_check += 1
     if ConfigData.upload_wheel:
         args.append(get_package_wheelname())
+        to_check += 1
     (out, err) = check_call_collect(args)
     out_lines = out.split('\n')
-    if len(out_lines) > 1:
+    if len(out_lines) > to_check:
         print(out, end="", file=sys.stdout)
         print(err, end="", file=sys.stderr)
         sys.exit(1)

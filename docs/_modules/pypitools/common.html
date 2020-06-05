@@ -125,13 +125,16 @@
         <span class="s2">&quot;twine&quot;</span><span class="p">,</span>
         <span class="s2">&quot;check&quot;</span><span class="p">,</span>
     <span class="p">]</span>
+    <span class="n">to_check</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_filename</span><span class="p">())</span>
+        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_wheelname</span><span class="p">())</span>
+        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="n">out_lines</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">to_check</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
