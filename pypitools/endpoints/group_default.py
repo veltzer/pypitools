@@ -8,15 +8,16 @@ import subprocess
 from pytconf.config import register_endpoint, register_function_group
 
 import pypitools
+import pypitools.process_utils
 import pypitools.version
 from pypitools.common import (
-    check_call_no_output,
     git_clean_full,
     upload_select,
     clean_after_if_needed,
     register_select,
     package_it, check_by_twine,
 )
+from pypitools.process_utils import check_call_no_output
 from pypitools.configs import ConfigData
 
 GROUP_NAME_DEFAULT = "default"
@@ -98,7 +99,7 @@ def install_from_remote() -> None:
         args.extend(["--quiet"])
     if ConfigData.install_in_user_folder:
         args.extend(["--user"])
-    pypitools.common.check_call_no_output(args)
+    pypitools.process_utils.check_call_no_output(args)
     output = subprocess.check_output(
         [
             "{}".format(ConfigData.pip),

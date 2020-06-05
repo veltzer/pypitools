@@ -2,19 +2,20 @@ import setuptools
 
 setuptools.setup(
     # the first three fields are a must according to the documentation
-    name='pypitools',
-    version='0.0.53',
+    name="pypitools",
+    version="0.0.53",
     packages=[
         'pypitools',
         'pypitools.endpoints',
     ],
     # from here all is optional
-    description='pypitools helps you with various pypi tasks',
-    long_description='pypitools is a collection of utilities to help interact with the pypi repository',
-    author='Mark Veltzer',
-    author_email='mark.veltzer@gmail.com',
-    maintainer='Mark Veltzer',
-    maintainer_email='mark.veltzer@gmail.com',
+    description="pypitools helps you with various pypi tasks",
+    long_description="pypitools is a collection of utilities to help interact with the pypi repository",
+    long_description_content_type="text/x-rst",
+    author="Mark Veltzer",
+    author_email="mark.veltzer@gmail.com",
+    maintainer="Mark Veltzer",
+    maintainer_email="mark.veltzer@gmail.com",
     keywords=[
         'pypi',
         'register',
@@ -22,9 +23,9 @@ setuptools.setup(
         'erase',
         'delete',
     ],
-    url='https://veltzer.github.io/pypitools',
-    download_url='https://github.com/veltzer/pypitools',
-    license='MIT',
+    url="https://veltzer.github.io/pypitools",
+    download_url="https://github.com/veltzer/pypitools",
+    license="MIT",
     platforms=[
         'python3',
     ],
@@ -46,8 +47,8 @@ setuptools.setup(
     ],
     data_files=[
     ],
-    entry_points={'console_scripts': [
+    entry_points={"console_scripts": [
         'pypitools=pypitools.endpoints.main:main',
     ]},
-    python_requires='>=3.5',
+    python_requires=">=3.5",
 )

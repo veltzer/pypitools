@@ -4,27 +4,10 @@ This is common pypitools functionality
 
 import subprocess
 import os
-import logging
+import sys
 
 from pypitools.configs import ConfigData, UploadMethod, RegisterMethod
-
-
-def check_call_no_output(args) -> None:
-    """
-    Run a process and check that it returns an OK return code
-    and has no output
-    :param args:
-    """
-    logger = logging.getLogger(__name__)
-    logger.debug("running %s", args)
-    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
-    (res_stdout, res_stderr) = process.communicate()
-    if process.returncode:
-        print(res_stdout, end="")
-        print(res_stderr, end="")
-        raise ValueError(
-            "exit code from [{}] was [{}]".format(" ".join(args), process.returncode)
-        )
+from pypitools.process_utils import check_call_no_output, check_call_collect
 
 
 def git_clean_full() -> None:
@@ -38,10 +21,9 @@ def get_package_fullname() -> str:
     """
     Get the full name of the package
     """
-    output = subprocess.check_output(
+    return subprocess.check_output(
         ["{}".format(ConfigData.python), "setup.py", "--fullname"]
-    ).decode()
-    return output.rstrip()
+    ).decode().rstrip()
 
 
 def get_package_filename() -> str:
@@ -114,7 +96,12 @@ def check_by_twine() -> None:
         args.append(get_package_filename())
     if ConfigData.upload_wheel:
         args.append(get_package_wheelname())
-    check_call_no_output(args)
+    (out, err) = check_call_collect(args)
+    out_lines = out.split('\n')
+    if len(out_lines) > 1:
+        print(out, end="", file=sys.stdout)
+        print(err, end="", file=sys.stderr)
+        sys.exit(1)
 
 
 def upload_by_gemfury() -> None:

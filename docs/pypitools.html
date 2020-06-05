@@ -61,14 +61,6 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.common.check_call_no_output">
-<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">check_call_no_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#check_call_no_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.check_call_no_output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run a process and check that it returns an OK return code
-and has no output
-:param args:</p>
-</dd></dl>
-
-<dl class="py function">
 <dt id="pypitools.common.clean_after_if_needed">
 <code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">clean_after_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#clean_after_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.clean_after_if_needed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the git repo if needed</p>
@@ -277,6 +269,29 @@ and has no output
 <code class="sig-name descname">TWINE</code><em class="property"> = 1</em><a class="headerlink" href="#pypitools.configs.UploadMethod.TWINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-pypitools.process_utils">
+<span id="pypitools-process-utils-module"></span><h2>pypitools.process_utils module<a class="headerlink" href="#module-pypitools.process_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pypitools.process_utils.check_call_collect">
+<code class="sig-prename descclassname">pypitools.process_utils.</code><code class="sig-name descname">check_call_collect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="reference internal" href="_modules/pypitools/process_utils.html#check_call_collect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.process_utils.check_call_collect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a process and check that it returns an OK return code
+Gather any output and return it to the caller.
+If the process returns an error then print the output and
+the errors.
+:param args:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.process_utils.check_call_no_output">
+<code class="sig-prename descclassname">pypitools.process_utils.</code><code class="sig-name descname">check_call_no_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/process_utils.html#check_call_no_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.process_utils.check_call_no_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a process and check that it returns an OK return code
+The process may have output but that will not fail this function
+nor be shown on the screen (unless the subprocess returns an error
+code).
+:param args:</p>
 </dd></dl>
 
 </div>
