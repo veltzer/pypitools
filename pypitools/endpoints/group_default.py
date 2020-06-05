@@ -15,7 +15,7 @@ from pypitools.common import (
     upload_select,
     clean_after_if_needed,
     register_select,
-    package_it,
+    package_it, check_by_twine,
 )
 from pypitools.configs import ConfigData
 
@@ -201,6 +201,6 @@ def package() -> None:
 )
 def check() -> None:
     """
-    package in source and/or wheel format
+    check if the package is correct or not
     """
-    package_it()
+    check_by_twine()
