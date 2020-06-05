@@ -1,3 +1,4 @@
+- when doing 'upload' do 'check' after 'package'.
 - add the ability to upload to gemfury using git push:
 	#!/bin/sh
 	git push fury master
