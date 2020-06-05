@@ -10,5 +10,5 @@ project website: https://veltzer.github.io/pypitools
 
 author: Mark Veltzer
 
-version: 0.0.55
+version: 0.0.56
 
