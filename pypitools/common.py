@@ -100,7 +100,7 @@ def check_by_twine() -> None:
         args.append(get_package_wheelname())
         to_check += 1
     (out, err) = check_call_collect(args)
-    out_lines = out.split('\n')
+    out_lines = out.rstrip().split('\n')
     if len(out_lines) > to_check:
         print(out, end="", file=sys.stdout)
         print(err, end="", file=sys.stderr)
