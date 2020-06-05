@@ -43,6 +43,7 @@
 
 <div class="viewcode-block" id="UploadMethod"><a class="viewcode-back" href="../../pypitools.html#pypitools.configs.UploadMethod">[docs]</a><span class="k">class</span> <span class="nc">UploadMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Methods for uploading &quot;&quot;&quot;</span>
+
     <span class="n">SETUP</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">TWINE</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">GEMFURY</span> <span class="o">=</span> <span class="mi">2</span></div>
@@ -50,6 +51,7 @@
 
 <div class="viewcode-block" id="RegisterMethod"><a class="viewcode-back" href="../../pypitools.html#pypitools.configs.RegisterMethod">[docs]</a><span class="k">class</span> <span class="nc">RegisterMethod</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Methods for registering &quot;&quot;&quot;</span>
+
     <span class="n">SETUP</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">TWINE</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">UPLOAD</span> <span class="o">=</span> <span class="mi">2</span></div>
@@ -59,54 +61,42 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters for the symlink install tool</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">upload_method</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_enum</span><span class="p">(</span>
         <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What upload method to use?&quot;</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="n">UploadMethod</span><span class="o">.</span><span class="n">TWINE</span><span class="p">,</span>
         <span class="n">enum_type</span><span class="o">=</span><span class="n">UploadMethod</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">clean_before</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we clean before we start?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we clean before we start?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">clean_after</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we clean after we finish?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we clean after we finish?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">install_in_user_folder</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we install globally or in the users folder?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we install globally or in the users folder?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">upload_wheel</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we build and upload a wheel?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we build and upload a wheel?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">upload_sdist</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we build and upload a source distribution?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we build and upload a source distribution?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">use_sudo</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;should we use sudo?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;should we use sudo?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">pip_quiet</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we run pip quietly?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we run pip quietly?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">setup_quiet</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we run the setup quietly?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we run the setup quietly?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">pip</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What pip to use?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;pip&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">pip</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span><span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What pip to use?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;pip&quot;</span><span class="p">,)</span>
     <span class="n">gemfury_user</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What gemfury user name to use?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What gemfury user name to use?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">python</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What python to use?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What python to use?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">register_method</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_enum</span><span class="p">(</span>
         <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What method to register the module using?&quot;</span><span class="p">,</span>
@@ -114,8 +104,7 @@
         <span class="n">enum_type</span><span class="o">=</span><span class="n">RegisterMethod</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">module_name</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
-        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What is the module name?&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()),</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What is the module name?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()),</span>
     <span class="p">)</span></div>
 </pre></div>
 

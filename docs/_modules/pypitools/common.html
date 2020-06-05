@@ -50,38 +50,30 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;running </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
-    <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
-        <span class="n">args</span><span class="p">,</span>
-        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
-        <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,)</span>
     <span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">res_stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">res_stderr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;exit code from [</span><span class="si">{}</span><span class="s1">] was [</span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">))</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res_stderr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;exit code from [</span><span class="si">{}</span><span class="s2">] was [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="git_clean_full"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.git_clean_full">[docs]</a><span class="k">def</span> <span class="nf">git_clean_full</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clean the current git repo in a strict way</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;git&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;clean&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;-qffxd&#39;</span><span class="p">,</span>
-    <span class="p">])</span></div>
+    <span class="n">check_call_no_output</span><span class="p">([</span><span class="s2">&quot;git&quot;</span><span class="p">,</span> <span class="s2">&quot;clean&quot;</span><span class="p">,</span> <span class="s2">&quot;-qffxd&quot;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the full name of the package</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;--fullname&#39;</span><span class="p">,</span>
-    <span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--fullname&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
@@ -108,20 +100,22 @@
 <span class="sd">    see: python setup.py upload --help</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;sdist&#39;</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;sdist&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
-    <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
-        <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
-        <span class="c1"># this means which repository to upload too</span>
-        <span class="c1"># the default is https://upload.pypi.org/legacy/ and it works</span>
-        <span class="c1"># &#39;-r&#39;,</span>
-        <span class="c1"># &#39;pypi&#39;,</span>
-    <span class="p">])</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;bdist_wheel&quot;</span><span class="p">)</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;upload&quot;</span><span class="p">,</span>
+            <span class="c1"># this means which repository to upload too</span>
+            <span class="c1"># the default is https://upload.pypi.org/legacy/ and it works</span>
+            <span class="c1"># &#39;-r&#39;,</span>
+            <span class="c1"># &#39;pypi&#39;,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
@@ -131,8 +125,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;twine&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;upload&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;twine&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;upload&quot;</span><span class="p">,</span>
         <span class="n">get_package_filename</span><span class="p">(),</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
@@ -147,12 +141,14 @@
     <span class="n">package_it</span><span class="p">()</span>
     <span class="c1"># The command line is the one recommended by gemfury at</span>
     <span class="c1"># https://manage.fury.io/dashboard/[username]/push</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;fury&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;push&#39;</span><span class="p">,</span>
-        <span class="n">get_package_filename</span><span class="p">(),</span>
-        <span class="s1">&#39;--as=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">),</span>
-    <span class="p">])</span></div>
+    <span class="n">check_call_no_output</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;fury&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;push&quot;</span><span class="p">,</span>
+            <span class="n">get_package_filename</span><span class="p">(),</span>
+            <span class="s2">&quot;--as=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="upload_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_select">[docs]</a><span class="k">def</span> <span class="nf">upload_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -183,13 +179,9 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via setup.py register</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;register&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;-r&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;pypi&#39;</span><span class="p">,</span>
-    <span class="p">])</span></div>
+    <span class="n">check_call_no_output</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;pypi&quot;</span><span class="p">]</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="register_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_twine">[docs]</a><span class="k">def</span> <span class="nf">register_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -197,11 +189,7 @@
 <span class="sd">    register via the twine method</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span>
-        <span class="s1">&#39;twine&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;register&#39;</span><span class="p">,</span>
-        <span class="n">get_package_filename</span><span class="p">(),</span>
-    <span class="p">])</span></div>
+    <span class="n">check_call_no_output</span><span class="p">([</span><span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="n">get_package_filename</span><span class="p">()])</span></div>
 
 
 <div class="viewcode-block" id="clean_before_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_before_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_before_if_needed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -225,13 +213,13 @@
 <span class="sd">    package our module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
-        <span class="s1">&#39;setup.py&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;sdist&#39;</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;sdist&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;bdist_wheel&#39;</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;bdist_wheel&quot;</span><span class="p">)</span>
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 </pre></div>
 
