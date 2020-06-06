@@ -73,3 +73,7 @@ class ConfigData(Config):
     module_name = ParamCreator.create_str(
         help_string="What is the module name?", default=os.path.basename(os.getcwd()),
     )
+    check_before_upload = ParamCreator.create_bool(
+        help_string="Should we check the packages before uploading?",
+        default=True,
+    )

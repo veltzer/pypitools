@@ -1,11 +1,9 @@
-- when doing 'upload' do 'check' after 'package'.
 - add the ability to upload to gemfury using git push:
 	#!/bin/sh
 	git push fury master
   after adding the fury url as remote in git.
-- get_config_file method is not used?!?
-- move to my own config file, ~/.pypitools.ini or something.
 - add bumpr type functionality.
 	get ideas from 'bumpr' https://bumpr.readthedocs.io/en/latest/.
-- add a functions that shows what packages in pypi depend on your package.
+- add a function that shows what packages in pypi depend on your package.
 	take ideas from here: https://github.com/ogirardot/meta-deps
+	should this type of functionality belong here at all?

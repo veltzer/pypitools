@@ -48,6 +48,8 @@ def upload_by_setup() -> None:
     
     see: python setup.py upload --help
     """
+    if ConfigData.check_before_upload:
+        check_by_twine()
     args = [
         "{}".format(ConfigData.python),
         "setup.py",
@@ -73,6 +75,8 @@ def upload_by_twine() -> None:
     upload by twine
     """
     package_it()
+    if ConfigData.check_before_upload:
+        check_by_twine()
     args = [
         "twine",
         "upload",
@@ -110,10 +114,13 @@ def check_by_twine() -> None:
 def upload_by_gemfury() -> None:
     """
     upload to gemfury
+
+    The command line is the one recommended by gemfury at
+    https://manage.fury.io/dashboard/[username]/push
     """
     package_it()
-    # The command line is the one recommended by gemfury at
-    # https://manage.fury.io/dashboard/[username]/push
+    if ConfigData.check_before_upload:
+        check_by_twine()
     check_call_no_output(
         [
             "fury",
