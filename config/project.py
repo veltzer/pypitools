@@ -6,13 +6,16 @@ project_github_username = "veltzer"
 project_name = "pypitools"
 github_repo_name = project_name
 project_website = "https://{project_github_username}.github.io/{project_name}".format(
-    **locals()
+    project_github_username=project_github_username,
+    project_name=project_name,
 )
 project_website_source = "https://github.com/{project_github_username}/{project_name}".format(
-    **locals()
+    project_github_username=project_github_username,
+    project_name=project_name,
 )
 project_website_git = "git://github.com/{project_github_username}/{project_name}.git".format(
-    **locals()
+    project_github_username=project_github_username,
+    project_name=project_name,
 )
 project_website_download_ppa = "https://launchpanet/~mark-veltzer/+archive/ubuntu/ppa"
 project_website_download_src = project_website_source
@@ -45,10 +48,10 @@ project_classifiers = [
     pyclassifiers.values.ProgrammingLanguage__Python,
     pyclassifiers.values.ProgrammingLanguage__Python__3__Only,
     pyclassifiers.values.Topic__Utilities,
+    pyclassifiers.values.License__OSIApproved__MITLicense,
 ]
 
 project_data_files = []
-# project_data_files.append(templar.utils.hlp_files_under('/usr/bin', 'src/*'))
 
 project_copyright_years = ", ".join(
     map(str, range(int(project_year_started), datetime.datetime.now().year + 1))
