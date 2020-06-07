@@ -17,7 +17,6 @@
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
@@ -26,8 +25,6 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <h1>Source code for pypitools.common</h1><div class="highlight"><pre>
@@ -81,6 +78,8 @@
 <span class="sd">    </span>
 <span class="sd">    see: python setup.py upload --help</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
+        <span class="n">check_by_twine</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
@@ -106,6 +105,8 @@
 <span class="sd">    upload by twine</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
+        <span class="n">check_by_twine</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;twine&quot;</span><span class="p">,</span>
         <span class="s2">&quot;upload&quot;</span><span class="p">,</span>
@@ -143,10 +144,13 @@
 <div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload to gemfury</span>
+
+<span class="sd">    The command line is the one recommended by gemfury at</span>
+<span class="sd">    https://manage.fury.io/dashboard/[username]/push</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">package_it</span><span class="p">()</span>
-    <span class="c1"># The command line is the one recommended by gemfury at</span>
-    <span class="c1"># https://manage.fury.io/dashboard/[username]/push</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
+        <span class="n">check_by_twine</span><span class="p">()</span>
     <span class="n">check_call_no_output</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="s2">&quot;fury&quot;</span><span class="p">,</span>
@@ -230,7 +234,6 @@
 </pre></div>
 
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -261,8 +264,8 @@
       &copy;2017, Mark Veltzer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>
 
