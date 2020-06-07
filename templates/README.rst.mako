@@ -9,9 +9,11 @@
 *${config.project.project_name}*
 ${line}
 
-.. image:: https://img.shields.io/pypi/v/${config.python.package_name} :alt: PyPI
-.. image:: https://img.shields.io/github/license/veltzer/${config.project.project_name} :alt: GitHub
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg :alt: Code Style: black
+.. image:: https://img.shields.io/pypi/v/${config.python.package_name}
+
+.. image:: https://img.shields.io/github/license/veltzer/${config.project.project_name}
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
 
 project website: ${config.project.project_website}
 
