@@ -11,11 +11,12 @@ import pypitools
 import pypitools.process_utils
 import pypitools.version
 from pypitools.common import (
-    git_clean_full,
     upload_select,
     clean_after_if_needed,
     register_select,
-    package_it, check_by_twine,
+    package_it,
+    clean_before_if_needed,
+    check_if_needed,
 )
 from pypitools.process_utils import check_call_no_output
 from pypitools.configs import ConfigData
@@ -141,8 +142,9 @@ def upload() -> None:
     - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html
     - http://peterdowns.com/posts/first-time-with-pypi.html
     """
-    if ConfigData.clean_before:
-        git_clean_full()
+    clean_before_if_needed()
+    package_it()
+    check_if_needed()
     try:
         upload_select()
     finally:
@@ -179,8 +181,9 @@ def register() -> None:
     TODO:
     - check if I'm already registered and don't register if that is the case.
     """
-    if ConfigData.clean_before:
-        git_clean_full()
+    clean_before_if_needed()
+    package_it()
+    check_if_needed()
     try:
         register_select()
     finally:
@@ -202,6 +205,27 @@ def package() -> None:
 )
 def check() -> None:
     """
-    check if the package is correct or not
+    package and check if the package is correct
     """
-    check_by_twine()
+    package_it()
+    check_if_needed()
+
+
+@register_endpoint(
+    configs=[ConfigData], group=GROUP_NAME_DEFAULT,
+)
+def bump() -> None:
+    """
+    upgrade to new version
+
+    This will:
+    - check that all is committed
+    - bump the version
+    - run pydmt build
+    - commit with a standard message
+    - tag with a standard message
+    - push
+    - upload to pypi
+    """
+    # check_all_is_committed()
+    check_if_needed()

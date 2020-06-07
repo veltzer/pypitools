@@ -34,7 +34,7 @@ def check_call_collect(args: List[str]) -> Tuple[str, str]:
     """
     logger = logging.getLogger(__name__)
     logger.debug("running %s", args)
-    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, )
+    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
     (res_stdout, res_stderr) = process.communicate()
     if process.returncode:
         print(res_stdout.decode(), end="", file=sys.stdout)
