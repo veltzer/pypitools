@@ -61,6 +61,11 @@
 </dd></dl>
 
 <dl class="py function">
+<dt id="pypitools.common.check_if_needed">
+<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">check_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#check_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.check_if_needed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="pypitools.common.clean_after_if_needed">
 <code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">clean_after_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#clean_after_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.clean_after_if_needed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the git repo if needed</p>
@@ -70,30 +75,6 @@
 <dt id="pypitools.common.clean_before_if_needed">
 <code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">clean_before_if_needed</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#clean_before_if_needed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.clean_before_if_needed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the git repo if needed</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.common.get_package_filename">
-<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">get_package_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the package filename</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.common.get_package_fullname">
-<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">get_package_fullname</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_fullname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_fullname" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the full name of the package</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.common.get_package_wheelname">
-<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">get_package_wheelname</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/common.html#get_package_wheelname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.get_package_wheelname" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the package wheelname</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.common.git_clean_full">
-<code class="sig-prename descclassname">pypitools.common.</code><code class="sig-name descname">git_clean_full</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/common.html#git_clean_full"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.common.git_clean_full" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clean the current git repo in a strict way</p>
 </dd></dl>
 
 <dl class="py function">
@@ -276,6 +257,36 @@
 <code class="sig-name descname">TWINE</code><em class="property"> = 1</em><a class="headerlink" href="#pypitools.configs.UploadMethod.TWINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-pypitools.gitutils">
+<span id="pypitools-gitutils-module"></span><h2>pypitools.gitutils module<a class="headerlink" href="#module-pypitools.gitutils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pypitools.gitutils.git_clean_full">
+<code class="sig-prename descclassname">pypitools.gitutils.</code><code class="sig-name descname">git_clean_full</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/gitutils.html#git_clean_full"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.gitutils.git_clean_full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean the current git repo in a strict way</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pypitools.nameutils">
+<span id="pypitools-nameutils-module"></span><h2>pypitools.nameutils module<a class="headerlink" href="#module-pypitools.nameutils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pypitools.nameutils.get_package_filename">
+<code class="sig-prename descclassname">pypitools.nameutils.</code><code class="sig-name descname">get_package_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/nameutils.html#get_package_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.nameutils.get_package_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the package filename</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.nameutils.get_package_fullname">
+<code class="sig-prename descclassname">pypitools.nameutils.</code><code class="sig-name descname">get_package_fullname</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/nameutils.html#get_package_fullname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.nameutils.get_package_fullname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the full name of the package</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.nameutils.get_package_wheelname">
+<code class="sig-prename descclassname">pypitools.nameutils.</code><code class="sig-name descname">get_package_wheelname</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pypitools/nameutils.html#get_package_wheelname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.nameutils.get_package_wheelname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the package wheelname</p>
 </dd></dl>
 
 </div>

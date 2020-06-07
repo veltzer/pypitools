@@ -35,42 +35,40 @@
 <span class="sd">This is common pypitools functionality</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span><span class="p">,</span> <span class="n">UploadMethod</span><span class="p">,</span> <span class="n">RegisterMethod</span>
+<span class="kn">from</span> <span class="nn">pypitools.gitutils</span> <span class="kn">import</span> <span class="n">git_clean_full</span>
+<span class="kn">from</span> <span class="nn">pypitools.nameutils</span> <span class="kn">import</span> <span class="n">get_package_filename</span><span class="p">,</span> <span class="n">get_package_wheelname</span>
 <span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_no_output</span><span class="p">,</span> <span class="n">check_call_collect</span>
 
 
-<div class="viewcode-block" id="git_clean_full"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.git_clean_full">[docs]</a><span class="k">def</span> <span class="nf">git_clean_full</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="check_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_by_twine">[docs]</a><span class="k">def</span> <span class="nf">check_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Clean the current git repo in a strict way</span>
+<span class="sd">    check by twine</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span><span class="s2">&quot;git&quot;</span><span class="p">,</span> <span class="s2">&quot;clean&quot;</span><span class="p">,</span> <span class="s2">&quot;-qffxd&quot;</span><span class="p">])</span></div>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;twine&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;check&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">to_check</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_filename</span><span class="p">())</span>
+        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_wheelname</span><span class="p">())</span>
+        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">out_lines</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">to_check</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get the full name of the package</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
-        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--fullname&quot;</span><span class="p">]</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
-
-
-<div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get the package filename</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_package_wheelname"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.get_package_wheelname">[docs]</a><span class="k">def</span> <span class="nf">get_package_wheelname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get the package wheelname</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;-py3-none-any.whl&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="check_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_if_needed">[docs]</a><span class="k">def</span> <span class="nf">check_if_needed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
+        <span class="n">check_by_twine</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="upload_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_setup">[docs]</a><span class="k">def</span> <span class="nf">upload_by_setup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -81,8 +79,6 @@
 <span class="sd">    </span>
 <span class="sd">    see: python setup.py upload --help</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
-        <span class="n">check_by_twine</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
         <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
@@ -121,29 +117,6 @@
     <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="check_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_by_twine">[docs]</a><span class="k">def</span> <span class="nf">check_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    check by twine</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;twine&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;check&quot;</span><span class="p">,</span>
-    <span class="p">]</span>
-    <span class="n">to_check</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_filename</span><span class="p">())</span>
-        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_wheelname</span><span class="p">())</span>
-        <span class="n">to_check</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="n">out_lines</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">to_check</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
-
-
 <div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload to gemfury</span>
@@ -176,18 +149,6 @@
         <span class="n">upload_by_gemfury</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="register_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_select">[docs]</a><span class="k">def</span> <span class="nf">register_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Register via the method configured</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">TWINE</span><span class="p">:</span>
-        <span class="n">register_by_twine</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">SETUP</span><span class="p">:</span>
-        <span class="n">register_by_setup</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">UPLOAD</span><span class="p">:</span>
-        <span class="n">upload_select</span><span class="p">()</span></div>
-
-
 <div class="viewcode-block" id="register_by_setup"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_by_setup">[docs]</a><span class="k">def</span> <span class="nf">register_by_setup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via setup.py register</span>
@@ -201,8 +162,19 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via the twine method</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">package_it</span><span class="p">()</span>
     <span class="n">check_call_no_output</span><span class="p">([</span><span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="n">get_package_filename</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="register_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_select">[docs]</a><span class="k">def</span> <span class="nf">register_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register via the method configured</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">TWINE</span><span class="p">:</span>
+        <span class="n">register_by_twine</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">SETUP</span><span class="p">:</span>
+        <span class="n">register_by_setup</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">register_method</span> <span class="o">==</span> <span class="n">RegisterMethod</span><span class="o">.</span><span class="n">UPLOAD</span><span class="p">:</span>
+        <span class="n">upload_select</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="clean_before_if_needed"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.clean_before_if_needed">[docs]</a><span class="k">def</span> <span class="nf">clean_before_if_needed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

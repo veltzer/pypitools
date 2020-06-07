@@ -44,11 +44,12 @@
 <span class="kn">import</span> <span class="nn">pypitools.process_utils</span>
 <span class="kn">import</span> <span class="nn">pypitools.version</span>
 <span class="kn">from</span> <span class="nn">pypitools.common</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">git_clean_full</span><span class="p">,</span>
     <span class="n">upload_select</span><span class="p">,</span>
     <span class="n">clean_after_if_needed</span><span class="p">,</span>
     <span class="n">register_select</span><span class="p">,</span>
-    <span class="n">package_it</span><span class="p">,</span> <span class="n">check_by_twine</span><span class="p">,</span>
+    <span class="n">package_it</span><span class="p">,</span>
+    <span class="n">clean_before_if_needed</span><span class="p">,</span>
+    <span class="n">check_if_needed</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_no_output</span>
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
@@ -174,8 +175,9 @@
 <span class="sd">    - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</span>
 <span class="sd">    - http://peterdowns.com/posts/first-time-with-pypi.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
-        <span class="n">git_clean_full</span><span class="p">()</span>
+    <span class="n">clean_before_if_needed</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">upload_select</span><span class="p">()</span>
     <span class="k">finally</span><span class="p">:</span>
@@ -212,8 +214,9 @@
 <span class="sd">    TODO:</span>
 <span class="sd">    - check if I&#39;m already registered and don&#39;t register if that is the case.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">clean_before</span><span class="p">:</span>
-        <span class="n">git_clean_full</span><span class="p">()</span>
+    <span class="n">clean_before_if_needed</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">register_select</span><span class="p">()</span>
     <span class="k">finally</span><span class="p">:</span>
@@ -235,9 +238,30 @@
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">check</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    check if the package is correct or not</span>
+<span class="sd">    package and check if the package is correct</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_by_twine</span><span class="p">()</span></div>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="bump"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.bump">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="n">GROUP_NAME_DEFAULT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">bump</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    upgrade to new version</span>
+
+<span class="sd">    This will:</span>
+<span class="sd">    - check that all is committed</span>
+<span class="sd">    - bump the version</span>
+<span class="sd">    - run pydmt build</span>
+<span class="sd">    - commit with a standard message</span>
+<span class="sd">    - tag with a standard message</span>
+<span class="sd">    - push</span>
+<span class="sd">    - upload to pypi</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check_all_is_committed()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span></div>
 </pre></div>
 
           </div>

@@ -40,9 +40,23 @@
 <span id="pypitools-endpoints-group-default-module"></span><h2>pypitools.endpoints.group_default module<a class="headerlink" href="#module-pypitools.endpoints.group_default" title="Permalink to this headline">¶</a></h2>
 <p>The default group of operations that pypitools has</p>
 <dl class="py function">
+<dt id="pypitools.endpoints.group_default.bump">
+<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">bump</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#bump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.bump" title="Permalink to this definition">¶</a></dt>
+<dd><p>upgrade to new version</p>
+<p>This will:
+- check that all is committed
+- bump the version
+- run pydmt build
+- commit with a standard message
+- tag with a standard message
+- push
+- upload to pypi</p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="pypitools.endpoints.group_default.check">
 <code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>check if the package is correct or not</p>
+<dd><p>package and check if the package is correct</p>
 </dd></dl>
 
 <dl class="py function">
