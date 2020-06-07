@@ -25,7 +25,7 @@ setuptools.setup(
     ],
     url="https://veltzer.github.io/pypitools",
     download_url="https://github.com/veltzer/pypitools",
-    license="MIT",
+    # license="MIT",
     platforms=[
         'python3',
     ],
