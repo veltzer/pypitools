@@ -2,14 +2,20 @@
 
 # *pypitools* project by Mark Veltzer
 
-![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
-![GitHub](https://img.shields.io/github/license/veltzer/pypitools)
-![PyPI](https://img.shields.io/pypi/v/pypitools)
+![PyPI - Status](https://img.shields.io/pypi/status/pypitools)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pypitools)
+![PyPI - License](https://img.shields.io/pypi/l/pypitools)
+![PyPI - Package Name](https://img.shields.io/pypi/v/pypitools)
 ![PyPI - Format](https://img.shields.io/pypi/format/pypitools)
-[![Downloads](https://pepy.tech/badge/pytsv)](https://pepy.tech/project/pypitools)
-[![Downloads](https://pepy.tech/badge/pytsv/month)](https://pepy.tech/project/pypitools/month)
-[![Downloads](https://pepy.tech/badge/pytsv/week)](https://pepy.tech/project/pypitools/week)
 
+![PyPI - Downloads](https://img.shields.io/pypi/dd/pypitools)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/pypitools)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pypitools)
+
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![Downloads](https://pepy.tech/badge/pypitools)
+![Downloads](https://pepy.tech/badge/pypitools/month)
+![Downloads](https://pepy.tech/badge/pypitools/week)
 
 pypitools helps you with various pypi tasks
 
