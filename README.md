@@ -1,5 +1,4 @@
 
-
 # *pypitools* project by Mark Veltzer
 
 ![PyPI - Status](https://img.shields.io/pypi/status/pypitools)
@@ -17,7 +16,7 @@
 ![Downloads](https://pepy.tech/badge/pypitools/month)
 ![Downloads](https://pepy.tech/badge/pypitools/week)
 
+
 pypitools helps you with various pypi tasks
 
-project website: https://veltzer.github.io/pypitools
-
+project website: <https://veltzer.github.io/pypitools>
