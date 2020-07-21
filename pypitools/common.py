@@ -1,7 +1,8 @@
 """
 This is common pypitools functionality
 """
-
+import os
+import shutil
 import sys
 
 from pypitools.configs import ConfigData, UploadMethod, RegisterMethod
@@ -172,4 +173,22 @@ def package_it() -> None:
         args.append("sdist")
     if ConfigData.upload_wheel:
         args.append("bdist_wheel")
+    check_call_collect(args)
+
+
+def do_prerequisites() -> None:
+    """
+    Gather all prerequisites into a single folder
+    """
+    if os.path.exists(ConfigData.wheel_folder):
+        shutil.rmtree(ConfigData.wheel_folder)
+    os.mkdir(ConfigData.wheel_folder)
+    args = [
+        ConfigData.pip,
+        "wheel",
+        "--requirement",
+        ConfigData.requirements,
+        "--wheel-dir",
+        ConfigData.wheel_folder,
+    ]
     check_call_collect(args)

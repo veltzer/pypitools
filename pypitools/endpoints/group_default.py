@@ -17,7 +17,7 @@ from pypitools.common import (
     register_select,
     package_it,
     clean_before_if_needed,
-    check_if_needed,
+    check_if_needed, do_prerequisites,
 )
 from pypitools.configs import ConfigData
 
@@ -229,3 +229,13 @@ def bump() -> None:
     """
     # check_all_is_committed()
     check_if_needed()
+
+
+@register_endpoint(
+    configs=[ConfigData], group=GROUP_NAME_DEFAULT,
+)
+def prerequisites() -> None:
+    """
+    Get all pre requisites into a folder
+    """
+    do_prerequisites()
