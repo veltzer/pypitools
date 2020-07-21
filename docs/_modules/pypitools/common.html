@@ -41,7 +41,7 @@
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span><span class="p">,</span> <span class="n">UploadMethod</span><span class="p">,</span> <span class="n">RegisterMethod</span>
 <span class="kn">from</span> <span class="nn">pypitools.git_utils</span> <span class="kn">import</span> <span class="n">git_clean_full</span>
 <span class="kn">from</span> <span class="nn">pypitools.name_utils</span> <span class="kn">import</span> <span class="n">get_package_filename</span><span class="p">,</span> <span class="n">get_package_wheelname</span>
-<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_no_output</span><span class="p">,</span> <span class="n">check_call_collect</span>
+<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_collect</span>
 
 
 <div class="viewcode-block" id="check_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.check_by_twine">[docs]</a><span class="k">def</span> <span class="nf">check_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -97,7 +97,7 @@
             <span class="c1"># &#39;pypi&#39;,</span>
         <span class="p">]</span>
     <span class="p">)</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="upload_by_twine"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_twine">[docs]</a><span class="k">def</span> <span class="nf">upload_by_twine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -115,7 +115,7 @@
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_filename</span><span class="p">())</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_package_wheelname</span><span class="p">())</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="upload_by_gemfury"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.upload_by_gemfury">[docs]</a><span class="k">def</span> <span class="nf">upload_by_gemfury</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -128,7 +128,7 @@
     <span class="n">package_it</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">check_before_upload</span><span class="p">:</span>
         <span class="n">check_by_twine</span><span class="p">()</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span>
+    <span class="n">check_call_collect</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="s2">&quot;fury&quot;</span><span class="p">,</span>
             <span class="s2">&quot;push&quot;</span><span class="p">,</span>
@@ -154,7 +154,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via setup.py register</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span>
+    <span class="n">check_call_collect</span><span class="p">(</span>
         <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;pypi&quot;</span><span class="p">]</span>
     <span class="p">)</span></div>
 
@@ -163,7 +163,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    register via the twine method</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">check_call_no_output</span><span class="p">([</span><span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="n">get_package_filename</span><span class="p">()])</span></div>
+    <span class="n">check_call_collect</span><span class="p">([</span><span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="n">get_package_filename</span><span class="p">()])</span></div>
 
 
 <div class="viewcode-block" id="register_select"><a class="viewcode-back" href="../../pypitools.html#pypitools.common.register_select">[docs]</a><span class="k">def</span> <span class="nf">register_select</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -206,7 +206,7 @@
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;sdist&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_wheel</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;bdist_wheel&quot;</span><span class="p">)</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

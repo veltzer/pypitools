@@ -39,6 +39,7 @@
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
+<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_collect</span>
 <span class="kn">from</span> <span class="nn">pytconf.config</span> <span class="kn">import</span> <span class="n">register_endpoint</span><span class="p">,</span> <span class="n">register_function_group</span>
 
 <span class="kn">import</span> <span class="nn">pypitools</span>
@@ -52,7 +53,6 @@
     <span class="n">clean_before_if_needed</span><span class="p">,</span>
     <span class="n">check_if_needed</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_no_output</span>
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
 
 <span class="n">GROUP_NAME_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
@@ -95,7 +95,7 @@
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">setup_quiet</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="n">files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">))</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;too many files in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">)</span>
     <span class="n">new_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">,</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -109,7 +109,7 @@
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--user&quot;</span><span class="p">])</span>
-    <span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="install_from_remote"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.install_from_remote">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
@@ -134,7 +134,7 @@
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--user&quot;</span><span class="p">])</span>
-    <span class="n">pypitools</span><span class="o">.</span><span class="n">process_utils</span><span class="o">.</span><span class="n">check_call_no_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">pypitools</span><span class="o">.</span><span class="n">process_utils</span><span class="o">.</span><span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">pip</span><span class="p">),</span>
