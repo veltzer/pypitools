@@ -51,7 +51,7 @@
     <span class="n">register_select</span><span class="p">,</span>
     <span class="n">package_it</span><span class="p">,</span>
     <span class="n">clean_before_if_needed</span><span class="p">,</span>
-    <span class="n">check_if_needed</span><span class="p">,</span>
+    <span class="n">check_if_needed</span><span class="p">,</span> <span class="n">do_prerequisites</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
 
@@ -263,6 +263,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># check_all_is_committed()</span>
     <span class="n">check_if_needed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="prerequisites"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.prerequisites">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="n">GROUP_NAME_DEFAULT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">prerequisites</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all pre requisites into a folder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">do_prerequisites</span><span class="p">()</span></div>
 </pre></div>
 
           </div>

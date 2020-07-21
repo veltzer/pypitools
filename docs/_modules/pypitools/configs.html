@@ -93,6 +93,10 @@
         <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we run the setup quietly?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">pip</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span><span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What pip to use?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;pip&quot;</span><span class="p">,)</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What requirements.txt file to use?&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">gemfury_user</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
         <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;What gemfury user name to use?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span>
@@ -109,6 +113,10 @@
     <span class="p">)</span>
     <span class="n">check_before_upload</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_bool</span><span class="p">(</span>
         <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;Should we check the packages before uploading?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">wheel_folder</span> <span class="o">=</span> <span class="n">ParamCreator</span><span class="o">.</span><span class="n">create_str</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;wheel&quot;</span><span class="p">,</span>
+        <span class="n">help_string</span><span class="o">=</span><span class="s2">&quot;what folder to get all dependencies into?&quot;</span><span class="p">,</span>
     <span class="p">)</span></div>
 </pre></div>
 

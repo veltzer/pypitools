@@ -59,6 +59,10 @@ class ConfigData(Config):
         help_string="Should we run the setup quietly?", default=True,
     )
     pip = ParamCreator.create_str(help_string="What pip to use?", default="pip",)
+    requirements = ParamCreator.create_str(
+        help_string="What requirements.txt file to use?",
+        default="requirements.txt",
+    )
     gemfury_user = ParamCreator.create_str(
         help_string="What gemfury user name to use?", default=None,
     )
@@ -75,4 +79,8 @@ class ConfigData(Config):
     )
     check_before_upload = ParamCreator.create_bool(
         help_string="Should we check the packages before uploading?", default=True,
+    )
+    wheel_folder = ParamCreator.create_str(
+        default="wheel",
+        help_string="what folder to get all dependencies into?",
     )
