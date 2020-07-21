@@ -28,18 +28,18 @@ pypitools.configs module
    :undoc-members:
    :show-inheritance:
 
-pypitools.gitutils module
--------------------------
+pypitools.git\_utils module
+---------------------------
 
-.. automodule:: pypitools.gitutils
+.. automodule:: pypitools.git_utils
    :members:
    :undoc-members:
    :show-inheritance:
 
-pypitools.nameutils module
---------------------------
+pypitools.name\_utils module
+----------------------------
 
-.. automodule:: pypitools.nameutils
+.. automodule:: pypitools.name_utils
    :members:
    :undoc-members:
    :show-inheritance:

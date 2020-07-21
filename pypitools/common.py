@@ -5,9 +5,9 @@ This is common pypitools functionality
 import sys
 
 from pypitools.configs import ConfigData, UploadMethod, RegisterMethod
-from pypitools.gitutils import git_clean_full
-from pypitools.nameutils import get_package_filename, get_package_wheelname
-from pypitools.process_utils import check_call_no_output, check_call_collect
+from pypitools.git_utils import git_clean_full
+from pypitools.name_utils import get_package_filename, get_package_wheelname
+from pypitools.process_utils import check_call_collect
 
 
 def check_by_twine() -> None:
@@ -63,7 +63,7 @@ def upload_by_setup() -> None:
             # 'pypi',
         ]
     )
-    check_call_no_output(args)
+    check_call_collect(args)
 
 
 def upload_by_twine() -> None:
@@ -81,7 +81,7 @@ def upload_by_twine() -> None:
         args.append(get_package_filename())
     if ConfigData.upload_wheel:
         args.append(get_package_wheelname())
-    check_call_no_output(args)
+    check_call_collect(args)
 
 
 def upload_by_gemfury() -> None:
@@ -94,7 +94,7 @@ def upload_by_gemfury() -> None:
     package_it()
     if ConfigData.check_before_upload:
         check_by_twine()
-    check_call_no_output(
+    check_call_collect(
         [
             "fury",
             "push",
@@ -120,7 +120,7 @@ def register_by_setup() -> None:
     """
     register via setup.py register
     """
-    check_call_no_output(
+    check_call_collect(
         ["{}".format(ConfigData.python), "setup.py", "register", "-r", "pypi"]
     )
 
@@ -129,7 +129,7 @@ def register_by_twine() -> None:
     """
     register via the twine method
     """
-    check_call_no_output(["twine", "register", get_package_filename()])
+    check_call_collect(["twine", "register", get_package_filename()])
 
 
 def register_select() -> None:
@@ -172,4 +172,4 @@ def package_it() -> None:
         args.append("sdist")
     if ConfigData.upload_wheel:
         args.append("bdist_wheel")
-    check_call_no_output(args)
+    check_call_collect(args)

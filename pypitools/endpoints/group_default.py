@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 
+from pypitools.process_utils import check_call_collect
 from pytconf.config import register_endpoint, register_function_group
 
 import pypitools
@@ -18,7 +19,6 @@ from pypitools.common import (
     clean_before_if_needed,
     check_if_needed,
 )
-from pypitools.process_utils import check_call_no_output
 from pypitools.configs import ConfigData
 
 GROUP_NAME_DEFAULT = "default"
@@ -61,7 +61,7 @@ def install_from_local() -> None:
     ]
     if ConfigData.setup_quiet:
         args.extend(["--quiet"])
-    check_call_no_output(args)
+    check_call_collect(args)
     files = list(os.listdir(dist_folder))
     assert len(files) == 1, "too many files in {}".format(dist_folder)
     new_file = os.path.join(dist_folder, files[0])
@@ -75,7 +75,7 @@ def install_from_local() -> None:
         args.extend(["--quiet"])
     if ConfigData.install_in_user_folder:
         args.extend(["--user"])
-    check_call_no_output(args)
+    check_call_collect(args)
 
 
 @register_endpoint(
@@ -100,7 +100,7 @@ def install_from_remote() -> None:
         args.extend(["--quiet"])
     if ConfigData.install_in_user_folder:
         args.extend(["--user"])
-    pypitools.process_utils.check_call_no_output(args)
+    pypitools.process_utils.check_call_collect(args)
     output = subprocess.check_output(
         [
             "{}".format(ConfigData.pip),
