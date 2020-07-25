@@ -5,8 +5,7 @@ Command line configurations for pypitools
 import os
 from enum import Enum
 
-from pytconf.config import Config
-from pytconf.param import ParamCreator
+from pytconf import Config, ParamCreator
 
 
 class UploadMethod(Enum):
