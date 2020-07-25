@@ -4,6 +4,7 @@ This is common pypitools functionality
 import os
 import shutil
 import sys
+from typing import List
 
 from pypitools.configs import ConfigData, UploadMethod, RegisterMethod
 from pypitools.git_utils import git_clean_full
@@ -176,7 +177,7 @@ def package_it() -> None:
     check_call_collect(args)
 
 
-def do_prerequisites() -> None:
+def do_prerequisites(packages: List[str] = None) -> None:
     """
     Gather all prerequisites into a single folder
     """
@@ -186,9 +187,14 @@ def do_prerequisites() -> None:
     args = [
         ConfigData.pip,
         "wheel",
-        "--requirement",
-        ConfigData.requirements,
         "--wheel-dir",
         ConfigData.wheel_folder,
     ]
+    if packages is None:
+        args.extend([
+            "--requirement",
+            ConfigData.requirements,
+        ])
+    else:
+        args.extend(packages)
     check_call_collect(args)
