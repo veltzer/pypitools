@@ -239,3 +239,14 @@ def prerequisites() -> None:
     Get all pre requisites into a folder
     """
     do_prerequisites()
+
+
+@register_endpoint(
+    configs=[ConfigData], group=GROUP_NAME_DEFAULT,
+)
+def prerequisites_run() -> None:
+    """
+    Get run pre requisites into a folder
+    """
+    import config.python
+    do_prerequisites(config.python.run_requires)
