@@ -6,7 +6,7 @@ import shutil
 import subprocess
 
 from pypitools.process_utils import check_call_collect
-from pytconf.config import register_endpoint, register_function_group
+from pytconf import register_endpoint, register_function_group
 
 import pypitools
 import pypitools.process_utils

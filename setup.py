@@ -9,7 +9,7 @@ def get_readme():
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name="pypitools",
-    version="0.0.64",
+    version="0.0.65",
     packages=[
         'pypitools',
         'pypitools.endpoints',
