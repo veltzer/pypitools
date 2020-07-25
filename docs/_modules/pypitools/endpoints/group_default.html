@@ -273,6 +273,17 @@
 <span class="sd">    Get all pre requisites into a folder</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">do_prerequisites</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="prerequisites_run"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.group_default.prerequisites_run">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span> <span class="n">group</span><span class="o">=</span><span class="n">GROUP_NAME_DEFAULT</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">prerequisites_run</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get run pre requisites into a folder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">config.python</span>
+    <span class="n">do_prerequisites</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">run_requires</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
