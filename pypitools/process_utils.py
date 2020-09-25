@@ -22,7 +22,7 @@ def check_call_collect(args: List[str]) -> Tuple[str, str]:
         print(res_stdout.decode(), end="", file=sys.stdout)
         print(res_stderr.decode(), end="", file=sys.stderr)
         raise ValueError(
-            "exit code from [{}] was [{}]".format(" ".join(args), process.returncode)
+            f"exit code from [{' '.join(args)}] was [{process.returncode}]"
         )
     return res_stdout.decode(), res_stderr.decode()
 

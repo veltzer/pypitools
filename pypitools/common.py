@@ -49,7 +49,7 @@ def upload_by_setup() -> None:
     see: python setup.py upload --help
     """
     args = [
-        "{}".format(ConfigData.python),
+        ConfigData.python,
         "setup.py",
     ]
     if ConfigData.upload_sdist:
@@ -101,7 +101,7 @@ def upload_by_gemfury() -> None:
             "fury",
             "push",
             get_package_filename(),
-            "--as={}".format(ConfigData.gemfury_user),
+            f"--as={ConfigData.gemfury_user}",
         ]
     )
 
@@ -123,7 +123,7 @@ def register_by_setup() -> None:
     register via setup.py register
     """
     check_call_collect(
-        ["{}".format(ConfigData.python), "setup.py", "register", "-r", "pypi"]
+        [ConfigData.python, "setup.py", "register", "-r", "pypi"]
     )
 
 
@@ -167,7 +167,7 @@ def package_it() -> None:
     package our module
     """
     args = [
-        "{}".format(ConfigData.python),
+        ConfigData.python,
         "setup.py",
     ]
     if ConfigData.upload_sdist:

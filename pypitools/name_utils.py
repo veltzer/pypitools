@@ -10,7 +10,7 @@ def get_package_fullname() -> str:
     """
     return (
         subprocess.check_output(
-            ["{}".format(ConfigData.python), "setup.py", "--fullname"]
+            [ConfigData.python, "setup.py", "--fullname"]
         )
         .decode()
         .rstrip()
