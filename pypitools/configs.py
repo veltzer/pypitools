@@ -1,7 +1,6 @@
 """
 Command line configurations for pypitools
 """
-
 import os
 from enum import Enum
 
