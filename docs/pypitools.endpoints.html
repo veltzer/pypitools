@@ -37,14 +37,13 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pypitools.endpoints.group_default">
-<span id="pypitools-endpoints-group-default-module"></span><h2>pypitools.endpoints.group_default module<a class="headerlink" href="#module-pypitools.endpoints.group_default" title="Permalink to this headline">¶</a></h2>
-<p>The default group of operations that pypitools has</p>
+<div class="section" id="module-pypitools.endpoints.main">
+<span id="pypitools-endpoints-main-module"></span><h2>pypitools.endpoints.main module<a class="headerlink" href="#module-pypitools.endpoints.main" title="Permalink to this headline">¶</a></h2>
+<p>main entry point to the program</p>
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.bump">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">bump</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#bump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.bump" title="Permalink to this definition">¶</a></dt>
-<dd><p>upgrade to new version</p>
-<p>This will:
+<dt id="pypitools.endpoints.main.bump">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">bump</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#bump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.bump" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will:
 - check that all is committed
 - bump the version
 - run pydmt build
@@ -55,46 +54,44 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.check">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>package and check if the package is correct</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.check">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.install_from_local">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">install_from_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#install_from_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.install_from_local" title="Permalink to this definition">¶</a></dt>
-<dd><p>install a package from the local folder</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.install_from_local">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">install_from_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#install_from_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.install_from_local" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.install_from_remote">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">install_from_remote</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#install_from_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.install_from_remote" title="Permalink to this definition">¶</a></dt>
-<dd><p>install a package from pypi or gemfury</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.install_from_remote">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">install_from_remote</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#install_from_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.install_from_remote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.package">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">package</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.package" title="Permalink to this definition">¶</a></dt>
-<dd><p>package in source and/or wheel format</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.main">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/endpoints/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.prerequisites">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">prerequisites</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.prerequisites" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get all pre requisites into a folder</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.package">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">package</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.prerequisites_run">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">prerequisites_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#prerequisites_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.prerequisites_run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get run pre requisites into a folder</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.prerequisites">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">prerequisites</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.prerequisites" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.register">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.register" title="Permalink to this definition">¶</a></dt>
-<dd><p>register a function on pypi or gemfury</p>
-<p>This function registers your project in pypi.</p>
+<dt id="pypitools.endpoints.main.prerequisites_run">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">prerequisites_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#prerequisites_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.prerequisites_run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.endpoints.main.register">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function registers your project in pypi.</p>
 <p>when registering via twine(1) you need to:
 - full clean
 - build wheel using setup.py
@@ -115,16 +112,9 @@ You just need to do it once…:)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.register_group_default">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">register_group_default</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#register_group_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.register_group_default" title="Permalink to this definition">¶</a></dt>
-<dd><p>register the name and description of this group</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.endpoints.group_default.upload">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.upload" title="Permalink to this definition">¶</a></dt>
-<dd><p>upload a package to pypi or gemfury</p>
-<p>This script uploads your module to where ever you configure it.
+<dt id="pypitools.endpoints.main.upload">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>This script uploads your module to where ever you configure it.
 It’s default is to upload to pypi but you can override by putting
 a pypi.cnf file in the root of your source tree.</p>
 <p>It does the following:
@@ -145,26 +135,9 @@ On ubuntu twine(1) is from the ‘twine’ official ubuntu package.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pypitools.endpoints.group_default.version">
-<code class="sig-prename descclassname">pypitools.endpoints.group_default.</code><code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/group_default.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.group_default.version" title="Permalink to this definition">¶</a></dt>
-<dd><p>print version</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-pypitools.endpoints.main">
-<span id="pypitools-endpoints-main-module"></span><h2>pypitools.endpoints.main module<a class="headerlink" href="#module-pypitools.endpoints.main" title="Permalink to this headline">¶</a></h2>
-<p>main entry point to the program</p>
-<dl class="py function">
-<dt id="pypitools.endpoints.main.main">
-<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/endpoints/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>pypitools will help you interact with pypi</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pypitools.endpoints.main.register_all_groups">
-<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">register_all_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/endpoints/main.html#register_all_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.register_all_groups" title="Permalink to this definition">¶</a></dt>
-<dd><p>registers all groups of operations with pytconf</p>
-</dd></dl>
+<dt id="pypitools.endpoints.main.version">
+<code class="sig-prename descclassname">pypitools.endpoints.main.</code><code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/endpoints/main.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.endpoints.main.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="module-pypitools.endpoints">

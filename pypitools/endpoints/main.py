@@ -8,7 +8,7 @@ import subprocess
 import pylogconf.core
 
 from pypitools.configs import ConfigData
-from pypitools.version import VERSION_STR
+from pypitools.version import VERSION_STR, DESCRIPTION
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
 
 import pypitools
@@ -18,21 +18,18 @@ from pypitools.common import clean_before_if_needed, package_it, check_if_needed
 from pypitools.process_utils import check_call_collect
 
 
-@register_endpoint()
+@register_endpoint(
+    description="Print version",
+)
 def version() -> None:
-    """
-    print version
-    """
     print(VERSION_STR)
 
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Install a package from the local folder",
 )
 def install_from_local() -> None:
-    """
-    install a package from the local folder
-    """
     dist_folder = "dist"
 
     if os.path.isdir(dist_folder):
@@ -63,11 +60,9 @@ def install_from_local() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Install a package from pypi or gemfury",
 )
 def install_from_remote() -> None:
-    """
-    install a package from pypi or gemfury
-    """
     args = []
     if ConfigData.use_sudo:
         args.extend(["sudo", "-H"])
@@ -98,11 +93,10 @@ def install_from_remote() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Upload a package to pypi or gemfury",
 )
 def upload() -> None:
     """
-    upload a package to pypi or gemfury
-
     This script uploads your module to where ever you configure it.
     It's default is to upload to pypi but you can override by putting
     a pypi.cnf file in the root of your source tree.
@@ -136,11 +130,10 @@ def upload() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Register a function on pypi or gemfury",
 )
 def register() -> None:
     """
-    register a function on pypi or gemfury
-
     This function registers your project in pypi.
 
     when registering via twine(1) you need to:
@@ -175,32 +168,27 @@ def register() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Package in source and/or wheel format",
 )
 def package() -> None:
-    """
-    package in source and/or wheel format
-    """
     package_it()
 
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Package and check if the package is correct",
 )
 def check() -> None:
-    """
-    package and check if the package is correct
-    """
     package_it()
     check_if_needed()
 
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Upgrade to new version",
 )
 def bump() -> None:
     """
-    upgrade to new version
-
     This will:
     - check that all is committed
     - bump the version
@@ -216,30 +204,23 @@ def bump() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Get all pre requisites into a folder",
 )
 def prerequisites() -> None:
-    """
-    Get all pre requisites into a folder
-    """
     do_prerequisites()
 
 
 @register_endpoint(
     configs=[ConfigData],
+    description="Get run pre requisites into a folder",
 )
 def prerequisites_run() -> None:
-    """
-    Get run pre requisites into a folder
-    """
     import config.python
     do_prerequisites(config.python.run_requires)
 
 
-@register_main()
+@register_main(main_description=DESCRIPTION)
 def main():
-    """
-    pypitools will help you interact with pypi
-    """
     pylogconf.core.setup()
     config_arg_parse_and_launch()
 

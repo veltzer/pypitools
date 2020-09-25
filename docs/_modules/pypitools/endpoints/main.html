@@ -35,28 +35,227 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">main entry point to the program</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="kn">import</span> <span class="nn">pylogconf.core</span>
-<span class="kn">from</span> <span class="nn">pytconf</span> <span class="kn">import</span> <span class="n">register_main</span><span class="p">,</span> <span class="n">config_arg_parse_and_launch</span>
 
-<span class="kn">from</span> <span class="nn">pypitools.endpoints.group_default</span> <span class="kn">import</span> <span class="n">register_group_default</span>
+<span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
+<span class="kn">from</span> <span class="nn">pypitools.version</span> <span class="kn">import</span> <span class="n">VERSION_STR</span><span class="p">,</span> <span class="n">DESCRIPTION</span>
+<span class="kn">from</span> <span class="nn">pytconf</span> <span class="kn">import</span> <span class="n">register_main</span><span class="p">,</span> <span class="n">config_arg_parse_and_launch</span><span class="p">,</span> <span class="n">register_endpoint</span>
+
+<span class="kn">import</span> <span class="nn">pypitools</span>
+<span class="kn">from</span> <span class="nn">pypitools.common</span> <span class="kn">import</span> <span class="n">clean_before_if_needed</span><span class="p">,</span> <span class="n">package_it</span><span class="p">,</span> <span class="n">check_if_needed</span><span class="p">,</span> <span class="n">upload_select</span><span class="p">,</span>\
+    <span class="n">clean_after_if_needed</span><span class="p">,</span> \
+    <span class="n">register_select</span><span class="p">,</span> <span class="n">do_prerequisites</span>
+<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_collect</span>
 
 
-<div class="viewcode-block" id="register_all_groups"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.register_all_groups">[docs]</a><span class="k">def</span> <span class="nf">register_all_groups</span><span class="p">():</span>
+<div class="viewcode-block" id="version"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.version">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Print version&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">VERSION_STR</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="install_from_local"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.install_from_local">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Install a package from the local folder&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">install_from_local</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">dist_folder</span> <span class="o">=</span> <span class="s2">&quot;dist&quot;</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">):</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sdist&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">setup_quiet</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;too many files in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">)</span>
+    <span class="n">new_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dist_folder</span><span class="p">,</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">use_sudo</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span> <span class="s2">&quot;-H&quot;</span><span class="p">])</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">pip</span><span class="p">),</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">,</span> <span class="s2">&quot;--upgrade&quot;</span><span class="p">,</span> <span class="n">new_file</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">pip_quiet</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--user&quot;</span><span class="p">])</span>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="install_from_remote"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.install_from_remote">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Install a package from pypi or gemfury&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">install_from_remote</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">use_sudo</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span> <span class="s2">&quot;-H&quot;</span><span class="p">])</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">pip</span><span class="p">),</span>
+            <span class="s2">&quot;install&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--upgrade&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;</span><span class="si">{module_name}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">=</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">module_name</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">pip_quiet</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--user&quot;</span><span class="p">])</span>
+    <span class="n">pypitools</span><span class="o">.</span><span class="n">process_utils</span><span class="o">.</span><span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">pip</span><span class="p">),</span>
+            <span class="s2">&quot;show&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;</span><span class="si">{module_name}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">=</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">module_name</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Version&quot;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="upload"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.upload">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upload a package to pypi or gemfury&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">upload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    registers all groups of operations with pytconf</span>
+<span class="sd">    This script uploads your module to where ever you configure it.</span>
+<span class="sd">    It&#39;s default is to upload to pypi but you can override by putting</span>
+<span class="sd">    a pypi.cnf file in the root of your source tree.</span>
+
+<span class="sd">    It does the following:</span>
+<span class="sd">    - clean</span>
+<span class="sd">    - setup.py sdist</span>
+<span class="sd">    - twine upload</span>
+<span class="sd">    - clean again</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">    - This script could be done via setuptools using the following:</span>
+<span class="sd">    $ python3 setup.py sdist upload -r pypi --identity=&quot;Mark Veltzer&quot; --sign</span>
+<span class="sd">    but this has bad security implications as it sends user and password plain text.</span>
+<span class="sd">    - we use twine(1) to upload the package.</span>
+<span class="sd">    On ubuntu twine(1) is from the &#39;twine&#39; official ubuntu package.</span>
+
+<span class="sd">    References:</span>
+<span class="sd">    - https://pypi.python.org/pypi/twine</span>
+<span class="sd">    - https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</span>
+<span class="sd">    - http://peterdowns.com/posts/first-time-with-pypi.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">register_group_default</span><span class="p">()</span></div>
+    <span class="n">clean_before_if_needed</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">upload_select</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">clean_after_if_needed</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.main">[docs]</a><span class="nd">@register_main</span><span class="p">()</span>
+<div class="viewcode-block" id="register"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.register">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Register a function on pypi or gemfury&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function registers your project in pypi.</span>
+
+<span class="sd">    when registering via twine(1) you need to:</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    - build wheel using setup.py</span>
+<span class="sd">    - twine register</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    This method works, if you register twice it is ok.</span>
+<span class="sd">    You just need to do it once...:)</span>
+
+<span class="sd">    when registering via setup.py you need to:</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    - python setup.py register -r pypi</span>
+<span class="sd">    - full clean</span>
+<span class="sd">    registering the same package many times works.</span>
+<span class="sd">    You just need to do it once...:)</span>
+
+<span class="sd">    References:</span>
+<span class="sd">    - https://packaging.python.org/distributing/</span>
+
+<span class="sd">    TODO:</span>
+<span class="sd">    - check if I&#39;m already registered and don&#39;t register if that is the case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">clean_before_if_needed</span><span class="p">()</span>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">register_select</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">clean_after_if_needed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="package"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.package">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Package in source and/or wheel format&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">package</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">package_it</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="check"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.check">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Package and check if the package is correct&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">check</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">package_it</span><span class="p">()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="bump"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.bump">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upgrade to new version&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">bump</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will:</span>
+<span class="sd">    - check that all is committed</span>
+<span class="sd">    - bump the version</span>
+<span class="sd">    - run pydmt build</span>
+<span class="sd">    - commit with a standard message</span>
+<span class="sd">    - tag with a standard message</span>
+<span class="sd">    - push</span>
+<span class="sd">    - upload to pypi</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check_all_is_committed()</span>
+    <span class="n">check_if_needed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="prerequisites"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.prerequisites">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Get all pre requisites into a folder&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">prerequisites</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">do_prerequisites</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="prerequisites_run"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.prerequisites_run">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
+    <span class="n">configs</span><span class="o">=</span><span class="p">[</span><span class="n">ConfigData</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Get run pre requisites into a folder&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">prerequisites_run</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">config.python</span>
+    <span class="n">do_prerequisites</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">run_requires</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../pypitools.endpoints.html#pypitools.endpoints.main.main">[docs]</a><span class="nd">@register_main</span><span class="p">(</span><span class="n">main_description</span><span class="o">=</span><span class="n">DESCRIPTION</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    pypitools will help you interact with pypi</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pylogconf</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
-    <span class="n">register_all_groups</span><span class="p">()</span>
     <span class="n">config_arg_parse_and_launch</span><span class="p">()</span></div>
 
 
