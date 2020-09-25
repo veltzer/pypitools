@@ -25,7 +25,7 @@ class RegisterMethod(Enum):
 
 class ConfigData(Config):
     """
-    Parameters for the symlink install tool
+    All parameters for the pypitools module
     """
 
     upload_method = ParamCreator.create_enum(
