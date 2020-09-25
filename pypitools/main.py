@@ -8,7 +8,7 @@ import subprocess
 import pylogconf.core
 
 from pypitools.configs import ConfigData
-from pypitools.version import VERSION_STR, DESCRIPTION
+from pypitools.static import VERSION_STR, DESCRIPTION
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
 
 import pypitools
