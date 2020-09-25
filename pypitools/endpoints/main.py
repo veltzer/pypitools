@@ -35,7 +35,7 @@ def install_from_local() -> None:
     if os.path.isdir(dist_folder):
         shutil.rmtree(dist_folder)
     args = [
-        "{}".format(ConfigData.python),
+        ConfigData.python,
         "setup.py",
         "sdist",
     ]
@@ -43,13 +43,13 @@ def install_from_local() -> None:
         args.extend(["--quiet"])
     check_call_collect(args)
     files = list(os.listdir(dist_folder))
-    assert len(files) == 1, "too many files in {}".format(dist_folder)
+    assert len(files) == 1, f"too many files in {dist_folder}"
     new_file = os.path.join(dist_folder, files[0])
     args = []
     if ConfigData.use_sudo:
         args.extend(["sudo", "-H"])
     args.extend(
-        ["{}".format(ConfigData.pip), "install", "--quiet", "--upgrade", new_file]
+        [ConfigData.pip, "install", "--quiet", "--upgrade", new_file]
     )
     if ConfigData.pip_quiet:
         args.extend(["--quiet"])
@@ -68,10 +68,10 @@ def install_from_remote() -> None:
         args.extend(["sudo", "-H"])
     args.extend(
         [
-            "{}".format(ConfigData.pip),
+            ConfigData.pip,
             "install",
             "--upgrade",
-            "{module_name}".format(module_name=ConfigData.module_name),
+            f"{ConfigData.module_name}",
         ]
     )
     if ConfigData.pip_quiet:
@@ -81,9 +81,9 @@ def install_from_remote() -> None:
     pypitools.process_utils.check_call_collect(args)
     output = subprocess.check_output(
         [
-            "{}".format(ConfigData.pip),
+            ConfigData.pip,
             "show",
-            "{module_name}".format(module_name=ConfigData.module_name),
+            f"{ConfigData.module_name}",
         ]
     ).decode()
     for line in output.split("\n"):

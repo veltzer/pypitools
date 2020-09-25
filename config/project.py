@@ -5,15 +5,9 @@ import pyclassifiers.values
 project_github_username = "veltzer"
 project_name = "pypitools"
 github_repo_name = project_name
-project_website = "https://{project_github_username}.github.io/{project_name}".format(
-    project_github_username=project_github_username, project_name=project_name,
-)
-project_website_source = "https://github.com/{project_github_username}/{project_name}".format(
-    project_github_username=project_github_username, project_name=project_name,
-)
-project_website_git = "git://github.com/{project_github_username}/{project_name}.git".format(
-    project_github_username=project_github_username, project_name=project_name,
-)
+project_website = f"https://{project_github_username}.github.io/{project_name}"
+project_website_source = f"https://github.com/{project_github_username}/{project_name}"
+project_website_git = f"git://github.com/{project_github_username}/{project_name}.git"
 project_website_download_ppa = "https://launchpanet/~mark-veltzer/+archive/ubuntu/ppa"
 project_website_download_src = project_website_source
 # noinspection SpellCheckingInspection
@@ -60,29 +54,23 @@ project_copyright_years = ", ".join(
 if str(config.general.general_current_year) == project_year_started:
     project_copyright_years_short = config.general.general_current_year
 else:
-    project_copyright_years_short = "{0}-{1}".format(
-        project_year_started, config.general.general_current_year
-    )
+    project_copyright_years_short = f"{project_year_started}-{config.general.general_current_folder}"
 
-project_google_analytics_snipplet = """<script type="text/javascript">
+project_google_analytics_snipplet = f"""<script type="text/javascript">
 (function(i,s,o,g,r,a,m){{i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){{
 (i[r].q=i[r].q||[]).push(arguments)}},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 }})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', '{0}', 'auto');
+ga('create', '{project_google_analytics_tracking_id}', 'auto');
 ga('send', 'pageview');
 
-</script>""".format(
-    project_google_analytics_tracking_id
-)
-project_paypal_donate_button_snipplet = """<form action="https://www.paypal.com/cgi-bin/webscr"
+</script>"""
+project_paypal_donate_button_snipplet = f"""<form action="https://www.paypal.com/cgi-bin/webscr"
     method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="{0}">
+<input type="hidden" name="hosted_button_id" value="{project_paypal_donate_button_id}">
 <input type="image" src="https://www.paypalobjects.com/en_US/IL/i/btn/btn_donateCC_LG.gif" name="submit"
 alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>""".format(
-    project_paypal_donate_button_id
-)
+</form>"""
