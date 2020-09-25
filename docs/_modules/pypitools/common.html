@@ -83,7 +83,7 @@
 <span class="sd">    see: python setup.py upload --help</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span>
         <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
@@ -135,7 +135,7 @@
             <span class="s2">&quot;fury&quot;</span><span class="p">,</span>
             <span class="s2">&quot;push&quot;</span><span class="p">,</span>
             <span class="n">get_package_filename</span><span class="p">(),</span>
-            <span class="s2">&quot;--as=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">gemfury_user</span><span class="p">),</span>
+            <span class="sa">f</span><span class="s2">&quot;--as=</span><span class="si">{</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">gemfury_user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
     <span class="p">)</span></div>
 
@@ -157,7 +157,7 @@
 <span class="sd">    register via setup.py register</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">check_call_collect</span><span class="p">(</span>
-        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;pypi&quot;</span><span class="p">]</span>
+        <span class="p">[</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;register&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;pypi&quot;</span><span class="p">]</span>
     <span class="p">)</span></div>
 
 
@@ -201,7 +201,7 @@
 <span class="sd">    package our module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">),</span>
+        <span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span>
         <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">upload_sdist</span><span class="p">:</span>
