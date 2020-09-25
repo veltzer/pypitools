@@ -3,7 +3,7 @@ import config.project
 package_name = config.project.project_name
 
 console_scripts = [
-    "pypitools=pypitools.endpoints.main:main",
+    "pypitools=pypitools.main:main",
 ]
 
 setup_requires = []

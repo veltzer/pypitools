@@ -15,7 +15,6 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pypitools.endpoints package" href="pypitools.endpoints.html" />
     <link rel="prev" title="pypitools" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -35,19 +34,6 @@
             
   <div class="section" id="pypitools-package">
 <h1>pypitools package<a class="headerlink" href="#pypitools-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="pypitools.endpoints.html">pypitools.endpoints package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.endpoints.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.endpoints.html#module-pypitools.endpoints.main">pypitools.endpoints.main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.endpoints.html#module-pypitools.endpoints">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -143,7 +129,7 @@
 <dt id="pypitools.configs.ConfigData">
 <em class="property">class </em><code class="sig-prename descclassname">pypitools.configs.</code><code class="sig-name descname">ConfigData</code><a class="reference internal" href="_modules/pypitools/configs.html#ConfigData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.configs.ConfigData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pytconf.config.Config</span></code></p>
-<p>Parameters for the symlink install tool</p>
+<p>All parameters for the pypitools module</p>
 <dl class="py attribute">
 <dt id="pypitools.configs.ConfigData.check_before_upload">
 <code class="sig-name descname">check_before_upload</code><em class="property"> = True</em><a class="headerlink" href="#pypitools.configs.ConfigData.check_before_upload" title="Permalink to this definition">¶</a></dt>
@@ -285,6 +271,109 @@
 </dd></dl>
 
 </div>
+<div class="section" id="module-pypitools.main">
+<span id="pypitools-main-module"></span><h2>pypitools.main module<a class="headerlink" href="#module-pypitools.main" title="Permalink to this headline">¶</a></h2>
+<p>main entry point to the program</p>
+<dl class="py function">
+<dt id="pypitools.main.bump">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">bump</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#bump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.bump" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will:
+- check that all is committed
+- bump the version
+- run pydmt build
+- commit with a standard message
+- tag with a standard message
+- push
+- upload to pypi</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.check">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.install_from_local">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">install_from_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#install_from_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.install_from_local" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.install_from_remote">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">install_from_remote</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#install_from_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.install_from_remote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.main">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.package">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">package</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.prerequisites">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">prerequisites</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#prerequisites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.prerequisites" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.prerequisites_run">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">prerequisites_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#prerequisites_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.prerequisites_run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.register">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function registers your project in pypi.</p>
+<p>when registering via twine(1) you need to:
+- full clean
+- build wheel using setup.py
+- twine register
+- full clean
+This method works, if you register twice it is ok.
+You just need to do it once…:)</p>
+<p>when registering via setup.py you need to:
+- full clean
+- python setup.py register -r pypi
+- full clean
+registering the same package many times works.
+You just need to do it once…:)</p>
+<p>References:
+- <a class="reference external" href="https://packaging.python.org/distributing/">https://packaging.python.org/distributing/</a></p>
+<p>TODO:
+- check if I’m already registered and don’t register if that is the case.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.upload">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">upload</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>This script uploads your module to where ever you configure it.
+It’s default is to upload to pypi but you can override by putting
+a pypi.cnf file in the root of your source tree.</p>
+<p>It does the following:
+- clean
+- setup.py sdist
+- twine upload
+- clean again</p>
+<p>Notes:
+- This script could be done via setuptools using the following:
+$ python3 setup.py sdist upload -r pypi –identity=”Mark Veltzer” –sign
+but this has bad security implications as it sends user and password plain text.
+- we use twine(1) to upload the package.
+On ubuntu twine(1) is from the ‘twine’ official ubuntu package.</p>
+<p>References:
+- <a class="reference external" href="https://pypi.python.org/pypi/twine">https://pypi.python.org/pypi/twine</a>
+- <a class="reference external" href="https://python-packaging-user-guide.readthedocs.org/en/latest/index.html">https://python-packaging-user-guide.readthedocs.org/en/latest/index.html</a>
+- <a class="reference external" href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypitools.main.version">
+<code class="sig-prename descclassname">pypitools.main.</code><code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pypitools/main.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pypitools.main.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="module-pypitools.name_utils">
 <span id="pypitools-name-utils-module"></span><h2>pypitools.name_utils module<a class="headerlink" href="#module-pypitools.name_utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
@@ -324,8 +413,8 @@ the errors.
 <dd></dd></dl>
 
 </div>
-<div class="section" id="module-pypitools.version">
-<span id="pypitools-version-module"></span><h2>pypitools.version module<a class="headerlink" href="#module-pypitools.version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pypitools.static">
+<span id="pypitools-static-module"></span><h2>pypitools.static module<a class="headerlink" href="#module-pypitools.static" title="Permalink to this headline">¶</a></h2>
 <p>version which can be consumed from within the module</p>
 </div>
 <div class="section" id="module-pypitools">
@@ -345,7 +434,6 @@ the errors.
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">pypitools</a><ul>
       <li>Previous: <a href="modules.html" title="previous chapter">pypitools</a></li>
-      <li>Next: <a href="pypitools.endpoints.html" title="next chapter">pypitools.endpoints package</a></li>
   </ul></li>
   </ul></li>
 </ul>

@@ -1,14 +1,6 @@
 pypitools package
 =================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   pypitools.endpoints
-
 Submodules
 ----------
 
@@ -36,6 +28,14 @@ pypitools.git\_utils module
    :undoc-members:
    :show-inheritance:
 
+pypitools.main module
+---------------------
+
+.. automodule:: pypitools.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pypitools.name\_utils module
 ----------------------------
 
@@ -52,10 +52,10 @@ pypitools.process\_utils module
    :undoc-members:
    :show-inheritance:
 
-pypitools.version module
-------------------------
+pypitools.static module
+-----------------------
 
-.. automodule:: pypitools.version
+.. automodule:: pypitools.static
    :members:
    :undoc-members:
    :show-inheritance:

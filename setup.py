@@ -12,7 +12,6 @@ setuptools.setup(
     version="0.0.68",
     packages=[
         'pypitools',
-        'pypitools.endpoints',
     ],
     # from here all is optional
     description="pypitools helps you with various pypi tasks",
@@ -59,7 +58,7 @@ setuptools.setup(
     data_files=[
     ],
     entry_points={"console_scripts": [
-        'pypitools=pypitools.endpoints.main:main',
+        'pypitools=pypitools.main:main',
     ]},
     python_requires=">=3.6",
 )
