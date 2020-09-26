@@ -8,7 +8,7 @@ import subprocess
 import pylogconf.core
 
 from pypitools.configs import ConfigData
-from pypitools.static import VERSION_STR, DESCRIPTION
+from pypitools.static import VERSION_STR, DESCRIPTION, APP_NAME
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
 
 import pypitools
@@ -219,7 +219,10 @@ def prerequisites_run() -> None:
     do_prerequisites(config.python.run_requires)
 
 
-@register_main(main_description=DESCRIPTION)
+@register_main(
+    main_description=DESCRIPTION,
+    app_name=APP_NAME,
+)
 def main():
     pylogconf.core.setup()
     config_arg_parse_and_launch()
