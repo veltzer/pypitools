@@ -6,10 +6,10 @@ import shutil
 import subprocess
 
 import pylogconf.core
+from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
 
 from pypitools.configs import ConfigData
 from pypitools.static import VERSION_STR, DESCRIPTION, APP_NAME
-from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
 
 import pypitools
 from pypitools.common import clean_before_if_needed, package_it, check_if_needed, upload_select,\
@@ -215,6 +215,7 @@ def prerequisites() -> None:
     description="Get run pre requisites into a folder",
 )
 def prerequisites_run() -> None:
+    # pylint: disable=import-outside-toplevel
     import config.python
     do_prerequisites(config.python.run_requires)
 
@@ -222,6 +223,7 @@ def prerequisites_run() -> None:
 @register_main(
     main_description=DESCRIPTION,
     app_name=APP_NAME,
+    version=VERSION_STR,
 )
 def main():
     pylogconf.core.setup()
