@@ -1,6 +1,7 @@
 import datetime
-import config.general
 import pyclassifiers.values
+
+import config.general
 
 project_github_username = "veltzer"
 project_name = "pypitools"

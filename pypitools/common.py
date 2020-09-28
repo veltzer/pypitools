@@ -45,7 +45,7 @@ def upload_by_setup() -> None:
     upload by setup.py sdist upload
 
     This method still works although it is legacy
-    
+
     see: python setup.py upload --help
     """
     args = [
