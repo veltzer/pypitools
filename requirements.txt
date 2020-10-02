@@ -13,4 +13,5 @@ black
 # test requirements
 pylint
 pytest
+pytest-cov
 pyflakes
