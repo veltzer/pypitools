@@ -16,6 +16,8 @@
 ![Downloads](https://pepy.tech/badge/pypitools/month)
 ![Downloads](https://pepy.tech/badge/pypitools/week)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/veltzer/pypitools/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/veltzer/pypitools?targetFile=requirements.txt)
+
 
 
 pypitools helps you with various pypi tasks
