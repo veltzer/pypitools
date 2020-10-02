@@ -19,6 +19,9 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/veltzer/pypitools/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/veltzer/pypitools?targetFile=requirements.txt)
 
 
+Actions
+
+![build](https://github.com/veltzer/pypitools/workflows/build/badge.svg)
 
 pypitools helps you with various pypi tasks
 
