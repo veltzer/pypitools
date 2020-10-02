@@ -20,6 +20,7 @@ test_requires = [
     "pytest",  # for testing
     "pytest-cov",  # for testing
     "pyflakes",  # for testing
+    "flake8",  # for linting
 ]
 
 dev_requires = [
