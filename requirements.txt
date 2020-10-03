@@ -14,5 +14,5 @@ black
 pylint
 pytest
 pytest-cov
-pyflakes
 flake8
+pymakehelper
