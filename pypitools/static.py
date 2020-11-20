@@ -2,3 +2,4 @@
 VERSION_STR = "0.0.69"
 DESCRIPTION = "pypitools helps you with various pypi tasks"
 APP_NAME = "pypitools"
+LOGGER_NAME = "pypitools"
