@@ -19,13 +19,6 @@ from pypitools.process_utils import check_call_collect
 
 
 @register_endpoint(
-    description="Print version",
-)
-def version() -> None:
-    print(VERSION_STR)
-
-
-@register_endpoint(
     configs=[ConfigData],
     description="Install a package from the local folder",
 )
