@@ -14,7 +14,6 @@
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
 ![build](https://github.com/veltzer/pypitools/workflows/build/badge.svg)
-
 pypitools helps you with various pypi tasks
 
 project website: https://veltzer.github.io/pypitools
