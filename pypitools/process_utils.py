@@ -16,15 +16,15 @@ def check_call_collect(args: List[str]) -> Tuple[str, str]:
     """
     logger = get_logger()
     logger.debug("running %s", args)
-    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
-    (res_stdout, res_stderr) = process.communicate()
-    if process.returncode:
-        print(res_stdout.decode(), end="", file=sys.stdout)
-        print(res_stderr.decode(), end="", file=sys.stderr)
-        raise ValueError(
-            f"exit code from [{' '.join(args)}] was [{process.returncode}]"
-        )
-    return res_stdout.decode(), res_stderr.decode()
+    with subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
+        (res_stdout, res_stderr) = process.communicate()
+        if process.returncode:
+            print(res_stdout.decode(), end="", file=sys.stdout)
+            print(res_stderr.decode(), end="", file=sys.stderr)
+            raise ValueError(
+                f"exit code from [{' '.join(args)}] was [{process.returncode}]"
+            )
+        return res_stdout.decode(), res_stderr.decode()
 
 
 def get_logger():
