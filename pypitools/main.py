@@ -123,11 +123,11 @@ def upload() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
-    description="Register a function on pypi or gemfury",
+    description="Register a package on pypi or gemfury",
 )
 def register() -> None:
     """
-    This function registers your project in pypi.
+    This function registers your package in pypi.
 
     when registering via twine(1) you need to:
     - full clean
