@@ -210,7 +210,7 @@ def prerequisites() -> None:
 def prerequisites_run() -> None:
     # pylint: disable=import-outside-toplevel
     import config.python
-    do_prerequisites(config.python.run_requires)
+    do_prerequisites(config.python.install_requires)
 
 
 @register_main(

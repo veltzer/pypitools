@@ -6,7 +6,7 @@ console_scripts = [
     "pypitools=pypitools.main:main",
 ]
 
-run_requires = [
+install_requires = [
     "pytconf",
     "pylogconf",
     "twine",
