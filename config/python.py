@@ -5,14 +5,19 @@ package_name = config.project.project_name
 console_scripts = [
     "pypitools=pypitools.main:main",
 ]
-
+dev_requires = [
+    "pyclassifiers",
+    "pypitools",
+    "pydmt",
+    "Sphinx",
+    "black",
+]
 install_requires = [
     "pytconf",
     "pylogconf",
     "twine",
     "wheel",
 ]
-
 test_requires = [
     "pylint",
     "pytest",
@@ -21,14 +26,7 @@ test_requires = [
     "pymakehelper",
 ]
 
-dev_requires = [
-    "pyclassifiers",
-    "pypitools",
-    "pydmt",
-    "Sphinx",
-    "black",
-]
+python_requires = ">=3.10"
 
-python_requires = ">=3.9"
-test_os = ["ubuntu-20.04"]
-test_python = ["3.9"]
+test_os = ["ubuntu-22.04"]
+test_python = ["3.10"]
