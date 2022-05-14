@@ -33,6 +33,7 @@
   <h1>Source code for pypitools.process_utils</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">pypitools.utils</span> <span class="kn">import</span> <span class="n">get_logger</span>
@@ -51,6 +52,8 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;running </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ConfigOutput</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;running [</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">]..&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ConfigOutput</span><span class="o">.</span><span class="n">suppress_warnings</span><span class="p">:</span>
+        <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYTHONWARNINGS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ignore&quot;</span>
     <span class="k">with</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span> <span class="k">as</span> <span class="n">process</span><span class="p">:</span>
         <span class="p">(</span><span class="n">res_stdout</span><span class="p">,</span> <span class="n">res_stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="p">:</span>
@@ -59,6 +62,8 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;exit code from [</span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2">] was [</span><span class="si">{</span><span class="n">process</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="s2">]&quot;</span>
             <span class="p">)</span>
+        <span class="k">if</span> <span class="n">ConfigOutput</span><span class="o">.</span><span class="n">suppress_warnings</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYTHONWARNINGS&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">res_stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="n">res_stderr</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 </pre></div>
 

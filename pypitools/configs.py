@@ -93,3 +93,7 @@ class ConfigOutput(Config):
         help_string="be verbose?",
         default=False,
     )
+    suppress_warnings = ParamCreator.create_bool(
+        help_string="supress warnings?",
+        default=True,
+    )
