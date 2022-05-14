@@ -36,7 +36,6 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="kn">import</span> <span class="nn">pylogconf.core</span>
 <span class="kn">from</span> <span class="nn">pytconf</span> <span class="kn">import</span> <span class="n">register_main</span><span class="p">,</span> <span class="n">config_arg_parse_and_launch</span><span class="p">,</span> <span class="n">register_endpoint</span>
@@ -44,11 +43,10 @@
 <span class="kn">from</span> <span class="nn">pypitools.configs</span> <span class="kn">import</span> <span class="n">ConfigData</span>
 <span class="kn">from</span> <span class="nn">pypitools.static</span> <span class="kn">import</span> <span class="n">VERSION_STR</span><span class="p">,</span> <span class="n">DESCRIPTION</span><span class="p">,</span> <span class="n">APP_NAME</span>
 
-<span class="kn">import</span> <span class="nn">pypitools</span>
+<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_collect</span>
 <span class="kn">from</span> <span class="nn">pypitools.common</span> <span class="kn">import</span> <span class="n">clean_before_if_needed</span><span class="p">,</span> <span class="n">package_it</span><span class="p">,</span> <span class="n">check_if_needed</span><span class="p">,</span> <span class="n">upload_select</span><span class="p">,</span>\
     <span class="n">clean_after_if_needed</span><span class="p">,</span> \
     <span class="n">register_select</span><span class="p">,</span> <span class="n">do_prerequisites</span>
-<span class="kn">from</span> <span class="nn">pypitools.process_utils</span> <span class="kn">import</span> <span class="n">check_call_collect</span>
 
 
 <div class="viewcode-block" id="install_from_local"><a class="viewcode-back" href="../../pypitools.html#pypitools.main.install_from_local">[docs]</a><span class="nd">@register_endpoint</span><span class="p">(</span>
@@ -104,14 +102,14 @@
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--quiet&quot;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">ConfigData</span><span class="o">.</span><span class="n">install_in_user_folder</span><span class="p">:</span>
         <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--user&quot;</span><span class="p">])</span>
-    <span class="n">pypitools</span><span class="o">.</span><span class="n">process_utils</span><span class="o">.</span><span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+    <span class="n">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">output</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check_call_collect</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="n">ConfigData</span><span class="o">.</span><span class="n">pip</span><span class="p">,</span>
             <span class="s2">&quot;show&quot;</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">module_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Version&quot;</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>

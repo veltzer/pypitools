@@ -3,7 +3,6 @@ main entry point to the program
 """
 import os
 import shutil
-import subprocess
 
 import pylogconf.core
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
@@ -11,11 +10,10 @@ from pytconf import register_main, config_arg_parse_and_launch, register_endpoin
 from pypitools.configs import ConfigData
 from pypitools.static import VERSION_STR, DESCRIPTION, APP_NAME
 
-import pypitools
+from pypitools.process_utils import check_call_collect
 from pypitools.common import clean_before_if_needed, package_it, check_if_needed, upload_select,\
     clean_after_if_needed, \
     register_select, do_prerequisites
-from pypitools.process_utils import check_call_collect
 
 
 @register_endpoint(
@@ -71,14 +69,14 @@ def install_from_remote() -> None:
         args.extend(["--quiet"])
     if ConfigData.install_in_user_folder:
         args.extend(["--user"])
-    pypitools.process_utils.check_call_collect(args)
-    output = subprocess.check_output(
+    check_call_collect(args)
+    output, _ = check_call_collect(
         [
             ConfigData.pip,
             "show",
             f"{ConfigData.module_name}",
         ]
-    ).decode()
+    )
     for line in output.split("\n"):
         if line.startswith("Version"):
             print(line)

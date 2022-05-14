@@ -41,13 +41,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the full name of the package</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--fullname&quot;</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-        <span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-    <span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--fullname&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.name_utils.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
