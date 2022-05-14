@@ -95,5 +95,5 @@ class ConfigOutput(Config):
     )
     suppress_warnings = ParamCreator.create_bool(
         help_string="suppress warnings?",
-        default=True,
+        default=False,
     )
