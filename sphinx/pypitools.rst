@@ -60,6 +60,14 @@ pypitools.static module
    :undoc-members:
    :show-inheritance:
 
+pypitools.utils module
+----------------------
+
+.. automodule:: pypitools.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

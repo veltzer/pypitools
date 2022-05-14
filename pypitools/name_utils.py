@@ -8,13 +8,7 @@ def get_package_fullname() -> str:
     """
     Get the full name of the package
     """
-    return (
-        subprocess.check_output(
-            [ConfigData.python, "setup.py", "--fullname"]
-        )
-        .decode()
-        .rstrip()
-    )
+    return subprocess.check_output([ConfigData.python, "setup.py", "--fullname"]).decode().rstrip()
 
 
 def get_package_filename() -> str:

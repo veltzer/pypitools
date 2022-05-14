@@ -83,3 +83,13 @@ class ConfigData(Config):
         default="wheel",
         help_string="what folder to get all dependencies into?",
     )
+
+
+class ConfigOutput(Config):
+    """
+    Parameters to control output
+    """
+    verbose = ParamCreator.create_bool(
+        help_string="be verbose?",
+        default=False,
+    )
