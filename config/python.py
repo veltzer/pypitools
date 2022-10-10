@@ -2,11 +2,13 @@ console_scripts = [
     "pypitools=pypitools.main:main",
 ]
 dev_requires = [
-    "pyclassifiers",
     "pypitools",
+    "black",
+]
+make_requires = [
+    "pyclassifiers",
     "pydmt",
     "Sphinx",
-    "black",
 ]
 install_requires = [
     "pytconf",
