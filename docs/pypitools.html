@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -33,7 +34,6 @@
 
           <div class="body" role="main">
             
-<<<<<<< HEAD
   <section id="pypitools-package">
 <h1>pypitools package<a class="headerlink" href="#pypitools-package" title="Permalink to this heading">¶</a></h1>
 <section id="submodules">
@@ -41,15 +41,6 @@
 </section>
 <section id="module-pypitools.common">
 <span id="pypitools-common-module"></span><h2>pypitools.common module<a class="headerlink" href="#module-pypitools.common" title="Permalink to this heading">¶</a></h2>
-=======
-  <div class="section" id="pypitools-package">
-<h1>pypitools package<a class="headerlink" href="#pypitools-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pypitools.common">
-<span id="pypitools-common-module"></span><h2>pypitools.common module<a class="headerlink" href="#module-pypitools.common" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <p>This is common pypitools functionality</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.common.check_by_twine">
@@ -132,20 +123,14 @@
 <dd><p>upload via the method configured</p>
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.configs">
 <span id="pypitools-configs-module"></span><h2>pypitools.configs module<a class="headerlink" href="#module-pypitools.configs" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.configs">
-<span id="pypitools-configs-module"></span><h2>pypitools.configs module<a class="headerlink" href="#module-pypitools.configs" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <p>Command line configurations for pypitools</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pypitools.configs.ConfigData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypitools.configs.</span></span><span class="sig-name descname"><span class="pre">ConfigData</span></span><a class="reference internal" href="_modules/pypitools/configs.html#ConfigData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.configs.ConfigData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pytconf.config.Config</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></p>
 <p>All parameters for the pypitools module</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pypitools.configs.ConfigData.check_before_upload">
@@ -237,7 +222,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="pypitools.configs.ConfigOutput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypitools.configs.</span></span><span class="sig-name descname"><span class="pre">ConfigOutput</span></span><a class="reference internal" href="_modules/pypitools/configs.html#ConfigOutput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.configs.ConfigOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pytconf.config.Config</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></p>
 <p>Parameters to control output</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pypitools.configs.ConfigOutput.suppress_warnings">
@@ -254,7 +239,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="pypitools.configs.RegisterMethod">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypitools.configs.</span></span><span class="sig-name descname"><span class="pre">RegisterMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/configs.html#RegisterMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.configs.RegisterMethod" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>Methods for registering</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pypitools.configs.RegisterMethod.SETUP">
@@ -276,7 +261,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="pypitools.configs.UploadMethod">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypitools.configs.</span></span><span class="sig-name descname"><span class="pre">UploadMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/configs.html#UploadMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.configs.UploadMethod" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>Methods for uploading</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pypitools.configs.UploadMethod.GEMFURY">
@@ -295,30 +280,18 @@
 
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.git_utils">
 <span id="pypitools-git-utils-module"></span><h2>pypitools.git_utils module<a class="headerlink" href="#module-pypitools.git_utils" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.git_utils">
-<span id="pypitools-git-utils-module"></span><h2>pypitools.git_utils module<a class="headerlink" href="#module-pypitools.git_utils" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.git_utils.git_clean_full">
 <span class="sig-prename descclassname"><span class="pre">pypitools.git_utils.</span></span><span class="sig-name descname"><span class="pre">git_clean_full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypitools/git_utils.html#git_clean_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.git_utils.git_clean_full" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the current git repo in a strict way</p>
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.main">
 <span id="pypitools-main-module"></span><h2>pypitools.main module<a class="headerlink" href="#module-pypitools.main" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.main">
-<span id="pypitools-main-module"></span><h2>pypitools.main module<a class="headerlink" href="#module-pypitools.main" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <p>main entry point to the program</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.main.bump">
@@ -414,15 +387,9 @@ On ubuntu twine(1) is from the ‘twine’ official ubuntu package.</p>
 - <a class="reference external" href="http://peterdowns.com/posts/first-time-with-pypi.html">http://peterdowns.com/posts/first-time-with-pypi.html</a></p>
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.name_utils">
 <span id="pypitools-name-utils-module"></span><h2>pypitools.name_utils module<a class="headerlink" href="#module-pypitools.name_utils" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.name_utils">
-<span id="pypitools-name-utils-module"></span><h2>pypitools.name_utils module<a class="headerlink" href="#module-pypitools.name_utils" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.name_utils.get_package_filename">
 <span class="sig-prename descclassname"><span class="pre">pypitools.name_utils.</span></span><span class="sig-name descname"><span class="pre">get_package_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pypitools/name_utils.html#get_package_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.name_utils.get_package_filename" title="Permalink to this definition">¶</a></dt>
@@ -441,15 +408,9 @@ On ubuntu twine(1) is from the ‘twine’ official ubuntu package.</p>
 <dd><p>Get the package wheelname</p>
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.process_utils">
 <span id="pypitools-process-utils-module"></span><h2>pypitools.process_utils module<a class="headerlink" href="#module-pypitools.process_utils" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.process_utils">
-<span id="pypitools-process-utils-module"></span><h2>pypitools.process_utils module<a class="headerlink" href="#module-pypitools.process_utils" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.process_utils.check_call_collect">
 <span class="sig-prename descclassname"><span class="pre">pypitools.process_utils.</span></span><span class="sig-name descname"><span class="pre">check_call_collect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypitools/process_utils.html#check_call_collect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.process_utils.check_call_collect" title="Permalink to this definition">¶</a></dt>
@@ -460,7 +421,6 @@ the errors.
 :param args:</p>
 </dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools.static">
 <span id="pypitools-static-module"></span><h2>pypitools.static module<a class="headerlink" href="#module-pypitools.static" title="Permalink to this heading">¶</a></h2>
@@ -468,33 +428,16 @@ the errors.
 </section>
 <section id="module-pypitools.utils">
 <span id="pypitools-utils-module"></span><h2>pypitools.utils module<a class="headerlink" href="#module-pypitools.utils" title="Permalink to this heading">¶</a></h2>
-=======
-</div>
-<div class="section" id="module-pypitools.static">
-<span id="pypitools-static-module"></span><h2>pypitools.static module<a class="headerlink" href="#module-pypitools.static" title="Permalink to this headline">¶</a></h2>
-<p>version which can be consumed from within the module</p>
-</div>
-<div class="section" id="module-pypitools.utils">
-<span id="pypitools-utils-module"></span><h2>pypitools.utils module<a class="headerlink" href="#module-pypitools.utils" title="Permalink to this headline">¶</a></h2>
->>>>>>> b980927 (no commit message given)
 <dl class="py function">
 <dt class="sig sig-object py" id="pypitools.utils.get_logger">
 <span class="sig-prename descclassname"><span class="pre">pypitools.utils.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypitools/utils.html#get_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypitools.utils.get_logger" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<<<<<<< HEAD
 </section>
 <section id="module-pypitools">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pypitools" title="Permalink to this heading">¶</a></h2>
 </section>
 </section>
-=======
-</div>
-<div class="section" id="module-pypitools">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pypitools" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
->>>>>>> b980927 (no commit message given)
 
 
           </div>
@@ -521,7 +464,7 @@ the errors.
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -530,11 +473,7 @@ the errors.
       &copy;2017, Mark Veltzer.
       
       |
-<<<<<<< HEAD
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.2.3</a>
-=======
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
->>>>>>> b980927 (no commit message given)
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
