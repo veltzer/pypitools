@@ -8,7 +8,7 @@ dev_requires = [
 make_requires = [
     "pyclassifiers",
     "pydmt",
-    "Sphinx",
+    "sphinx",
 ]
 install_requires = [
     "pytconf",
