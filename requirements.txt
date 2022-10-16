@@ -4,13 +4,3 @@ pytconf
 pylogconf
 twine
 wheel
-# dev requirements
-pypitools
-black
-# test requirements
-pylint
-pytest
-pytest-cov
-flake8
-pymakehelper
-mypy
