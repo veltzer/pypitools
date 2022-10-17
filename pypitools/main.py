@@ -84,7 +84,7 @@ def install_from_remote() -> None:
 
 @register_endpoint(
     configs=[ConfigData],
-    description="Upload a package to pypi or gemfury (this is what you do after registration when updating)",
+    description="Upload a package to pypi or gemfury (packages before upload)",
 )
 def upload() -> None:
     """
