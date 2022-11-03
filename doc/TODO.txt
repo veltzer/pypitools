@@ -1,3 +1,6 @@
+- move to building with the command:
+	$ python -m build
+	(this is in pypitools)
 - add the ability to upload to gemfury using git push:
 	#!/bin/sh
 	git push fury master
