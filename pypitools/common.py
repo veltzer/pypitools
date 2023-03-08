@@ -4,7 +4,7 @@ This is common pypitools functionality
 import os
 import shutil
 import sys
-from typing import List
+from typing import List, Optional
 
 from pypitools.configs import UploadMethod, RegisterMethod, ConfigData
 from pypitools.git_utils import git_clean_full
@@ -177,7 +177,7 @@ def package_it() -> None:
     check_call_collect(args)
 
 
-def do_prerequisites(packages: List[str] = None) -> None:
+def do_prerequisites(packages: Optional[List[str]] = None) -> None:
     """
     Gather all prerequisites into a single folder
     """
