@@ -21,6 +21,7 @@ def check_call_collect(args: List[str]) -> Tuple[str, str]:
     logger.debug("running %s", args)
     if ConfigOutput.verbose:
         print(f"running [{args}]..")
+    before = None
     if ConfigOutput.suppress_warnings:
         before = os.environ.get(PYTHONWARNINGS)
         os.environ[PYTHONWARNINGS] = "ignore"
