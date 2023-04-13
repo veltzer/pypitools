@@ -13,7 +13,6 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -40,21 +39,21 @@
 
 
 <div class="viewcode-block" id="get_package_fullname"><a class="viewcode-back" href="../../pypitools.html#pypitools.name_utils.get_package_fullname">[docs]</a><span class="k">def</span> <span class="nf">get_package_fullname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the full name of the package</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="n">ConfigData</span><span class="o">.</span><span class="n">python</span><span class="p">,</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--fullname&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="get_package_filename"><a class="viewcode-back" href="../../pypitools.html#pypitools.name_utils.get_package_filename">[docs]</a><span class="k">def</span> <span class="nf">get_package_filename</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the package filename</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.tar.gz&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_package_wheelname"><a class="viewcode-back" href="../../pypitools.html#pypitools.name_utils.get_package_wheelname">[docs]</a><span class="k">def</span> <span class="nf">get_package_wheelname</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the package wheelname</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="n">get_package_fullname</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;-py3-none-any.whl&quot;</span><span class="p">)</span></div>
@@ -92,7 +91,7 @@
       &copy;2017, Mark Veltzer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
