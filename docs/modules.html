@@ -13,6 +13,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pypitools package" href="pypitools.html" />
@@ -39,14 +40,94 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pypitools.html">pypitools package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pypitools.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.common">pypitools.common module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.configs">pypitools.configs module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.git_utils">pypitools.git_utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.main">pypitools.main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.name_utils">pypitools.name_utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.process_utils">pypitools.process_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.common">pypitools.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.check_by_twine"><code class="docutils literal notranslate"><span class="pre">check_by_twine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.check_if_needed"><code class="docutils literal notranslate"><span class="pre">check_if_needed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.clean_after_if_needed"><code class="docutils literal notranslate"><span class="pre">clean_after_if_needed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.clean_before_if_needed"><code class="docutils literal notranslate"><span class="pre">clean_before_if_needed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.do_prerequisites"><code class="docutils literal notranslate"><span class="pre">do_prerequisites()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.package_it"><code class="docutils literal notranslate"><span class="pre">package_it()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.register_by_setup"><code class="docutils literal notranslate"><span class="pre">register_by_setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.register_by_twine"><code class="docutils literal notranslate"><span class="pre">register_by_twine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.register_select"><code class="docutils literal notranslate"><span class="pre">register_select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.upload_by_gemfury"><code class="docutils literal notranslate"><span class="pre">upload_by_gemfury()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.upload_by_setup"><code class="docutils literal notranslate"><span class="pre">upload_by_setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.upload_by_twine"><code class="docutils literal notranslate"><span class="pre">upload_by_twine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.upload_select"><code class="docutils literal notranslate"><span class="pre">upload_select()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.configs">pypitools.configs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData"><code class="docutils literal notranslate"><span class="pre">ConfigData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.check_before_upload"><code class="docutils literal notranslate"><span class="pre">ConfigData.check_before_upload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.clean_after"><code class="docutils literal notranslate"><span class="pre">ConfigData.clean_after</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.clean_before"><code class="docutils literal notranslate"><span class="pre">ConfigData.clean_before</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.gemfury_user"><code class="docutils literal notranslate"><span class="pre">ConfigData.gemfury_user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.install_in_user_folder"><code class="docutils literal notranslate"><span class="pre">ConfigData.install_in_user_folder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.module_name"><code class="docutils literal notranslate"><span class="pre">ConfigData.module_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.pip"><code class="docutils literal notranslate"><span class="pre">ConfigData.pip</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.pip_quiet"><code class="docutils literal notranslate"><span class="pre">ConfigData.pip_quiet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.python"><code class="docutils literal notranslate"><span class="pre">ConfigData.python</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.register_method"><code class="docutils literal notranslate"><span class="pre">ConfigData.register_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.requirements"><code class="docutils literal notranslate"><span class="pre">ConfigData.requirements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.setup_quiet"><code class="docutils literal notranslate"><span class="pre">ConfigData.setup_quiet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_method"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_sdist"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_sdist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_wheel"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_wheel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.use_sudo"><code class="docutils literal notranslate"><span class="pre">ConfigData.use_sudo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.wheel_folder"><code class="docutils literal notranslate"><span class="pre">ConfigData.wheel_folder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigOutput"><code class="docutils literal notranslate"><span class="pre">ConfigOutput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigOutput.suppress_warnings"><code class="docutils literal notranslate"><span class="pre">ConfigOutput.suppress_warnings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigOutput.verbose"><code class="docutils literal notranslate"><span class="pre">ConfigOutput.verbose</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.configs.RegisterMethod"><code class="docutils literal notranslate"><span class="pre">RegisterMethod</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.RegisterMethod.SETUP"><code class="docutils literal notranslate"><span class="pre">RegisterMethod.SETUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.RegisterMethod.TWINE"><code class="docutils literal notranslate"><span class="pre">RegisterMethod.TWINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.RegisterMethod.UPLOAD"><code class="docutils literal notranslate"><span class="pre">RegisterMethod.UPLOAD</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.configs.UploadMethod"><code class="docutils literal notranslate"><span class="pre">UploadMethod</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.UploadMethod.GEMFURY"><code class="docutils literal notranslate"><span class="pre">UploadMethod.GEMFURY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.UploadMethod.SETUP"><code class="docutils literal notranslate"><span class="pre">UploadMethod.SETUP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.UploadMethod.TWINE"><code class="docutils literal notranslate"><span class="pre">UploadMethod.TWINE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.git_utils">pypitools.git_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.git_utils.git_clean_full"><code class="docutils literal notranslate"><span class="pre">git_clean_full()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.main">pypitools.main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.bump"><code class="docutils literal notranslate"><span class="pre">bump()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.check"><code class="docutils literal notranslate"><span class="pre">check()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.install_from_local"><code class="docutils literal notranslate"><span class="pre">install_from_local()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.install_from_remote"><code class="docutils literal notranslate"><span class="pre">install_from_remote()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.package"><code class="docutils literal notranslate"><span class="pre">package()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.prerequisites"><code class="docutils literal notranslate"><span class="pre">prerequisites()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.prerequisites_run"><code class="docutils literal notranslate"><span class="pre">prerequisites_run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.upload"><code class="docutils literal notranslate"><span class="pre">upload()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.name_utils">pypitools.name_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.name_utils.get_package_filename"><code class="docutils literal notranslate"><span class="pre">get_package_filename()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.name_utils.get_package_fullname"><code class="docutils literal notranslate"><span class="pre">get_package_fullname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.name_utils.get_package_wheelname"><code class="docutils literal notranslate"><span class="pre">get_package_wheelname()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.process_utils">pypitools.process_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.process_utils.check_call_collect"><code class="docutils literal notranslate"><span class="pre">check_call_collect()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.static">pypitools.static module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.utils">pypitools.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools.utils">pypitools.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.utils.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pypitools.html#module-pypitools">Module contents</a></li>
 </ul>
 </li>
@@ -87,7 +168,7 @@
       &copy;2017, Mark Veltzer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
