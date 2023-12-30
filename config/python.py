@@ -1,22 +1,26 @@
-console_scripts = [
+from typing import List
+
+
+console_scripts: List[str] = [
     "pypitools=pypitools.main:main",
 ]
-dev_requires = [
+config_requires: List[str] = []
+dev_requires: List[str] = [
     "pypitools",
     "black",
 ]
-make_requires = [
-    "pyclassifiers",
-    "pydmt",
-    "sphinx",
-]
-install_requires = [
+install_requires: List[str] = [
     "pytconf",
     "pylogconf",
     "twine",
     "wheel",
 ]
-test_requires = [
+make_requires: List[str] = [
+    "pyclassifiers",
+    "pydmt",
+    "sphinx",
+]
+test_requires: List[str] = [
     "pylint",
     "pytest",
     "pytest-cov",
@@ -24,3 +28,4 @@ test_requires = [
     "pymakehelper",
     "mypy",
 ]
+requires = config_requires + install_requires + make_requires + test_requires
