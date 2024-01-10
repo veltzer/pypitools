@@ -18,7 +18,6 @@ install_requires: List[str] = [
 make_requires: List[str] = [
     "pyclassifiers",
     "pydmt",
-    "sphinx",
 ]
 test_requires: List[str] = [
     "pylint",
