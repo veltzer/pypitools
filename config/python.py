@@ -4,10 +4,12 @@ from typing import List
 console_scripts: List[str] = [
     "pypitools=pypitools.main:main",
 ]
-config_requires: List[str] = []
 dev_requires: List[str] = [
     "pypitools",
     "black",
+]
+config_requires: List[str] = [
+    "pyclassifiers",
 ]
 install_requires: List[str] = [
     "pytconf",
@@ -16,7 +18,6 @@ install_requires: List[str] = [
     "wheel",
 ]
 make_requires: List[str] = [
-    "pyclassifiers",
     "pydmt",
 ]
 test_requires: List[str] = [
