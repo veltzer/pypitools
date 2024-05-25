@@ -11,7 +11,7 @@ from pypitools.configs import ConfigData
 from pypitools.static import VERSION_STR, DESCRIPTION, APP_NAME
 
 from pypitools.process_utils import check_call_collect
-from pypitools.common import clean_before_if_needed, package_it, check_if_needed, upload_select,\
+from pypitools.common import clean_before_if_needed, package_it, check_if_needed, upload_select, \
     clean_after_if_needed, \
     register_select, do_prerequisites
 
