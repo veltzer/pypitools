@@ -61,6 +61,7 @@ rfc3986==2.0.0
 rich==13.8.0
 rpds-py==0.20.0
 SecretStorage==3.3.3
+setuptools==75.1.0
 smmap==5.0.1
 snowballstemmer==2.2.0
 Sphinx==8.0.2

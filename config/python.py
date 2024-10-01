@@ -16,6 +16,7 @@ install_requires: List[str] = [
     "pylogconf",
     "twine",
     "wheel",
+    "setuptools",
 ]
 build_requires: List[str] = [
     "pydmt",
