@@ -9,7 +9,7 @@ def get_readme():
 setuptools.setup(
     # the first three fields are a must according to the documentation
     name="pypitools",
-    version="0.0.77",
+    version="0.0.78",
     packages=[
         "pypitools",
     ],
@@ -39,6 +39,7 @@ setuptools.setup(
         "pylogconf",
         "twine",
         "wheel",
+        "setuptools",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",

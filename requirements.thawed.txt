@@ -4,6 +4,7 @@ pytconf
 pylogconf
 twine
 wheel
+setuptools
 pydmt
 pylint
 pytest
