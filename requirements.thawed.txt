@@ -1,14 +1,13 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
+mypy
 pyclassifiers
-pytconf
-pylogconf
-twine
-wheel
-setuptools
 pydmt
 pylint
+pylogconf
+pymakehelper
+pytconf
 pytest
 pytest-cov
-flake8
-pymakehelper
-mypy
+setuptools
+twine
+wheel
