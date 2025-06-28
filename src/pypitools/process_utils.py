@@ -13,7 +13,7 @@ from pypitools.configs import ConfigOutput
 PYTHONWARNINGS = "PYTHONWARNINGS"
 
 
-def check_call_collect(args: List[str]) -> Tuple[str, str]:
+def check_call_collect(args: list[str]) -> tuple[str, str]:
     """
     Run a process and check that it returns an OK return code
     Gather any output and return it to the caller.

@@ -177,7 +177,7 @@ def package_it() -> None:
     check_call_collect(args)
 
 
-def do_prerequisites(packages: Optional[List[str]] = None) -> None:
+def do_prerequisites(packages: list[str] | None = None) -> None:
     """
     Gather all prerequisites into a single folder
     """
