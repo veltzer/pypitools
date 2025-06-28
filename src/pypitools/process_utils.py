@@ -5,7 +5,6 @@ process_utils.py
 import subprocess
 import sys
 import os
-from typing import List, Tuple
 
 from pypitools.utils import get_logger
 from pypitools.configs import ConfigOutput

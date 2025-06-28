@@ -4,7 +4,6 @@ This is common pypitools functionality
 import os
 import shutil
 import sys
-from typing import List, Optional
 
 from pypitools.configs import UploadMethod, RegisterMethod, ConfigData
 from pypitools.git_utils import git_clean_full
