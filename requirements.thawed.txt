@@ -7,7 +7,7 @@ pylogconf
 pymakehelper
 pytconf
 pytest
-pytest-cov
+ruff
 setuptools
 twine
 wheel
