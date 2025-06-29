@@ -38,7 +38,6 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pypitools.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pypitools.configs</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigOutput</span>
@@ -48,7 +47,7 @@
 
 <div class="viewcode-block" id="check_call_collect">
 <a class="viewcode-back" href="../../pypitools.html#pypitools.process_utils.check_call_collect">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_call_collect</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run a process and check that it returns an OK return code</span>
 <span class="sd">    Gather any output and return it to the caller.</span>
