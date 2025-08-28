@@ -130,7 +130,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">upload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This script uploads your module to where ever you configure it.</span>
-<span class="sd">    It&#39;s default is to upload to pypi but you can override by putting</span>
+<span class="sd">    Its default is to upload to pypi but you can override by putting</span>
 <span class="sd">    a pypi.cnf file in the root of your source tree.</span>
 
 <span class="sd">    It does the following:</span>
@@ -144,7 +144,7 @@
 <span class="sd">    $ python3 setup.py sdist upload -r pypi --identity=&quot;Mark Veltzer&quot; --sign</span>
 <span class="sd">    but this has bad security implications as it sends user and password plain text.</span>
 <span class="sd">    - we use twine(1) to upload the package.</span>
-<span class="sd">    On ubuntu twine(1) is from the &#39;twine&#39; official ubuntu package.</span>
+<span class="sd">    On ubuntu twine(1) is from the &quot;twine&quot; official ubuntu package.</span>
 
 <span class="sd">    References:</span>
 <span class="sd">    - https://pypi.python.org/pypi/twine</span>
@@ -190,7 +190,7 @@
 <span class="sd">    - https://packaging.python.org/distributing/</span>
 
 <span class="sd">    TODO:</span>
-<span class="sd">    - check if I&#39;m already registered and don&#39;t register if that is the case.</span>
+<span class="sd">    - check if Im already registered and dont register if that is the case.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clean_before_if_needed</span><span class="p">()</span>
     <span class="n">package_it</span><span class="p">()</span>
