@@ -89,7 +89,7 @@ def install_from_remote() -> None:
 def upload() -> None:
     """
     This script uploads your module to where ever you configure it.
-    It's default is to upload to pypi but you can override by putting
+    Its default is to upload to pypi but you can override by putting
     a pypi.cnf file in the root of your source tree.
 
     It does the following:
@@ -103,7 +103,7 @@ def upload() -> None:
     $ python3 setup.py sdist upload -r pypi --identity="Mark Veltzer" --sign
     but this has bad security implications as it sends user and password plain text.
     - we use twine(1) to upload the package.
-    On ubuntu twine(1) is from the 'twine' official ubuntu package.
+    On ubuntu twine(1) is from the "twine" official ubuntu package.
 
     References:
     - https://pypi.python.org/pypi/twine
@@ -146,7 +146,7 @@ def register() -> None:
     - https://packaging.python.org/distributing/
 
     TODO:
-    - check if I'm already registered and don't register if that is the case.
+    - check if Im already registered and dont register if that is the case.
     """
     clean_before_if_needed()
     package_it()

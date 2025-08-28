@@ -33,8 +33,9 @@ def check_call_collect(args: list[str]) -> tuple[str, str]:
         if process.returncode:
             print(res_stdout.decode(), end="", file=sys.stdout)
             print(res_stderr.decode(), end="", file=sys.stderr)
+            all_args = " ".join(args)
             raise ValueError(
-                f"exit code from [{' '.join(args)}] was [{process.returncode}]"
+                f"exit code from [{all_args}] was [{process.returncode}]"
             )
         if ConfigOutput.suppress_warnings:
             if before is None:
