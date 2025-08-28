@@ -60,8 +60,8 @@ def upload_by_setup() -> None:
             "upload",
             # this means which repository to upload too
             # the default is https://upload.pypi.org/legacy/ and it works
-            # '-r',
-            # 'pypi',
+            # "-r",
+            # "pypi",
         ]
     )
     check_call_collect(args)
