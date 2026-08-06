@@ -206,8 +206,8 @@ def prerequisites() -> None:
     description="Get run pre requisites into a folder",
 )
 def prerequisites_run() -> None:
-    # pylint: disable=import-outside-toplevel
-    import config.python
+    # pylint: disable=import-outside-toplevel,import-error,no-name-in-module,c-extension-no-member
+    import config.python  # type: ignore[import-not-found]
     do_prerequisites(config.python.install_requires)
 
 
