@@ -5,15 +5,20 @@ import os
 import shutil
 
 import pylogconf.core
-from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
+from pytconf import config_arg_parse_and_launch, register_endpoint, register_main
 
+from pypitools.common import (
+    check_if_needed,
+    clean_after_if_needed,
+    clean_before_if_needed,
+    do_prerequisites,
+    package_it,
+    register_select,
+    upload_select,
+)
 from pypitools.configs import ConfigData
-from pypitools.static import VERSION_STR, DESCRIPTION, APP_NAME
-
 from pypitools.process_utils import check_call_collect
-from pypitools.common import clean_before_if_needed, package_it, check_if_needed, upload_select, \
-    clean_after_if_needed, \
-    register_select, do_prerequisites
+from pypitools.static import APP_NAME, DESCRIPTION, VERSION_STR
 
 
 @register_endpoint(

@@ -2,12 +2,12 @@
 process_utils.py
 """
 
+import os
 import subprocess
 import sys
-import os
 
-from pypitools.utils import get_logger
 from pypitools.configs import ConfigOutput
+from pypitools.utils import get_logger
 
 PYTHONWARNINGS = "PYTHONWARNINGS"
 
