@@ -5,7 +5,7 @@ import os
 import shutil
 import sys
 
-from pypitools.configs import UploadMethod, RegisterMethod, ConfigData
+from pypitools.configs import ConfigData, RegisterMethod, UploadMethod
 from pypitools.git_utils import git_clean_full
 from pypitools.name_utils import get_package_filename, get_package_wheelname
 from pypitools.process_utils import check_call_collect
