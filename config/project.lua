@@ -7,3 +7,4 @@ KEYWORDS = {
     "erase",
     "delete",
 }
+PYPI = true
