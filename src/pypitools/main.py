@@ -11,7 +11,6 @@ from pypitools.common import (
     check_if_needed,
     clean_after_if_needed,
     clean_before_if_needed,
-    do_prerequisites,
     package_it,
     register_select,
     upload_select,
@@ -188,7 +187,6 @@ def bump() -> None:
     This will:
     - check that all is committed
     - bump the version
-    - run pydmt build
     - commit with a standard message
     - tag with a standard message
     - push
@@ -197,23 +195,6 @@ def bump() -> None:
     # check_all_is_committed()
     check_if_needed()
 
-
-@register_endpoint(
-    configs=[ConfigData],
-    description="Get all pre requisites into a folder",
-)
-def prerequisites() -> None:
-    do_prerequisites()
-
-
-@register_endpoint(
-    configs=[ConfigData],
-    description="Get run pre requisites into a folder",
-)
-def prerequisites_run() -> None:
-    # pylint: disable=import-outside-toplevel,import-error,no-name-in-module,c-extension-no-member
-    import config.python  # type: ignore[import-not-found]
-    do_prerequisites(config.python.install_requires)
 
 
 @register_main(
