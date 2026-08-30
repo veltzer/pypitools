@@ -10,8 +10,8 @@
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
     <script src="_static/documentation_options.js?v=ae06b2e5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pypitools package" href="pypitools.html" />
@@ -44,7 +44,6 @@
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.check_if_needed"><code class="docutils literal notranslate"><span class="pre">check_if_needed()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.clean_after_if_needed"><code class="docutils literal notranslate"><span class="pre">clean_after_if_needed()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.clean_before_if_needed"><code class="docutils literal notranslate"><span class="pre">clean_before_if_needed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.do_prerequisites"><code class="docutils literal notranslate"><span class="pre">do_prerequisites()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.package_it"><code class="docutils literal notranslate"><span class="pre">package_it()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.register_by_setup"><code class="docutils literal notranslate"><span class="pre">register_by_setup()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.common.register_by_twine"><code class="docutils literal notranslate"><span class="pre">register_by_twine()</span></code></a></li>
@@ -67,13 +66,11 @@
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.pip_quiet"><code class="docutils literal notranslate"><span class="pre">ConfigData.pip_quiet</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.python"><code class="docutils literal notranslate"><span class="pre">ConfigData.python</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.register_method"><code class="docutils literal notranslate"><span class="pre">ConfigData.register_method</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.requirements"><code class="docutils literal notranslate"><span class="pre">ConfigData.requirements</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.setup_quiet"><code class="docutils literal notranslate"><span class="pre">ConfigData.setup_quiet</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_method"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_method</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_sdist"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_sdist</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.upload_wheel"><code class="docutils literal notranslate"><span class="pre">ConfigData.upload_wheel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.use_sudo"><code class="docutils literal notranslate"><span class="pre">ConfigData.use_sudo</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigData.wheel_folder"><code class="docutils literal notranslate"><span class="pre">ConfigData.wheel_folder</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.configs.ConfigOutput"><code class="docutils literal notranslate"><span class="pre">ConfigOutput</span></code></a><ul>
@@ -106,8 +103,6 @@
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.install_from_remote"><code class="docutils literal notranslate"><span class="pre">install_from_remote()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.package"><code class="docutils literal notranslate"><span class="pre">package()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.prerequisites"><code class="docutils literal notranslate"><span class="pre">prerequisites()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.prerequisites_run"><code class="docutils literal notranslate"><span class="pre">prerequisites_run()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="pypitools.html#pypitools.main.upload"><code class="docutils literal notranslate"><span class="pre">upload()</span></code></a></li>
 </ul>
@@ -190,7 +185,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Mark Veltzer.
+      &#169;2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Mark Veltzer.
       
       |
       <a href="_sources/modules.rst.txt"
