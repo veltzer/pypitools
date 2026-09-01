@@ -689,11 +689,11 @@ wheels = [
 
 [[package]]
 name = "platformdirs"
-version = "4.11.5"
+version = "4.11.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ea/06/cf1564dcc2e2261c8c8c6c05628dc8b418943bdae2a4e58640ceb2f770fa/platformdirs-4.11.5.tar.gz", hash = "sha256:e8b31f4f8bcbbedef91a6b57a706255e4f148d2a4e01648382a0a47342539173", size = 34823, upload-time = "2026-08-27T21:36:37.46Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/69/b7/802a56eca9f2fac455b8bab5375a2647b0f0e14a2cd63ef077de3c4a7658/platformdirs-4.11.7.tar.gz", hash = "sha256:4f41487eeeeeb07f3a6625e61d9bc0ae6809f92d3386dbd74392fbb76108104d", size = 35127, upload-time = "2026-09-01T13:35:10.502Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/12/6f3fcd5067a9cbf4f8664b32957973498da8b083455203c8d9cab83a725c/platformdirs-4.11.5-py3-none-any.whl", hash = "sha256:89f8d42695853b89c7170bd49bc3dc593f98a71e695ede88e06a3b247bc4563b", size = 23900, upload-time = "2026-08-27T21:36:36.227Z" },
+    { url = "https://files.pythonhosted.org/packages/27/6e/80993e10a0482f630cef528635789233224f36b1ffd11592aa15d13ff9ce/platformdirs-4.11.7-py3-none-any.whl", hash = "sha256:8a02cb259042c79d1cd0450facc2fe6dc9d303ae7901afbe33bf8ea0b188cef6", size = 23938, upload-time = "2026-09-01T13:35:09.02Z" },
 ]
 
 [[package]]
@@ -805,15 +805,16 @@ dev = [
 
 [[package]]
 name = "pytconf"
-version = "0.1.22"
+version = "0.1.24"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "pyyaml" },
     { name = "termcolor" },
     { name = "yattag" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f4/2b/93732179a82c47ccca8062dd29f2f5d0ea6d0d047a676c63b3fc3837bdfc/pytconf-0.1.22.tar.gz", hash = "sha256:89ee627a8e2bac1bfc6dd0bee6ff8df2771ccc78cb9484892abf02c55fd9941a", size = 12197, upload-time = "2026-05-12T13:13:23.873Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/24/99/654e71c1f72c918961c8b0f5a098c9a0b7ed99ec3b929355107221bf9d48/pytconf-0.1.24.tar.gz", hash = "sha256:d598f2a152eba22e3d39d73c1ad20fda0423f1f164aa3f12db01928eaf8991ff", size = 13062, upload-time = "2026-08-30T12:33:05.249Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/3c/b4cea91f575837501357dc021d75b7550005d724a751cee2e43a082169cd/pytconf-0.1.22-py3-none-any.whl", hash = "sha256:0512fc9ff107dcbedc6ec33849a7c2de008db77376cea844b1e303ebc6c0a563", size = 14873, upload-time = "2026-05-12T13:13:25.191Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/f2/372e1c8998b6973b18cb006e666b567473d4a6917745ae3366d9031d2024/pytconf-0.1.24-py3-none-any.whl", hash = "sha256:4c147ff2393322ae406eece30d14d2005d1d46a58f530f82e074dc7bcc43afa3", size = 15097, upload-time = "2026-08-30T12:33:04.055Z" },
 ]
 
 [[package]]
@@ -869,16 +870,16 @@ wheels = [
 
 [[package]]
 name = "readme-renderer"
-version = "45.0"
+version = "46.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "docutils" },
     { name = "nh3" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/02/51/d3a6ea424652c60f05600d8c2e01a55c913755e7cdad64afabbd1aa16f44/readme_renderer-45.0.tar.gz", hash = "sha256:030a8fac74904f8fba11ad1bb6964e3f76e896dc7e5e71f16af190c9056696d1", size = 36172, upload-time = "2026-06-09T21:05:17.37Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/25/d7/9309494fad74ee831d4546f69325b5519f37c6dfb2d9ba495db8c6d4f4ca/readme_renderer-46.0.tar.gz", hash = "sha256:af3e964914f6310a33ff67b72a4bdd940bed8d7c3bdecd2d14f40edf284bfe90", size = 38382, upload-time = "2026-08-28T15:18:32.49Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/97/1b/295bf2fa3e740131778065e5ffa2c481f0e7210182d408e9a2c244ff5b0c/readme_renderer-45.0-py3-none-any.whl", hash = "sha256:3385ed220117104a2bceb4a9dac8c5fdf6d1f96890d7ea2a9c7174fd5c84091f", size = 14134, upload-time = "2026-06-09T21:05:15.85Z" },
+    { url = "https://files.pythonhosted.org/packages/4b/72/ac5ca81fe9121fcaa9d828d21017cba00a16a98e4ea5fb60c878f93dda4f/readme_renderer-46.0-py3-none-any.whl", hash = "sha256:d0dae1f74bb273b534770cb4cccb6bb78735540afdb03c2146f4e19dcd412560", size = 14239, upload-time = "2026-08-28T15:18:31.132Z" },
 ]
 
 [[package]]
