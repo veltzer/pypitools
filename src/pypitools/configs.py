@@ -58,7 +58,7 @@ class ConfigData(Config):
         help_string="Should we run the setup quietly?", default=True,
     )
     pip = ParamCreator.create_str(help_string="What pip to use?", default="pip",)
-    gemfury_user = ParamCreator.create_str(
+    gemfury_user = ParamCreator.create_str_or_none(
         help_string="What gemfury user name to use?", default=None,
     )
     python = ParamCreator.create_str(

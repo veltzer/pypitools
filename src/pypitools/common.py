@@ -90,6 +90,9 @@ def upload_by_gemfury() -> None:
     The command line is the one recommended by gemfury at
     https://manage.fury.io/dashboard/[username]/push
     """
+    if ConfigData.gemfury_user is None:
+        msg = "gemfury upload needs a user name: set gemfury_user"
+        raise ValueError(msg)
     package_it()
     if ConfigData.check_before_upload:
         check_by_twine()
