@@ -192,7 +192,6 @@ def bump() -> None:
     - push
     - upload to pypi
     """
-    # check_all_is_committed()
     check_if_needed()
 
 
